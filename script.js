@@ -2,30 +2,7 @@
 // GARMUNT – Homepage JS
 // ============================================================
 
-// ── jQuery Slick Sliders ─────────────────────────────────────
-if (typeof $ !== 'undefined') $(function () {
-
-  // Brand logos slider
-  $('.brands-slider').slick({
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    speed: 400,
-    arrows: false,
-    dots: false,
-    infinite: true,
-    pauseOnHover: true,
-    cssEase: 'ease',
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 4 } },
-      { breakpoint: 768,  settings: { slidesToShow: 3 } },
-      { breakpoint: 480,  settings: { slidesToShow: 2 } }
-    ]
-  });
-
-
-});
+// jQuery/Slick removed — brands section uses pure CSS flex layout
 
 document.addEventListener('DOMContentLoaded', () => {
 

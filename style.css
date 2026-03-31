@@ -1016,25 +1016,33 @@ button { font-family: inherit; cursor: pointer; }
    BRANDS
    ============================================================ */
 .brands { background: var(--color-white); border-top: 1px solid var(--color-gray-200); }
-.brands-slider { position: relative; }
+.brands-slider {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
 .brand-tile {
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: center;
-  height: 90px;
+  height: 80px;
+  flex: 1 1 16.66%;
+  max-width: 200px;
   background: transparent;
   border: none;
-  padding: 20px 10px;
-  margin: 0 2px;
-  transition: transform var(--transition);
+  padding: 16px 20px;
+  transition: opacity var(--transition);
+  opacity: 0.7;
 }
 .brand-tile:hover {
-  transform: none;
+  opacity: 1;
 }
 .brand-tile img,
 .brand-tile svg {
-  width: 140px;
-  height: 40px;
+  max-width: 130px;
+  height: 36px;
   object-fit: contain;
   display: block;
 }
