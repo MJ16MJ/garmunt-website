@@ -3,7 +3,7 @@
 // ============================================================
 
 // ── jQuery Slick Sliders ─────────────────────────────────────
-$(function () {
+if (typeof $ !== 'undefined') $(function () {
 
   // Brand logos slider
   $('.brands-slider').slick({
