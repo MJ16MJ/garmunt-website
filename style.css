@@ -1202,8 +1202,8 @@ button { font-family: inherit; cursor: pointer; }
 .nav-drawer-footer,
 .nav-drawer-close,
 .nav-drawer-logo   { display: none; }
-.nav-backdrop      { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 9998; backdrop-filter: blur(2px); opacity: 0; transition: opacity 0.3s ease; }
-.nav-backdrop.visible { opacity: 1; }
+.nav-backdrop      { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 9998; backdrop-filter: blur(2px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+.nav-backdrop.visible { opacity: 1; pointer-events: auto; }
 .bottom-nav {
   display: none;
   position: fixed;
