@@ -1448,8 +1448,33 @@ button { font-family: inherit; cursor: pointer; }
     width: 3px;
     background: var(--color-accent);
   }
-  .nav-chevron { opacity: 0.35; flex-shrink: 0; }
-  .mega-menu  { display: none !important; }
+  .nav-chevron { opacity: 0.35; flex-shrink: 0; transition: transform 0.3s ease; }
+  .nav-item.mega-open .nav-chevron { transform: rotate(180deg); opacity: 0.6; }
+
+  /* Mega menu as accordion in drawer */
+  .mega-menu {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: rgba(0,0,0,0.15) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    display: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+  .nav-item.mega-open .mega-menu { display: block !important; }
+  .mega-menu__inner { flex-direction: column !important; padding: 12px 18px !important; gap: 0 !important; }
+  .mega-col { padding: 0 !important; border: none !important; }
+  .mega-col h4 { color: rgba(255,255,255,0.5); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 0 4px; }
+  .mega-col ul li a { color: rgba(255,255,255,0.7) !important; background: none !important; padding: 8px 0 !important; margin: 0 !important; font-size: 14px; border-radius: 0 !important; }
+  .mega-col ul li a:hover { color: var(--color-white) !important; }
+  .mega-col--featured { display: none !important; }
+  .mega-col + .mega-col { border-top: 1px solid rgba(255,255,255,0.06) !important; }
 
   /* ── Drawer footer ── */
   .nav-drawer-footer {

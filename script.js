@@ -105,6 +105,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // ESC key
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 
+  // Mobile mega-menu accordion toggle
+  document.querySelectorAll('.has-mega > .nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Only toggle on mobile (when drawer is visible)
+      if (window.innerWidth > 768) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const item = link.closest('.nav-item');
+      const wasOpen = item.classList.contains('mega-open');
+      // Close all other open megas
+      document.querySelectorAll('.nav-item.mega-open').forEach(el => el.classList.remove('mega-open'));
+      // Toggle this one
+      if (!wasOpen) item.classList.add('mega-open');
+    });
+  });
+
   // ── Bottom Nav active state ───────────────────────────────
   document.querySelectorAll('.bottom-nav__item').forEach(btn => {
     btn.addEventListener('click', function () {
