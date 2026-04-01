@@ -74,6 +74,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ── Mobile Search Toggle ──────────────────────────────────
+  const mobileSearchToggle = document.getElementById('mobileSearchToggle');
+  const mobileSearchBar = document.getElementById('mobileSearchBar');
+  if (mobileSearchToggle && mobileSearchBar) {
+    mobileSearchToggle.addEventListener('click', () => {
+      mobileSearchBar.classList.toggle('hidden');
+      if (!mobileSearchBar.classList.contains('hidden')) {
+        mobileSearchBar.querySelector('input').focus();
+      }
+    });
+  }
+
+  // ── Mobile Search Dropdown ────────────────────────────────
+  const mobileSearchInput = document.getElementById('mobileSearchInput');
+  const mobileSearchDropdown = document.getElementById('mobileSearchDropdown');
+  if (mobileSearchInput && mobileSearchDropdown) {
+    mobileSearchInput.addEventListener('input', () => {
+      if (mobileSearchInput.value.length > 0) {
+        mobileSearchDropdown.classList.remove('hidden');
+      } else {
+        mobileSearchDropdown.classList.add('hidden');
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#mobileSearchWrapper')) {
+        mobileSearchDropdown.classList.add('hidden');
+      }
+    });
+  }
+
   // ── Cart Sidebar ──────────────────────────────────────────
   const cartToggle   = document.getElementById('cartToggle');
   const cartSidebar  = document.getElementById('cartSidebar');
@@ -114,11 +144,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('searchInput');
   const searchDropdown = document.getElementById('searchDropdown');
   if (searchInput && searchDropdown) {
-    searchInput.addEventListener('focus', () => {
-      searchDropdown.classList.remove('hidden');
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value.length > 0) {
+        searchDropdown.classList.remove('hidden');
+      } else {
+        searchDropdown.classList.add('hidden');
+      }
     });
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.relative')) {
+      if (!e.target.closest('#searchWrapper')) {
         searchDropdown.classList.add('hidden');
       }
     });

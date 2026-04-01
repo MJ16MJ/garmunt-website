@@ -61,7 +61,7 @@
 
       <!-- Spacer on mobile / Search on desktop -->
       <div class="flex-1 min-w-0">
-        <div class="relative w-full hidden md:block">
+        <div id="searchWrapper" class="relative w-full hidden md:block">
           <input type="text" id="searchInput" placeholder="Search t-shirts, hoodies, workwear..." class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors" autocomplete="off" />
           <button class="absolute right-0 top-0 h-full px-4 bg-brand text-white rounded-r hover:bg-brand-dark transition-colors">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -94,7 +94,7 @@
       <!-- Right actions -->
       <div class="flex items-center gap-4 md:gap-4 flex-shrink-0">
         <!-- Search icon (mobile only) -->
-        <button class="md:hidden text-gray-600">
+        <button class="md:hidden text-gray-600" id="mobileSearchToggle">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
         <a href="#" class="hidden md:inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-brand-dark transition-colors">
@@ -110,6 +110,38 @@
       </div>
     </div>
   </header>
+
+  <!-- ===================== MOBILE SEARCH BAR ===================== -->
+  <div id="mobileSearchBar" class="md:hidden bg-white border-b border-gray-200 px-3 py-2.5 hidden">
+    <div id="mobileSearchWrapper" class="relative">
+      <input type="text" id="mobileSearchInput" placeholder="Search products, brands..." class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors pr-10" autocomplete="off" />
+      <button class="absolute right-0 top-0 h-full px-3 text-gray-400">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <!-- Mobile Search Dropdown -->
+      <div id="mobileSearchDropdown" class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 hidden">
+        <div class="p-3 border-b border-gray-100">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Popular Searches</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full">T-Shirts</a>
+            <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full">Hoodies</a>
+            <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full">Hi-Vis</a>
+            <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full">Workwear</a>
+            <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full">Polo Shirts</a>
+          </div>
+        </div>
+        <div class="p-3">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Trending Products</p>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600">Gildan Heavy Cotton T-Shirt</a></li>
+            <li><a href="#" class="text-sm text-gray-600">AWDis College Hoodie</a></li>
+            <li><a href="#" class="text-sm text-gray-600">Portwest Hi-Vis Vest</a></li>
+            <li><a href="#" class="text-sm text-gray-600">Result Core Softshell Jacket</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== NAV BAR ===================== -->
   <div class="nav-backdrop" id="navBackdrop"></div>
