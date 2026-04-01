@@ -46,20 +46,20 @@
 
   <!-- ===================== MAIN HEADER ===================== -->
   <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-6">
+    <div class="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center gap-3 md:gap-6">
       <!-- Hamburger (mobile) -->
-      <button class="hamburger lg:hidden flex flex-col justify-center items-start gap-[5px] w-10 h-10 bg-transparent border-none flex-shrink-0" id="hamburger" aria-label="Open menu">
+      <button class="hamburger lg:hidden flex flex-col justify-center items-start gap-[5px] w-9 h-9 bg-transparent border-none flex-shrink-0 relative z-[201]" id="hamburger" aria-label="Open menu" style="-webkit-tap-highlight-color:transparent">
         <span class="block h-[2px] w-[22px] bg-dark rounded-sm transition-all"></span>
         <span class="block h-[2px] w-[16px] bg-dark rounded-sm transition-all"></span>
         <span class="block h-[2px] w-[20px] bg-dark rounded-sm transition-all"></span>
       </button>
 
       <!-- Logo -->
-      <a href="#" class="flex-shrink-0">
-        <img src="garmunt-logo.png" alt="Garmunt" class="h-11" />
+      <a href="#" class="flex-shrink-0 flex-1 md:flex-none">
+        <img src="garmunt-logo.png" alt="Garmunt" class="h-8 md:h-11" />
       </a>
 
-      <!-- Search -->
+      <!-- Search (desktop) -->
       <div class="flex-1 hidden md:flex">
         <div class="relative w-full">
           <input type="text" placeholder="Search t-shirts, hoodies, workwear..." class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors" />
@@ -69,19 +69,21 @@
         </div>
       </div>
 
-      <!-- Design Now CTA + Account + Cart -->
-      <div class="flex items-center gap-4">
-        <a href="#" class="hidden sm:inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-brand-dark transition-colors">
+      <!-- Right actions -->
+      <div class="flex items-center gap-3 md:gap-4">
+        <!-- Search icon (mobile only) -->
+        <button class="md:hidden text-gray-600">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <a href="#" class="hidden md:inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-brand-dark transition-colors">
           Design Now
         </a>
-        <a href="#" class="flex flex-col items-center text-gray-600 hover:text-brand transition-colors">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span class="text-[10px] mt-0.5 hidden sm:block">Account</span>
+        <a href="#" class="text-gray-600 hover:text-brand transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </a>
-        <a href="#" class="flex flex-col items-center text-gray-600 hover:text-brand transition-colors relative" id="cartToggle">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <span class="absolute -top-1 -right-1 bg-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
-          <span class="text-[10px] mt-0.5 hidden sm:block">Cart</span>
+        <a href="#" class="text-gray-600 hover:text-brand transition-colors relative" id="cartToggle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="absolute -top-1.5 -right-1.5 bg-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
         </a>
       </div>
     </div>
@@ -89,7 +91,7 @@
 
   <!-- ===================== NAV BAR ===================== -->
   <div class="nav-backdrop" id="navBackdrop"></div>
-  <nav class="navbar bg-white border-b border-gray-200 hidden lg:block" id="navbar">
+  <nav class="navbar" id="navbar">
     <!-- Mobile drawer header -->
     <div class="nav-drawer-header hidden">
       <img src="garmunt-logo.png" alt="Garmunt" class="nav-drawer-logo" />

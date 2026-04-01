@@ -78,8 +78,21 @@
 }
 .nav-backdrop.visible { opacity: 1; pointer-events: auto; }
 
+/* ── Navbar (desktop) ──────────────────────────────────── */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+  z-index: 40;
+}
+
 /* ── Mobile Nav Drawer Header ──────────────────────────── */
 .nav-drawer-header, .nav-drawer-logo, .nav-drawer-close { display: none; }
+
+/* ── Hamburger (hidden on desktop) ─────────────────────── */
+@media (min-width: 1025px) {
+  .hamburger { display: none !important; }
+}
 
 /* ── Hamburger animation ───────────────────────────────── */
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(1px, -1px); width: 22px; }
