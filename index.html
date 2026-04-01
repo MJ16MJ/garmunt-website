@@ -62,10 +62,32 @@
       <!-- Spacer on mobile / Search on desktop -->
       <div class="flex-1">
         <div class="relative w-full hidden md:block">
-          <input type="text" placeholder="Search t-shirts, hoodies, workwear..." class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors" />
+          <input type="text" id="searchInput" placeholder="Search t-shirts, hoodies, workwear..." class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors" autocomplete="off" />
           <button class="absolute right-0 top-0 h-full px-4 bg-brand text-white rounded-r hover:bg-brand-dark transition-colors">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>
+          <!-- Search Dropdown -->
+          <div id="searchDropdown" class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded shadow-lg z-50 hidden">
+            <div class="p-3 border-b border-gray-100">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Popular Searches</p>
+              <div class="flex flex-wrap gap-2">
+                <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full hover:bg-brand-light hover:text-brand transition-colors">T-Shirts</a>
+                <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full hover:bg-brand-light hover:text-brand transition-colors">Hoodies</a>
+                <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full hover:bg-brand-light hover:text-brand transition-colors">Hi-Vis</a>
+                <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full hover:bg-brand-light hover:text-brand transition-colors">Workwear</a>
+                <a href="#" class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full hover:bg-brand-light hover:text-brand transition-colors">Polo Shirts</a>
+              </div>
+            </div>
+            <div class="p-3">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Trending Products</p>
+              <ul class="space-y-2">
+                <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Gildan Heavy Cotton T-Shirt</a></li>
+                <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">AWDis College Hoodie</a></li>
+                <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Portwest Hi-Vis Vest</a></li>
+                <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Result Core Softshell Jacket</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -187,25 +209,6 @@
             </div>
           </div>
 
-          <!-- Delivery Tabs -->
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-4 py-1.5 text-xs font-medium text-dark">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Free Delivery
-            </span>
-            <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-4 py-1.5 text-xs font-medium text-dark">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Rush
-            </span>
-            <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-4 py-1.5 text-xs font-medium text-dark">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              Bulk Logistics
-            </span>
-            <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-4 py-1.5 text-xs font-medium text-dark">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              Trade Rates
-            </span>
-          </div>
         </div>
 
         <!-- Right Product Grid -->
@@ -216,42 +219,36 @@
                 <img src="images/cat-tshirts.webp" alt="T-Shirts" class="w-full h-full object-cover" />
               </div>
               <p class="text-xs font-semibold text-dark">T-Shirts</p>
-              <p class="text-xs text-brand font-bold">&pound;4.99</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
                 <img src="images/cat-hoodies.webp" alt="Hoodies" class="w-full h-full object-cover" />
               </div>
               <p class="text-xs font-semibold text-dark">Hoodies</p>
-              <p class="text-xs text-brand font-bold">&pound;12.50</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
                 <img src="images/cat-polos.webp" alt="Polos" class="w-full h-full object-cover" />
               </div>
               <p class="text-xs font-semibold text-dark">Polo Shirts</p>
-              <p class="text-xs text-brand font-bold">&pound;8.99</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
                 <img src="images/cat-workwear.webp" alt="Workwear" class="w-full h-full object-cover" />
               </div>
               <p class="text-xs font-semibold text-dark">Workwear</p>
-              <p class="text-xs text-brand font-bold">&pound;15.00</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
                 <img src="images/cat-hivis.webp" alt="Hi-Vis" class="w-full h-full object-cover" />
               </div>
               <p class="text-xs font-semibold text-dark">Hi-Vis</p>
-              <p class="text-xs text-brand font-bold">&pound;6.49</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
                 <img src="images/cat-caps.webp" alt="Caps" class="w-full h-full object-cover" />
               </div>
               <p class="text-xs font-semibold text-dark">Headwear</p>
-              <p class="text-xs text-brand font-bold">&pound;3.99</p>
             </a>
           </div>
         </div>
@@ -427,29 +424,6 @@
     </div>
   </section>
 
-  <!-- ===================== SERVICES STRIP ===================== -->
-  <section class="py-14 bg-brand text-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white/10 rounded-lg p-6 text-center">
-          <svg class="mx-auto mb-4" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
-          <h3 class="font-bold text-lg mb-2">Warehousing</h3>
-          <p class="text-white/75 text-sm">We store your inventory so you don't have to.</p>
-        </div>
-        <div class="bg-white/10 rounded-lg p-6 text-center">
-          <svg class="mx-auto mb-4" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          <h3 class="font-bold text-lg mb-2">Individual Fulfilment</h3>
-          <p class="text-white/75 text-sm">Shipping 1 or 1,000 items directly to your team's doorsteps.</p>
-        </div>
-        <div class="bg-white/10 rounded-lg p-6 text-center">
-          <svg class="mx-auto mb-4" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <h3 class="font-bold text-lg mb-2">Global Freight</h3>
-          <p class="text-white/75 text-sm">Seamless international distribution for global brands.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== SATISFIED CUSTOMERS ===================== -->
   <section class="py-14">
     <div class="max-w-7xl mx-auto px-4">
@@ -511,26 +485,6 @@
           <p class="text-gray-500 text-xs leading-relaxed mb-4">The trade account pricing is unbeatable. We switched from our previous supplier and saved over 30% on our monthly uniform orders. The embroidery quality is spot on.</p>
           <p class="text-xs font-semibold text-dark">Jasmine J.</p>
           <p class="text-[10px] text-gray-400">Verified Buyer</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== TRUST BADGES ===================== -->
-  <section class="py-10 border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex flex-wrap justify-center items-center gap-12">
-        <div class="text-center">
-          <div class="text-3xl font-900 text-brand mb-1">ISO</div>
-          <p class="text-[10px] text-gray-400 font-medium">Quality Certified<br/>Standards</p>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-900 text-dark mb-1">Inc.</div>
-          <p class="text-[10px] text-gray-400 font-medium">Featured in<br/>Inc. 5000</p>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-900 text-dark mb-1">BSIF</div>
-          <p class="text-[10px] text-gray-400 font-medium">Registered<br/>Safety Supplier</p>
         </div>
       </div>
     </div>

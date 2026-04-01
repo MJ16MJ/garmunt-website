@@ -110,6 +110,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ── Search Dropdown ───────────────────────────────────────
+  const searchInput = document.getElementById('searchInput');
+  const searchDropdown = document.getElementById('searchDropdown');
+  if (searchInput && searchDropdown) {
+    searchInput.addEventListener('focus', () => {
+      searchDropdown.classList.remove('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.relative')) {
+        searchDropdown.classList.add('hidden');
+      }
+    });
+  }
+
   if (cartToggle)   cartToggle.addEventListener('click', openCart);
   if (cartClose)    cartClose.addEventListener('click', closeCart);
   if (cartContinue) cartContinue.addEventListener('click', closeCart);
