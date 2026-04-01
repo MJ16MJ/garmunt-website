@@ -993,11 +993,11 @@ button { font-family: inherit; cursor: pointer; }
   text-align: center;
 }
 .step__num {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  border: 2px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.18);
+  border: 2px solid rgba(255,255,255,0.45);
   color: var(--color-white);
   display: flex;
   align-items: center;
@@ -1146,16 +1146,17 @@ button { font-family: inherit; cursor: pointer; }
    FOOTER
    ============================================================ */
 .footer {
-  background: #303B43;
-  color: var(--color-white);
+  background: var(--color-white);
+  color: var(--color-black);
   padding-top: 56px;
+  border-top: 1px solid var(--color-gray-200);
 }
 .footer__inner {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: 48px;
-  padding-bottom: 56px;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--color-gray-200);
 }
 .footer-col--brand { padding-right: 16px; }
 .footer-logo {
@@ -1165,10 +1166,9 @@ button { font-family: inherit; cursor: pointer; }
   height: 44px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* makes logo white for dark footer */
 }
 .footer-col--brand p {
-  color: rgba(255,255,255,0.6);
+  color: var(--color-gray-600);
   font-size: 13.5px;
   line-height: 1.75;
   margin-bottom: 24px;
@@ -1178,11 +1178,11 @@ button { font-family: inherit; cursor: pointer; }
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid var(--color-gray-200);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.65);
+  color: var(--color-gray-600);
   transition: all var(--transition);
 }
 .social-link:hover {
@@ -1195,19 +1195,19 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: rgba(255,255,255,0.6);
+  color: var(--color-gray-400);
   margin-bottom: 22px;
 }
 .footer-col ul li {
   margin-bottom: 11px;
   font-size: 13.5px;
-  color: rgba(255,255,255,0.65);
+  color: var(--color-gray-600);
 }
 .footer-col ul li a {
-  color: rgba(255,255,255,0.65);
+  color: var(--color-gray-600);
   transition: color var(--transition);
 }
-.footer-col ul li a:hover { color: var(--color-white); }
+.footer-col ul li a:hover { color: var(--color-blue); }
 
 /* Footer contact with SVG icons */
 .footer-contact li {
@@ -1215,22 +1215,22 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   gap: 9px;
 }
-.footer-contact svg { flex-shrink: 0; opacity: 0.55; }
+.footer-contact svg { flex-shrink: 0; opacity: 0.5; color: var(--color-gray-400); }
 
 .footer-bottom {
   padding: 18px 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid var(--color-gray-200);
 }
 .footer-bottom__inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 12.5px;
-  color: rgba(255,255,255,0.4);
+  color: var(--color-gray-400);
 }
 .footer-legal { display: flex; gap: 24px; }
-.footer-legal a { color: rgba(255,255,255,0.4); transition: color var(--transition); }
-.footer-legal a:hover { color: rgba(255,255,255,0.7); }
+.footer-legal a { color: var(--color-gray-400); transition: color var(--transition); }
+.footer-legal a:hover { color: var(--color-blue); }
 
 /* ============================================================
    MOBILE-ONLY ELEMENTS — hidden on desktop, shown via media query
@@ -1564,8 +1564,8 @@ button { font-family: inherit; cursor: pointer; }
   /* ── Footer – accordion ── */
   .footer { padding-top: 44px; }
   .footer__inner { grid-template-columns: 1fr; gap: 0; padding-bottom: 0; border-bottom: none; }
-  .footer-col--brand { padding: 0 0 24px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-right: 0; }
-  .footer-col:not(.footer-col--brand) { border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .footer-col--brand { padding: 0 0 24px; border-bottom: 1px solid var(--color-gray-200); padding-right: 0; }
+  .footer-col:not(.footer-col--brand) { border-bottom: 1px solid var(--color-gray-200); }
   .footer-col h4 {
     cursor: pointer;
     padding: 16px 0;
@@ -1575,15 +1575,15 @@ button { font-family: inherit; cursor: pointer; }
     justify-content: space-between;
     user-select: none;
     font-size: 12px;
-    color: rgba(255,255,255,0.6);
+    color: var(--color-gray-400);
     -webkit-tap-highlight-color: transparent;
   }
   .footer-col h4::after {
     content: '';
     width: 8px;
     height: 8px;
-    border-right: 2px solid rgba(255,255,255,0.35);
-    border-bottom: 2px solid rgba(255,255,255,0.35);
+    border-right: 2px solid var(--color-gray-400);
+    border-bottom: 2px solid var(--color-gray-400);
     transform: rotate(45deg) translateY(-2px);
     transition: transform 0.3s ease;
     flex-shrink: 0;
