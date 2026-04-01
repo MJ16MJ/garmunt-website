@@ -46,7 +46,7 @@
 
   <!-- ===================== MAIN HEADER ===================== -->
   <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-2.5 md:py-3 flex items-center gap-3 md:gap-6">
+    <div class="max-w-7xl mx-auto px-3 md:px-4 py-2 md:py-3 flex items-center gap-2 md:gap-6">
       <!-- Hamburger (mobile) -->
       <button class="hamburger lg:hidden flex flex-col justify-center items-start gap-[5px] w-9 h-9 bg-transparent border-none flex-shrink-0 relative z-[201]" id="hamburger" aria-label="Open menu" style="-webkit-tap-highlight-color:transparent">
         <span class="block h-[2px] w-[22px] bg-dark rounded-sm transition-all"></span>
@@ -56,11 +56,11 @@
 
       <!-- Logo -->
       <a href="#" class="flex-shrink-0">
-        <img src="garmunt-logo.png" alt="Garmunt" class="h-12 md:h-14" />
+        <img src="garmunt-logo.png" alt="Garmunt" class="h-[46px] md:h-14" />
       </a>
 
       <!-- Spacer on mobile / Search on desktop -->
-      <div class="flex-1">
+      <div class="flex-1 min-w-0">
         <div class="relative w-full hidden md:block">
           <input type="text" id="searchInput" placeholder="Search t-shirts, hoodies, workwear..." class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors" autocomplete="off" />
           <button class="absolute right-0 top-0 h-full px-4 bg-brand text-white rounded-r hover:bg-brand-dark transition-colors">
@@ -92,20 +92,20 @@
       </div>
 
       <!-- Right actions -->
-      <div class="flex items-center gap-3 md:gap-4">
+      <div class="flex items-center gap-4 md:gap-4 flex-shrink-0">
         <!-- Search icon (mobile only) -->
         <button class="md:hidden text-gray-600">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
         <a href="#" class="hidden md:inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-brand-dark transition-colors">
           Design Now
         </a>
         <a href="#" class="text-gray-600 hover:text-brand transition-colors">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </a>
-        <a href="#" class="text-gray-600 hover:text-brand transition-colors relative" id="cartToggle">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <span class="absolute -top-1.5 -right-1.5 bg-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+        <a href="#" class="text-gray-600 hover:text-brand transition-colors relative pr-1" id="cartToggle">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="absolute -top-1.5 -right-0.5 bg-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
         </a>
       </div>
     </div>
