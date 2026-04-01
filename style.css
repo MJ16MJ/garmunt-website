@@ -2,6 +2,28 @@
    GARMUNT – Minimal Custom CSS (Tailwind handles the rest)
    ============================================================ */
 
+/* ── Brand Marquee Animation ───────────────────────────── */
+.brand-marquee--ltr {
+  animation: brand-scroll-ltr 22s linear infinite;
+}
+.brand-marquee--rtl {
+  animation: brand-scroll-rtl 20s linear infinite;
+}
+.brand-marquee--slow {
+  animation: brand-scroll-ltr 30s linear infinite;
+}
+.brand-marquee:hover .brand-marquee__track {
+  animation-play-state: paused;
+}
+@keyframes brand-scroll-ltr {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes brand-scroll-rtl {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
 /* ── Mega Menu hover (desktop) ─────────────────────────── */
 .has-mega:hover .mega-menu {
   opacity: 1 !important;
