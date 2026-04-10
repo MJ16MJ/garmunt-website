@@ -31,8 +31,11 @@
 
   <!-- ===================== TOP BAR ===================== -->
   <div class="bg-brand-dark text-white text-[11px] py-1.5">
-    <div class="max-w-7xl mx-auto px-4 flex justify-center md:justify-between items-center">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center md:justify-between items-center gap-3">
       <span class="text-center md:text-left">Free Shipping on Orders Over &pound;150 &middot; Trade Accounts Welcome</span>
+      <span class="hidden md:inline-flex items-center gap-1.5 font-semibold">
+        <span>&#9889;</span> Fast 3-5 Day Turnaround on All Orders
+      </span>
       <div class="hidden md:flex items-center gap-5">
         <a href="#" class="flex items-center gap-1.5 hover:text-brand-light transition-colors">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -227,19 +230,29 @@
             Authorised Distributor of 100+ Brands
           </div>
 
-          <h1 class="text-3xl lg:text-[40px] font-900 leading-tight text-dark mb-4">Global Apparel &amp;<br/>Distribution Solutions</h1>
-          <p class="text-gray-500 text-base mb-6 max-w-lg">We stock everything from premium blanks to workwear, at trade prices. Need your logo on it? We print, embroider and deliver - 1 piece or 10,000.</p>
+          <h1 class="text-3xl lg:text-[40px] font-900 leading-tight text-dark mb-4">Custom Workwear &amp; Branded Clothing<br/><span class="text-brand">Delivered in 3-5 Days</span></h1>
+          <p class="text-gray-500 text-base mb-6 max-w-lg">Upload your logo, get instant pricing, and order in minutes.</p>
 
-          <!-- POINT 1: Two clear CTA buttons -->
-          <div class="flex flex-wrap gap-3 mb-8">
+          <!-- CTA buttons -->
+          <div class="flex flex-wrap gap-3 mb-5">
             <a href="#" class="inline-flex items-center gap-2 bg-brand text-white font-semibold px-7 py-3 rounded hover:bg-brand-dark transition-colors text-sm">
-              Shop Products
+              Start Your Order
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
             <a href="#" class="inline-flex items-center gap-2 bg-accent text-white font-semibold px-7 py-3 rounded hover:bg-red-700 transition-colors text-sm">
-              Design Now
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              View Workwear Bundles
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
+          </div>
+
+          <!-- Hot offers under CTAs -->
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8">
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+              <span>&#128293;</span> 10 Embroidered Polos from &pound;180
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+              <span>&#128293;</span> Bulk discounts available
+            </span>
           </div>
 
           <!-- Trust Stats -->
@@ -272,50 +285,50 @@
           </div>
         </div>
 
-        <!-- Right Product Grid -->
+        <!-- Right Bundle Grid -->
         <div class="lg:w-[45%] w-full">
           <div class="grid grid-cols-3 gap-3">
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
-                <img src="images/cat-tshirts.webp" alt="T-Shirts" class="w-full h-full object-cover" />
+                <img src="images/cat-polos.webp" alt="Business Starter Pack" class="w-full h-full object-cover" />
               </div>
-              <p class="text-xs font-semibold text-dark">T-Shirts</p>
-              <p class="text-[10px] text-gray-400">From &pound;2.50/unit</p>
+              <p class="text-xs font-semibold text-dark leading-tight">Business Starter Pack</p>
+              <p class="text-[10px] text-gray-400">From &pound;180</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
-                <img src="images/cat-hoodies.webp" alt="Hoodies" class="w-full h-full object-cover" />
+                <img src="images/cat-hoodies.webp" alt="Team Bundle" class="w-full h-full object-cover" />
               </div>
-              <p class="text-xs font-semibold text-dark">Hoodies</p>
-              <p class="text-[10px] text-gray-400">From &pound;8.50/unit</p>
+              <p class="text-xs font-semibold text-dark leading-tight">Team Bundle</p>
+              <p class="text-[10px] text-gray-400">From &pound;250</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
-                <img src="images/cat-polos.webp" alt="Polos" class="w-full h-full object-cover" />
+                <img src="images/cat-workwear.webp" alt="Workwear Package" class="w-full h-full object-cover" />
               </div>
-              <p class="text-xs font-semibold text-dark">Polo Shirts</p>
-              <p class="text-[10px] text-gray-400">From &pound;5.99/unit</p>
+              <p class="text-xs font-semibold text-dark leading-tight">Workwear Package</p>
+              <p class="text-[10px] text-gray-400">From &pound;320</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
-                <img src="images/cat-workwear.webp" alt="Workwear" class="w-full h-full object-cover" />
+                <img src="images/cat-hivis.webp" alt="Hi-Vis Workwear" class="w-full h-full object-cover" />
               </div>
-              <p class="text-xs font-semibold text-dark">Workwear</p>
-              <p class="text-[10px] text-gray-400">From &pound;12.00/unit</p>
+              <p class="text-xs font-semibold text-dark leading-tight">Hi-Vis Workwear</p>
+              <p class="text-[10px] text-gray-400">From &pound;150</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
-                <img src="images/cat-hivis.webp" alt="Hi-Vis" class="w-full h-full object-cover" />
+                <img src="images/cat-tshirts.webp" alt="Bulk Orders" class="w-full h-full object-cover" />
               </div>
-              <p class="text-xs font-semibold text-dark">Hi-Vis</p>
-              <p class="text-[10px] text-gray-400">From &pound;4.00/unit</p>
+              <p class="text-xs font-semibold text-dark leading-tight">Bulk Orders (50+)</p>
+              <p class="text-[10px] text-gray-400">Best pricing</p>
             </a>
             <a href="#" class="bg-white border border-gray-200 rounded p-3 text-center hover:border-brand transition-colors group">
               <div class="aspect-square mb-2 overflow-hidden rounded bg-gray-50">
-                <img src="images/cat-caps.webp" alt="Caps" class="w-full h-full object-cover" />
+                <img src="images/cat-caps.webp" alt="Single Custom Items" class="w-full h-full object-cover" />
               </div>
-              <p class="text-xs font-semibold text-dark">Headwear</p>
-              <p class="text-[10px] text-gray-400">From &pound;2.00/unit</p>
+              <p class="text-xs font-semibold text-dark leading-tight">Single Custom Items</p>
+              <p class="text-[10px] text-gray-400">No minimum</p>
             </a>
           </div>
         </div>
@@ -323,7 +336,7 @@
 
       <!-- POINT 3: Brand logos right after hero content -->
       <div class="mt-10 pt-8 border-t border-gray-200">
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 text-center mb-6">Trusted Brands We Distribute</p>
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 text-center mb-6">Trusted by UK businesses using premium brands</p>
         <div class="brand-marquee overflow-hidden">
           <div class="brand-marquee__track brand-marquee--ltr inline-flex items-center gap-16 whitespace-nowrap">
             <span class="text-sm font-extrabold text-dark/30 tracking-tight">GILDAN</span>
@@ -356,12 +369,71 @@
     </div>
   </section>
 
+  <!-- ===================== INSTANT PRICING BANNER ===================== -->
+  <div class="bg-brand-light border-y border-brand/20">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-center gap-3 text-center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" class="flex-shrink-0"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <p class="text-sm md:text-base font-semibold text-brand">Upload your logo and see pricing instantly</p>
+      <a href="#" class="hidden sm:inline-flex items-center gap-1.5 text-xs md:text-sm font-bold text-brand hover:text-brand-dark underline underline-offset-4">Try it now
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===================== CHOOSE YOUR ORDER TYPE ===================== -->
+  <section class="py-14 bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-800 text-dark mb-2">Choose Your Order Type</h2>
+        <p class="text-gray-500 text-sm">Pick the option that matches your needs and we'll guide you through the rest</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <!-- Business Orders -->
+        <div class="bg-white border border-gray-200 rounded-lg p-7 text-center hover:border-brand transition-colors">
+          <div class="w-14 h-14 mx-auto mb-4 bg-brand-light rounded-full flex items-center justify-center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
+          </div>
+          <h3 class="font-bold text-lg text-dark mb-1">Business Orders</h3>
+          <p class="text-gray-500 text-sm mb-5">10-100 garments</p>
+          <a href="#" class="inline-flex items-center gap-2 bg-brand text-white font-semibold px-6 py-2.5 rounded hover:bg-brand-dark transition-colors text-sm w-full justify-center">
+            Start Your Order
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+        <!-- Small Orders -->
+        <div class="bg-white border border-gray-200 rounded-lg p-7 text-center hover:border-brand transition-colors">
+          <div class="w-14 h-14 mx-auto mb-4 bg-brand-light rounded-full flex items-center justify-center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 class="font-bold text-lg text-dark mb-1">Small Orders</h3>
+          <p class="text-gray-500 text-sm mb-5">1-10 items</p>
+          <a href="#" class="inline-flex items-center gap-2 bg-brand text-white font-semibold px-6 py-2.5 rounded hover:bg-brand-dark transition-colors text-sm w-full justify-center">
+            Customize Now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+        <!-- Bulk Orders -->
+        <div class="bg-white border border-gray-200 rounded-lg p-7 text-center hover:border-brand transition-colors">
+          <div class="w-14 h-14 mx-auto mb-4 bg-brand-light rounded-full flex items-center justify-center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3 class="font-bold text-lg text-dark mb-1">Bulk Orders</h3>
+          <p class="text-gray-500 text-sm mb-5">50+ garments</p>
+          <a href="#" class="inline-flex items-center gap-2 bg-brand text-white font-semibold px-6 py-2.5 rounded hover:bg-brand-dark transition-colors text-sm w-full justify-center">
+            Get Quote
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== SHOP TOP CATEGORIES ===================== -->
   <section class="py-14">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-10">
-        <h2 class="text-2xl font-800 text-dark mb-2">Shop Top Categories</h2>
-        <p class="text-gray-400 text-sm">Dominating demand your fix for sensation</p>
+        <h2 class="text-2xl md:text-3xl font-800 text-dark mb-2">Choose Your Garments &amp; Start Customising</h2>
+        <p class="text-gray-400 text-sm">Pick your product, add your logo, and we'll handle the rest</p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
         <a href="#" class="bg-white border border-gray-200 rounded p-4 text-center hover:border-brand transition-colors">
@@ -369,40 +441,46 @@
             <img src="images/cat-tshirts.webp" alt="T-Shirts" class="w-full h-full object-cover" />
           </div>
           <p class="text-sm font-bold text-dark">T-Shirts</p>
+          <p class="text-xs text-gray-500 mt-1">Perfect for teams &amp; promotions</p>
         </a>
         <a href="#" class="bg-white border border-gray-200 rounded p-4 text-center hover:border-brand transition-colors">
           <div class="aspect-[4/3] mb-3 overflow-hidden rounded bg-gray-50">
             <img src="images/cat-workwear.webp" alt="Workwear" class="w-full h-full object-cover" />
           </div>
           <p class="text-sm font-bold text-dark">Workwear</p>
+          <p class="text-xs text-gray-500 mt-1">Durable branded uniforms</p>
         </a>
         <a href="#" class="bg-white border border-gray-200 rounded p-4 text-center hover:border-brand transition-colors">
           <div class="aspect-[4/3] mb-3 overflow-hidden rounded bg-gray-50">
             <img src="images/cat-hoodies.webp" alt="Hoodies" class="w-full h-full object-cover" />
           </div>
           <p class="text-sm font-bold text-dark">Hoodies</p>
+          <p class="text-xs text-gray-500 mt-1">Popular for staff &amp; merch</p>
         </a>
         <a href="#" class="bg-white border border-gray-200 rounded p-4 text-center hover:border-brand transition-colors">
           <div class="aspect-[4/3] mb-3 overflow-hidden rounded bg-gray-50">
             <img src="images/cat-caps.webp" alt="Headwear" class="w-full h-full object-cover" />
           </div>
           <p class="text-sm font-bold text-dark">Headwear</p>
+          <p class="text-xs text-gray-500 mt-1">Great for branding &amp; events</p>
         </a>
         <a href="#" class="bg-white border border-gray-200 rounded p-4 text-center hover:border-brand transition-colors">
           <div class="aspect-[4/3] mb-3 overflow-hidden rounded bg-gray-50">
             <img src="images/cat-hivis.webp" alt="Hi-Vis" class="w-full h-full object-cover" />
           </div>
           <p class="text-sm font-bold text-dark">Hi-Vis</p>
+          <p class="text-xs text-gray-500 mt-1">Essential for construction teams</p>
         </a>
         <a href="#" class="bg-white border border-gray-200 rounded p-4 text-center hover:border-brand transition-colors">
           <div class="aspect-[4/3] mb-3 overflow-hidden rounded bg-gray-50">
             <img src="images/cat-polos.webp" alt="Polos" class="w-full h-full object-cover" />
           </div>
           <p class="text-sm font-bold text-dark">Polos</p>
+          <p class="text-xs text-gray-500 mt-1">Best for professional uniforms</p>
         </a>
       </div>
       <div class="text-center mt-8">
-        <a href="#" class="inline-flex items-center gap-2 border-2 border-brand text-brand font-semibold text-sm px-6 py-2.5 rounded hover:bg-brand hover:text-white transition-colors">View All Products</a>
+        <a href="#" class="inline-flex items-center gap-2 border-2 border-brand text-brand font-semibold text-sm px-6 py-2.5 rounded hover:bg-brand hover:text-white transition-colors">Start Your Order</a>
       </div>
     </div>
   </section>
@@ -417,28 +495,40 @@
           <p class="text-gray-500 text-base mb-6 max-w-lg mx-auto lg:mx-0">Whether you're ordering a single custom hoodie or kitting out your entire company, we make it easy. Pick your products, add your branding, and we handle the rest.</p>
           <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
             <a href="#" class="inline-flex items-center gap-2 bg-brand text-white font-semibold px-6 py-3 rounded hover:bg-brand-dark transition-colors text-sm">
-              Get Started
+              Start Your Order
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
             <a href="#" class="inline-flex items-center gap-2 border border-gray-300 text-dark font-semibold px-6 py-3 rounded hover:border-brand hover:text-brand transition-colors text-sm">
-              Request a Quote
+              Get Bulk Quote
             </a>
           </div>
         </div>
-        <!-- Right side - tier images 2x2 -->
+        <!-- Right side - tier images 2x2 with pricing anchors -->
         <div class="lg:w-1/2 w-full">
           <div class="grid grid-cols-2 gap-3">
-            <div class="bg-gray-100 rounded-lg overflow-hidden">
+            <div class="bg-gray-100 rounded-lg overflow-hidden relative">
               <img src="images/1.png" alt="1 - Personal Gift" class="w-full h-full object-cover" />
+              <div class="absolute bottom-2 left-2 right-2 bg-white/95 backdrop-blur-sm rounded px-2 py-1 text-center">
+                <p class="text-[11px] font-bold text-brand">from &pound;15</p>
+              </div>
             </div>
-            <div class="bg-gray-100 rounded-lg overflow-hidden">
+            <div class="bg-gray-100 rounded-lg overflow-hidden relative">
               <img src="images/2.png" alt="10 - Small Team" class="w-full h-full object-cover" />
+              <div class="absolute bottom-2 left-2 right-2 bg-white/95 backdrop-blur-sm rounded px-2 py-1 text-center">
+                <p class="text-[11px] font-bold text-brand">from &pound;150</p>
+              </div>
             </div>
-            <div class="bg-gray-100 rounded-lg overflow-hidden">
+            <div class="bg-gray-100 rounded-lg overflow-hidden relative">
               <img src="images/3.png" alt="100 - Company Rollout" class="w-full h-full object-cover" />
+              <div class="absolute bottom-2 left-2 right-2 bg-white/95 backdrop-blur-sm rounded px-2 py-1 text-center">
+                <p class="text-[11px] font-bold text-brand">bulk discounts available</p>
+              </div>
             </div>
-            <div class="bg-gray-100 rounded-lg overflow-hidden">
+            <div class="bg-gray-100 rounded-lg overflow-hidden relative">
               <img src="images/4.png" alt="1000+ - Enterprise" class="w-full h-full object-cover" />
+              <div class="absolute bottom-2 left-2 right-2 bg-white/95 backdrop-blur-sm rounded px-2 py-1 text-center">
+                <p class="text-[11px] font-bold text-brand">enterprise pricing</p>
+              </div>
             </div>
           </div>
         </div>
@@ -446,12 +536,12 @@
     </div>
   </section>
 
-  <!-- ===================== SATISFIED CUSTOMERS ===================== -->
+  <!-- ===================== RECENT WORK ===================== -->
   <section class="py-14">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-8">
-        <h2 class="text-2xl font-800 text-dark mb-2">Over 50,000+ Satisfied Customers</h2>
-        <p class="text-gray-400 text-sm">Got real stuff we store fit us larger customer doorsteps? That meets expand</p>
+        <h2 class="text-2xl md:text-3xl font-800 text-dark mb-2">Recent Work &amp; Customer Orders</h2>
+        <p class="text-gray-400 text-sm">See what we've been delivering for UK businesses</p>
       </div>
       <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
         <div class="aspect-square bg-gray-100 rounded overflow-hidden"><img src="images/ig-1.webp" alt="" class="w-full h-full object-cover" /></div>
@@ -467,7 +557,10 @@
   <!-- ===================== CUSTOMER REVIEWS ===================== -->
   <section class="py-14 bg-gray-50 border-t border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-2xl font-800 text-dark text-center mb-10">Customers Love Us</h2>
+      <div class="text-center mb-10">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand mb-2">Trusted by 50,000+ UK Businesses</p>
+        <h2 class="text-2xl md:text-3xl font-800 text-dark">Customers Love Us</h2>
+      </div>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-white border border-gray-200 rounded-lg p-6">
           <div class="flex items-center gap-0.5 mb-3">
@@ -641,7 +734,7 @@
       </div>
       <p class="cart-sidebar__note">Shipping calculated at checkout</p>
       <a href="#" class="bg-brand text-white text-center font-semibold py-3 rounded hover:bg-brand-dark transition-colors block">Go to Checkout</a>
-      <button class="border border-gray-300 text-dark text-center font-medium py-2.5 rounded hover:border-brand hover:text-brand transition-colors w-full mt-2" id="cartContinue">Continue Shopping</button>
+      <button class="border border-gray-300 text-dark text-center font-medium py-2.5 rounded hover:border-brand hover:text-brand transition-colors w-full mt-2" id="cartContinue">Continue Customising</button>
     </div>
   </aside>
 
