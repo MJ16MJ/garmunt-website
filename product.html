@@ -248,23 +248,36 @@
           <!-- Divider -->
           <hr class="border-gray-200 mb-6" />
 
-          <!-- Colour -->
-          <div class="mb-6">
-            <div class="flex items-center justify-between mb-3">
-              <p class="text-sm font-bold text-dark">Colour: <span id="selectedColour" class="text-gray-500 font-medium">Yellow</span></p>
+          <!-- Fabric / Weight / Size info (Ralawise style) -->
+          <div class="mb-6 space-y-3 text-sm">
+            <div class="flex gap-4">
+              <span class="font-bold text-dark w-24 flex-shrink-0">Fabric</span>
+              <span class="text-gray-600">100% Polyester (120gsm). High-visibility with retro-reflective tape</span>
             </div>
-            <div class="flex items-center gap-3">
-              <button class="colour-swatch active w-10 h-10 rounded-full" style="background:#FFD600" data-colour="Yellow" aria-label="Yellow"></button>
-              <button class="colour-swatch w-10 h-10 rounded-full" style="background:#FF6D00" data-colour="Orange" aria-label="Orange"></button>
-              <button class="colour-swatch w-10 h-10 rounded-full" style="background:#D32F2F" data-colour="Red" aria-label="Red"></button>
-              <button class="colour-swatch w-10 h-10 rounded-full" style="background:#0D47A1" data-colour="Navy" aria-label="Navy"></button>
+            <div class="flex gap-4">
+              <span class="font-bold text-dark w-24 flex-shrink-0">Weight</span>
+              <span class="text-gray-600">180gsm</span>
+            </div>
+            <div class="flex gap-4">
+              <span class="font-bold text-dark w-24 flex-shrink-0">Size</span>
+              <span class="text-gray-600"><strong class="text-dark">S</strong> 36" <strong class="text-dark ml-2">M</strong> 40" <strong class="text-dark ml-2">L</strong> 44" <strong class="text-dark ml-2">XL</strong> 48" <strong class="text-dark ml-2">2XL</strong> 52" <strong class="text-dark ml-2">3XL</strong> 56"</span>
+            </div>
+            <div class="flex gap-4">
+              <span class="font-bold text-dark w-24 flex-shrink-0">Certification</span>
+              <span class="text-gray-600">EN ISO 20471 Class 2</span>
             </div>
           </div>
 
-          <!-- Size -->
+          <!-- Key Info -->
+          <div class="mb-6 pb-6 border-b border-gray-200">
+            <h3 class="text-sm font-bold text-dark mb-2">Key Info</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">The Portwest Hi-Vis Executive Vest is the professional choice for construction teams, warehouse staff, and outdoor workers. Certified to EN ISO 20471 Class 2, featuring 50mm retro-reflective tape, front zip fastening, and a heavy-duty ID pocket. Perfect for screen printing and embroidery branding. Machine washable at 60&deg;C.</p>
+          </div>
+
+          <!-- Selected Size -->
           <div class="mb-6">
             <div class="flex items-center justify-between mb-3">
-              <p class="text-sm font-bold text-dark">Size</p>
+              <p class="text-sm font-bold text-dark">Select Size</p>
               <a href="#" class="text-xs text-brand font-semibold hover:underline">Size Guide</a>
             </div>
             <div class="flex flex-wrap gap-2">
@@ -342,6 +355,160 @@
           <p class="text-xs text-center text-accent font-semibold">&#128293; Need it faster? 3-5 day turnaround available</p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SELECT COLOUR & BUY (Ralawise style) ===================== -->
+  <section class="border-t border-gray-200 py-12 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl md:text-2xl font-800 text-dark">Select Colour &amp; Start Your Order</h2>
+        <span class="text-xs text-gray-500">22 colours available</span>
+      </div>
+
+      <!-- Colour filter chips + dropdown -->
+      <div class="bg-white border border-gray-200 rounded-lg p-5 md:p-6">
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 mb-6">
+          <!-- Filter chips -->
+          <div class="flex-1">
+            <p class="text-sm font-bold text-dark mb-3">Filter By Colour</p>
+            <div class="flex flex-wrap gap-2">
+              <button class="colour-chip inline-flex items-center gap-2 border-2 border-brand text-brand font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-brand-light transition-colors">
+                Blues <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-gray-300 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors">
+                Whites <span class="w-2 h-2 rounded-full bg-gray-200 border border-gray-300"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-pink-400 text-pink-500 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-pink-50 transition-colors">
+                Pinks <span class="w-2 h-2 rounded-full bg-pink-400"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-green-500 text-green-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-green-50 transition-colors">
+                Greens <span class="w-2 h-2 rounded-full bg-green-500"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-red-500 text-red-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-red-50 transition-colors">
+                Reds <span class="w-2 h-2 rounded-full bg-red-500"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-gray-800 text-dark font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors">
+                Blacks <span class="w-2 h-2 rounded-full bg-black"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-gray-300 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors">
+                Neutrals <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-purple-500 text-purple-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-purple-50 transition-colors">
+                Purples <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-gray-400 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors">
+                Greys <span class="w-2 h-2 rounded-full bg-gray-500"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-yellow-600 text-yellow-700 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-yellow-50 transition-colors">
+                Browns <span class="w-2 h-2 rounded-full bg-yellow-800"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-orange-500 text-orange-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-orange-50 transition-colors">
+                Oranges <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 border border-yellow-500 text-yellow-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-yellow-50 transition-colors">
+                Yellows <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+              </button>
+              <button class="colour-chip inline-flex items-center gap-2 text-gray-500 text-xs px-3 py-1.5 rounded-full hover:text-brand transition-colors">
+                Reset <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Dropdown -->
+          <div class="lg:w-72">
+            <p class="text-sm font-bold text-dark mb-3">Select Colour</p>
+            <select class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm text-gray-600 focus:outline-none focus:border-brand transition-colors">
+              <option>Please select colour</option>
+              <option>Hi-Vis Yellow</option>
+              <option>Hi-Vis Orange</option>
+              <option>Hi-Vis Red</option>
+              <option>Navy</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Colour variant grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <!-- Variant 1 -->
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-hivis.webp" alt="Hi-Vis Yellow" class="w-full h-full object-cover" />
+              <span class="absolute bottom-2 left-2 right-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Colour</span>
+            </div>
+            <p class="text-xs font-semibold text-dark">Hi-Vis Yellow</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-hivis.webp" alt="Hi-Vis Orange" class="w-full h-full object-cover" style="filter:hue-rotate(-30deg) saturate(1.5)" />
+            </div>
+            <p class="text-xs font-semibold text-dark">Hi-Vis Orange</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-hivis.webp" alt="Red" class="w-full h-full object-cover" style="filter:hue-rotate(-55deg) saturate(2)" />
+              <span class="absolute bottom-2 left-2 right-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Size</span>
+            </div>
+            <p class="text-xs font-semibold text-dark">Red</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-workwear.webp" alt="Navy" class="w-full h-full object-cover" style="filter:hue-rotate(180deg) saturate(1.2) brightness(0.6)" />
+            </div>
+            <p class="text-xs font-semibold text-dark">Navy</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-workwear.webp" alt="Royal Blue" class="w-full h-full object-cover" style="filter:hue-rotate(210deg) saturate(1.8)" />
+              <span class="absolute bottom-2 left-2 right-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Colour</span>
+            </div>
+            <p class="text-xs font-semibold text-dark">Royal Blue</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-workwear.webp" alt="Black" class="w-full h-full object-cover" style="filter:brightness(0.3)" />
+            </div>
+            <p class="text-xs font-semibold text-dark">Black</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-workwear.webp" alt="Bottle Green" class="w-full h-full object-cover" style="filter:hue-rotate(100deg) saturate(1.5) brightness(0.7)" />
+            </div>
+            <p class="text-xs font-semibold text-dark">Bottle Green</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-workwear.webp" alt="Burgundy" class="w-full h-full object-cover" style="filter:hue-rotate(-30deg) saturate(2) brightness(0.6)" />
+            </div>
+            <p class="text-xs font-semibold text-dark">Burgundy</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-workwear.webp" alt="Grey" class="w-full h-full object-cover" style="filter:grayscale(1) brightness(0.85)" />
+              <span class="absolute bottom-2 left-2 right-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Size</span>
+            </div>
+            <p class="text-xs font-semibold text-dark">Heather Grey</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-caps.webp" alt="White" class="w-full h-full object-cover" style="filter:brightness(1.3) saturate(0)" />
+            </div>
+            <p class="text-xs font-semibold text-dark">White</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-workwear.webp" alt="Purple" class="w-full h-full object-cover" style="filter:hue-rotate(240deg) saturate(1.5)" />
+            </div>
+            <p class="text-xs font-semibold text-dark">Purple</p>
+          </a>
+          <a href="#" class="group text-center">
+            <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
+              <img src="images/cat-hivis.webp" alt="Sun Yellow" class="w-full h-full object-cover" style="filter:hue-rotate(-10deg) brightness(1.1)" />
+              <span class="absolute bottom-2 left-2 right-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Colour</span>
+            </div>
+            <p class="text-xs font-semibold text-dark">Sun Yellow</p>
+          </a>
+        </div>
       </div>
     </div>
   </section>
