@@ -171,28 +171,79 @@
     </div>
   </div>
 
+  <!-- ===================== 3 BADGES STRIP (JRS style) ===================== -->
+  <div class="border-b border-gray-200 bg-white">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <div class="flex flex-wrap justify-center md:justify-start items-center gap-6 md:gap-10">
+        <div class="flex items-center gap-2 text-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div>
+            <p class="font-bold text-dark text-xs">Next Day Delivery</p>
+            <p class="text-[10px] text-gray-400">Orders before 3pm</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <p class="font-bold text-dark text-xs">No Minimum Order</p>
+            <p class="text-[10px] text-gray-400">Order from 1 item</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <div>
+            <p class="font-bold text-dark text-xs">Custom Printing &amp; Embroidery</p>
+            <p class="text-[10px] text-gray-400">In-house service</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ===================== PRODUCT MAIN ===================== -->
   <section class="py-8 md:py-12">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="grid lg:grid-cols-[55%_45%] gap-8 lg:gap-12">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
 
-        <!-- Left: Image Gallery -->
-        <div>
-          <div class="zoom-wrap bg-gray-50 rounded-lg border border-gray-200 aspect-square mb-4">
-            <img id="mainImage" src="images/cat-hivis.webp" alt="Portwest Hi-Vis Executive Vest" class="w-full h-full object-cover" />
-          </div>
-          <div class="grid grid-cols-4 gap-3">
-            <div class="thumb active bg-gray-50 rounded aspect-square overflow-hidden" data-img="images/cat-hivis.webp">
+        <!-- Left: Thumbnails (vertical) + Main Image -->
+        <div class="flex gap-4">
+          <!-- Vertical thumbnails -->
+          <div class="hidden md:flex flex-col gap-3 w-20 flex-shrink-0">
+            <div class="thumb active bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/cat-hivis.webp">
               <img src="images/cat-hivis.webp" alt="View 1" class="w-full h-full object-cover" />
             </div>
-            <div class="thumb bg-gray-50 rounded aspect-square overflow-hidden" data-img="images/cat-workwear.webp">
+            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/cat-workwear.webp">
               <img src="images/cat-workwear.webp" alt="View 2" class="w-full h-full object-cover" />
             </div>
-            <div class="thumb bg-gray-50 rounded aspect-square overflow-hidden" data-img="images/tile-workwear.webp">
+            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/tile-workwear.webp">
               <img src="images/tile-workwear.webp" alt="View 3" class="w-full h-full object-cover" />
             </div>
-            <div class="thumb bg-gray-50 rounded aspect-square overflow-hidden" data-img="images/ig-3.webp">
+            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/ig-3.webp">
               <img src="images/ig-3.webp" alt="View 4" class="w-full h-full object-cover" />
+            </div>
+            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/cat-hivis.webp">
+              <img src="images/cat-hivis.webp" alt="View 5" class="w-full h-full object-cover" style="filter:hue-rotate(-30deg)" />
+            </div>
+          </div>
+          <!-- Main image -->
+          <div class="flex-1">
+            <div class="zoom-wrap bg-gray-50 rounded-lg border border-gray-200 aspect-square">
+              <img id="mainImage" src="images/cat-hivis.webp" alt="Portwest Hi-Vis Executive Vest" class="w-full h-full object-cover" />
+            </div>
+            <!-- Mobile thumbs (horizontal) -->
+            <div class="flex md:hidden gap-2 mt-3 overflow-x-auto">
+              <div class="thumb active bg-gray-50 rounded border border-gray-200 w-16 h-16 flex-shrink-0 overflow-hidden cursor-pointer" data-img="images/cat-hivis.webp">
+                <img src="images/cat-hivis.webp" alt="View 1" class="w-full h-full object-cover" />
+              </div>
+              <div class="thumb bg-gray-50 rounded border border-gray-200 w-16 h-16 flex-shrink-0 overflow-hidden cursor-pointer" data-img="images/cat-workwear.webp">
+                <img src="images/cat-workwear.webp" alt="View 2" class="w-full h-full object-cover" />
+              </div>
+              <div class="thumb bg-gray-50 rounded border border-gray-200 w-16 h-16 flex-shrink-0 overflow-hidden cursor-pointer" data-img="images/tile-workwear.webp">
+                <img src="images/tile-workwear.webp" alt="View 3" class="w-full h-full object-cover" />
+              </div>
+              <div class="thumb bg-gray-50 rounded border border-gray-200 w-16 h-16 flex-shrink-0 overflow-hidden cursor-pointer" data-img="images/ig-3.webp">
+                <img src="images/ig-3.webp" alt="View 4" class="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
         </div>
@@ -222,130 +273,92 @@
             <span class="text-lg text-gray-400 line-through">&pound;12.99</span>
             <span class="bg-accent text-white text-xs font-bold px-2 py-1 rounded">Save 30%</span>
           </div>
-          <p class="text-xs text-gray-500 mb-5">Prices exclude VAT &middot; Bulk discounts available</p>
+          <p class="text-xs text-gray-500 mb-4">Prices exclude VAT &middot; Customisations available: <a href="#" class="text-brand font-semibold">Print</a> &middot; <a href="#" class="text-brand font-semibold">Embroidery</a></p>
 
-          <!-- Stock + bullets -->
-          <div class="flex items-center gap-2 mb-4">
+          <!-- Stock -->
+          <div class="flex items-center gap-2 mb-5">
             <span class="w-2 h-2 bg-green-500 rounded-full"></span>
             <span class="text-sm font-bold text-green-600">In Stock</span>
             <span class="text-xs text-gray-400">(1,240+ available)</span>
           </div>
-          <ul class="space-y-1.5 mb-6 text-sm text-gray-600">
-            <li class="flex items-center gap-2">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Next day delivery available
-            </li>
-            <li class="flex items-center gap-2">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              No minimum order
-            </li>
-            <li class="flex items-center gap-2">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Custom printing &amp; embroidery available
-            </li>
-          </ul>
 
-          <!-- Divider -->
-          <hr class="border-gray-200 mb-6" />
+          <!-- Manufacturer Code (Ralawise style) -->
+          <p class="text-sm text-gray-600 mb-4">Manufacturer Code: <strong class="text-dark">PW-C470</strong></p>
 
-          <!-- Fabric / Weight / Size info (Ralawise style) -->
-          <div class="mb-6 space-y-3 text-sm">
+          <!-- Fabric / Weight / Size inline (Ralawise style) -->
+          <div class="mb-5 space-y-2.5 text-sm border-t border-gray-200 pt-5">
             <div class="flex gap-4">
-              <span class="font-bold text-dark w-24 flex-shrink-0">Fabric</span>
-              <span class="text-gray-600">100% Polyester (120gsm). High-visibility with retro-reflective tape</span>
+              <span class="font-bold text-dark w-28 flex-shrink-0">Fabric</span>
+              <span class="text-gray-600">100% Polyester (120gsm)</span>
             </div>
             <div class="flex gap-4">
-              <span class="font-bold text-dark w-24 flex-shrink-0">Weight</span>
+              <span class="font-bold text-dark w-28 flex-shrink-0">Weight</span>
               <span class="text-gray-600">180gsm</span>
             </div>
             <div class="flex gap-4">
-              <span class="font-bold text-dark w-24 flex-shrink-0">Size</span>
-              <span class="text-gray-600"><strong class="text-dark">S</strong> 36" <strong class="text-dark ml-2">M</strong> 40" <strong class="text-dark ml-2">L</strong> 44" <strong class="text-dark ml-2">XL</strong> 48" <strong class="text-dark ml-2">2XL</strong> 52" <strong class="text-dark ml-2">3XL</strong> 56"</span>
+              <span class="font-bold text-dark w-28 flex-shrink-0">Size</span>
+              <span class="text-gray-600"><strong class="text-dark">S</strong> 36" <strong class="text-dark ml-1">M</strong> 40" <strong class="text-dark ml-1">L</strong> 44" <strong class="text-dark ml-1">XL</strong> 48" <strong class="text-dark ml-1">2XL</strong> 52"</span>
             </div>
             <div class="flex gap-4">
-              <span class="font-bold text-dark w-24 flex-shrink-0">Certification</span>
+              <span class="font-bold text-dark w-28 flex-shrink-0">Certification</span>
               <span class="text-gray-600">EN ISO 20471 Class 2</span>
             </div>
           </div>
 
           <!-- Key Info -->
-          <div class="mb-6 pb-6 border-b border-gray-200">
+          <div class="mb-5 pb-5 border-b border-gray-200">
             <h3 class="text-sm font-bold text-dark mb-2">Key Info</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">The Portwest Hi-Vis Executive Vest is the professional choice for construction teams, warehouse staff, and outdoor workers. Certified to EN ISO 20471 Class 2, featuring 50mm retro-reflective tape, front zip fastening, and a heavy-duty ID pocket. Perfect for screen printing and embroidery branding. Machine washable at 60&deg;C.</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3">The Portwest Hi-Vis Executive Vest is the professional choice for construction teams, warehouse staff, and outdoor workers. Featuring 50mm retro-reflective tape, front zip fastening, and heavy-duty ID pocket.</p>
+            <a href="#" class="text-sm text-brand font-semibold hover:underline">View Specification &#8250;</a>
           </div>
 
-          <!-- Selected Size -->
+          <!-- Clothes2Order style pricing table with tabs -->
           <div class="mb-6">
-            <div class="flex items-center justify-between mb-3">
-              <p class="text-sm font-bold text-dark">Select Size</p>
-              <a href="#" class="text-xs text-brand font-semibold hover:underline">Size Guide</a>
+            <div class="flex border-b border-gray-200 mb-0">
+              <button class="price-tab px-4 py-2 text-sm font-bold text-brand border-b-2 border-brand">Blank pricing</button>
+              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand">Print</button>
+              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand">Embroidery</button>
+              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand">High stitch count</button>
             </div>
-            <div class="flex flex-wrap gap-2">
-              <button class="size-btn border-2 border-gray-200 text-dark font-semibold text-sm px-5 py-2 rounded hover:border-brand transition-colors" data-size="S">S</button>
-              <button class="size-btn border-2 border-gray-200 text-dark font-semibold text-sm px-5 py-2 rounded hover:border-brand transition-colors" data-size="M">M</button>
-              <button class="size-btn active border-2 border-gray-200 text-dark font-semibold text-sm px-5 py-2 rounded hover:border-brand transition-colors" data-size="L">L</button>
-              <button class="size-btn border-2 border-gray-200 text-dark font-semibold text-sm px-5 py-2 rounded hover:border-brand transition-colors" data-size="XL">XL</button>
-              <button class="size-btn border-2 border-gray-200 text-dark font-semibold text-sm px-5 py-2 rounded hover:border-brand transition-colors" data-size="XXL">XXL</button>
+            <div class="border border-t-0 border-gray-200 rounded-b-lg overflow-hidden">
+              <table class="w-full text-xs md:text-sm">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th>
+                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th>
+                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th>
+                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th>
+                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th>
+                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th>
+                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th>
+                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t border-gray-100">
+                    <td class="px-3 py-2.5 font-semibold text-dark">Price</td>
+                    <td class="px-3 py-2.5 text-center">&pound;8.99</td>
+                    <td class="px-3 py-2.5 text-center">&pound;7.50</td>
+                    <td class="px-3 py-2.5 text-center">&pound;6.75</td>
+                    <td class="px-3 py-2.5 text-center">&pound;6.25</td>
+                    <td class="px-3 py-2.5 text-center">&pound;5.49</td>
+                    <td class="px-3 py-2.5 text-center">&pound;4.99</td>
+                    <td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td>
+                  </tr>
+                  <tr class="border-t border-gray-100 bg-green-50">
+                    <td class="px-3 py-2.5 font-semibold text-green-600">Discount</td>
+                    <td class="px-3 py-2.5 text-center text-gray-400">-</td>
+                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-17%</td>
+                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-25%</td>
+                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-30%</td>
+                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-39%</td>
+                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-44%</td>
+                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-49%</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-
-          <!-- Quantity + Live Price -->
-          <div class="mb-5">
-            <div class="flex items-center justify-between mb-2">
-              <p class="text-sm font-bold text-dark">Quantity</p>
-              <p class="text-sm text-gray-500">Total: <span id="livePrice" class="text-lg font-900 text-brand">&pound;75.00</span></p>
-            </div>
-            <div class="flex items-center border-2 border-gray-200 rounded w-fit">
-              <button id="qtyMinus" class="w-11 h-11 text-xl text-gray-600 hover:text-brand transition-colors">&minus;</button>
-              <input id="qtyInput" type="number" value="10" min="1" class="w-16 h-11 text-center font-bold text-dark border-x-2 border-gray-200 focus:outline-none" />
-              <button id="qtyPlus" class="w-11 h-11 text-xl text-gray-600 hover:text-brand transition-colors">+</button>
-            </div>
-            <p class="text-xs text-gray-500 mt-2">You're getting the <span id="currentTier" class="font-bold text-brand">10-49 unit price (&pound;7.50/unit)</span></p>
-          </div>
-
-          <!-- Bulk Pricing Table -->
-          <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden">
-            <div class="bg-gray-50 px-4 py-2.5 border-b border-gray-200">
-              <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Bulk Pricing (per unit)</p>
-            </div>
-            <table class="w-full text-sm">
-              <tbody>
-                <tr class="tier-row border-b border-gray-100" data-min="1" data-max="9" data-price="8.99">
-                  <td class="px-4 py-2.5 text-gray-600">1 - 9</td>
-                  <td class="px-4 py-2.5 text-right">&pound;8.99</td>
-                </tr>
-                <tr class="tier-row active border-b border-gray-100" data-min="10" data-max="49" data-price="7.50">
-                  <td class="px-4 py-2.5">10 - 49</td>
-                  <td class="px-4 py-2.5 text-right">&pound;7.50</td>
-                </tr>
-                <tr class="tier-row border-b border-gray-100" data-min="50" data-max="99" data-price="6.25">
-                  <td class="px-4 py-2.5 text-gray-600">50 - 99</td>
-                  <td class="px-4 py-2.5 text-right">&pound;6.25</td>
-                </tr>
-                <tr class="tier-row border-b border-gray-100" data-min="100" data-max="499" data-price="5.49">
-                  <td class="px-4 py-2.5 text-gray-600">100 - 499</td>
-                  <td class="px-4 py-2.5 text-right">&pound;5.49</td>
-                </tr>
-                <tr class="tier-row" data-min="500" data-max="99999" data-price="4.99">
-                  <td class="px-4 py-2.5 text-gray-600">500+</td>
-                  <td class="px-4 py-2.5 text-right">&pound;4.99</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Customisation toggle -->
-          <label class="flex items-start gap-3 border-2 border-gray-200 rounded-lg p-4 mb-5 cursor-pointer hover:border-brand transition-colors">
-            <input type="checkbox" id="customToggle" class="mt-1 w-4 h-4 accent-brand" />
-            <div class="flex-1">
-              <p class="text-sm font-bold text-dark flex items-center gap-2">
-                <span>&#127912;</span> Add Custom Branding
-                <span class="text-accent">(+&pound;2.50/unit)</span>
-              </p>
-              <p class="text-xs text-gray-500 mt-1">Upload your logo, pick placement, choose print method</p>
-            </div>
-            <button id="openCustomModal" class="text-xs font-bold text-brand hover:underline">Configure</button>
-          </label>
 
           <!-- CTA Buttons -->
           <div class="flex flex-col gap-3 mb-4">
@@ -359,16 +372,19 @@
     </div>
   </section>
 
-  <!-- ===================== SELECT COLOUR & BUY (Ralawise style) ===================== -->
+  <!-- ===================== BOTTOM TABS (Ralawise style) ===================== -->
   <section class="border-t border-gray-200 py-12 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-xl md:text-2xl font-800 text-dark">Select Colour &amp; Start Your Order</h2>
-        <span class="text-xs text-gray-500">22 colours available</span>
+      <!-- Ralawise-style tab navigation -->
+      <div class="grid grid-cols-2 md:grid-cols-4 border border-gray-200 rounded-t-lg overflow-hidden mb-0">
+        <button class="btab-btn bg-white text-brand font-bold text-sm py-4 border-b-2 border-brand" data-btab="select-options">Select Options &amp; Buy</button>
+        <button class="btab-btn bg-gray-50 text-gray-500 font-semibold text-sm py-4 border-b border-gray-200 hover:text-brand transition-colors" data-btab="specification-tab">Specification</button>
+        <button class="btab-btn bg-gray-50 text-gray-500 font-semibold text-sm py-4 border-b border-gray-200 hover:text-brand transition-colors" data-btab="related-tab">Related Products</button>
+        <button class="btab-btn bg-gray-50 text-gray-500 font-semibold text-sm py-4 border-b border-gray-200 hover:text-brand transition-colors" data-btab="customisation-calc">Customisation Calculator</button>
       </div>
 
-      <!-- Colour filter chips + dropdown -->
-      <div class="bg-white border border-gray-200 rounded-lg p-5 md:p-6">
+      <!-- BTAB: Select Options & Buy -->
+      <div id="btab-select-options" class="btab-content bg-white border border-t-0 border-gray-200 rounded-b-lg p-5 md:p-6">
         <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 mb-6">
           <!-- Filter chips -->
           <div class="flex-1">
@@ -508,6 +524,95 @@
             </div>
             <p class="text-xs font-semibold text-dark">Sun Yellow</p>
           </a>
+        </div>
+      </div>
+
+      <!-- BTAB: Specification -->
+      <div id="btab-specification-tab" class="btab-content bg-white border border-t-0 border-gray-200 rounded-b-lg p-5 md:p-6 hidden">
+        <h3 class="text-lg font-800 text-dark mb-4">Product Specification</h3>
+        <div class="border border-gray-200 rounded-lg overflow-hidden max-w-2xl">
+          <table class="w-full text-sm">
+            <tbody>
+              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark w-1/3 bg-gray-50">Brand</td><td class="px-4 py-3 text-gray-600">Portwest</td></tr>
+              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Product Code</td><td class="px-4 py-3 text-gray-600">PW-C470</td></tr>
+              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Material</td><td class="px-4 py-3 text-gray-600">100% Polyester (120gsm)</td></tr>
+              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Weight</td><td class="px-4 py-3 text-gray-600">180g</td></tr>
+              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Certification</td><td class="px-4 py-3 text-gray-600">EN ISO 20471 Class 2</td></tr>
+              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Colours</td><td class="px-4 py-3 text-gray-600">Yellow, Orange, Red, Navy + 18 more</td></tr>
+              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Sizes</td><td class="px-4 py-3 text-gray-600">S, M, L, XL, 2XL, 3XL</td></tr>
+              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Care</td><td class="px-4 py-3 text-gray-600">Machine washable at 60&deg;C</td></tr>
+              <tr><td class="px-4 py-3 font-bold text-dark bg-gray-50">Country of Origin</td><td class="px-4 py-3 text-gray-600">UK</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BTAB: Related Products -->
+      <div id="btab-related-tab" class="btab-content bg-white border border-t-0 border-gray-200 rounded-b-lg p-5 md:p-6 hidden">
+        <h3 class="text-lg font-800 text-dark mb-4">Related Products</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="#" class="border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
+            <div class="aspect-square bg-gray-50 overflow-hidden"><img src="images/cat-workwear.webp" alt="Workwear Trousers" class="w-full h-full object-cover" /></div>
+            <div class="p-3"><p class="text-xs font-bold text-dark">Workwear Trousers</p><p class="text-xs text-brand font-bold mt-1">From &pound;18.00</p></div>
+          </a>
+          <a href="#" class="border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
+            <div class="aspect-square bg-gray-50 overflow-hidden"><img src="images/cat-hivis.webp" alt="Hi-Vis Jacket" class="w-full h-full object-cover" /></div>
+            <div class="p-3"><p class="text-xs font-bold text-dark">Hi-Vis Jacket</p><p class="text-xs text-brand font-bold mt-1">From &pound;24.99</p></div>
+          </a>
+          <a href="#" class="border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
+            <div class="aspect-square bg-gray-50 overflow-hidden"><img src="images/cat-polos.webp" alt="Workwear Polo" class="w-full h-full object-cover" /></div>
+            <div class="p-3"><p class="text-xs font-bold text-dark">Workwear Polo</p><p class="text-xs text-brand font-bold mt-1">From &pound;6.99</p></div>
+          </a>
+          <a href="#" class="border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
+            <div class="aspect-square bg-gray-50 overflow-hidden"><img src="images/cat-caps.webp" alt="Safety Helmet" class="w-full h-full object-cover" /></div>
+            <div class="p-3"><p class="text-xs font-bold text-dark">Safety Helmet</p><p class="text-xs text-brand font-bold mt-1">From &pound;8.50</p></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- BTAB: Customisation Calculator -->
+      <div id="btab-customisation-calc" class="btab-content bg-white border border-t-0 border-gray-200 rounded-b-lg p-5 md:p-6 hidden">
+        <h3 class="text-lg font-800 text-dark mb-4">Customisation Calculator</h3>
+        <p class="text-sm text-gray-600 mb-6">Calculate your total cost including customisation. Select your branding method and quantity below.</p>
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+          <div class="border-2 border-brand bg-brand-light rounded-lg p-5 text-center cursor-pointer">
+            <h4 class="font-bold text-brand mb-1">Screen Printing</h4>
+            <p class="text-xs text-gray-500">Best for large runs</p>
+            <p class="text-lg font-900 text-brand mt-2">+&pound;2.50/unit</p>
+          </div>
+          <div class="border border-gray-200 rounded-lg p-5 text-center cursor-pointer hover:border-brand transition-colors">
+            <h4 class="font-bold text-dark mb-1">Embroidery</h4>
+            <p class="text-xs text-gray-500">Premium professional finish</p>
+            <p class="text-lg font-900 text-brand mt-2">+&pound;3.50/unit</p>
+          </div>
+          <div class="border border-gray-200 rounded-lg p-5 text-center cursor-pointer hover:border-brand transition-colors">
+            <h4 class="font-bold text-dark mb-1">DTG Printing</h4>
+            <p class="text-xs text-gray-500">Full-colour photo quality</p>
+            <p class="text-lg font-900 text-brand mt-2">+&pound;4.50/unit</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-end gap-4 bg-gray-50 rounded-lg p-5">
+          <div>
+            <label class="block text-xs font-bold text-dark mb-1">Quantity</label>
+            <input type="number" value="50" class="border border-gray-300 rounded px-4 py-2.5 w-28 text-sm font-bold text-center focus:outline-none focus:border-brand" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-dark mb-1">Unit Price (blank)</label>
+            <p class="text-lg font-900 text-dark">&pound;6.25</p>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-dark mb-1">Customisation</label>
+            <p class="text-lg font-900 text-accent">+&pound;2.50</p>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-dark mb-1">Total per unit</label>
+            <p class="text-lg font-900 text-brand">&pound;8.75</p>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-dark mb-1">Order Total</label>
+            <p class="text-2xl font-900 text-dark">&pound;437.50</p>
+          </div>
+          <a href="#" class="bg-brand text-white font-bold text-sm px-6 py-3 rounded hover:bg-brand-dark transition-colors ml-auto">Start Your Order</a>
         </div>
       </div>
     </div>
@@ -684,58 +789,6 @@
             <p class="text-xs text-gray-400">Tom H. - Verified Buyer - 3 months ago</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== RELATED PRODUCTS ===================== -->
-  <section class="py-12 bg-gray-50 border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl md:text-3xl font-800 text-dark mb-2">You May Also Like</h2>
-        <p class="text-gray-500 text-sm">Other popular workwear from our catalog</p>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-        <a href="#" class="bg-white border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
-          <div class="aspect-square overflow-hidden bg-gray-50">
-            <img src="images/cat-workwear.webp" alt="Workwear Trousers" class="w-full h-full object-cover" />
-          </div>
-          <div class="p-4">
-            <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">PORTWEST</p>
-            <h3 class="font-bold text-dark text-sm mb-1">Workwear Trousers</h3>
-            <p class="text-sm font-bold text-brand">From &pound;18.00</p>
-          </div>
-        </a>
-        <a href="#" class="bg-white border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
-          <div class="aspect-square overflow-hidden bg-gray-50">
-            <img src="images/cat-hivis.webp" alt="Hi-Vis Jacket" class="w-full h-full object-cover" />
-          </div>
-          <div class="p-4">
-            <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">PORTWEST</p>
-            <h3 class="font-bold text-dark text-sm mb-1">Hi-Vis Jacket</h3>
-            <p class="text-sm font-bold text-brand">From &pound;24.99</p>
-          </div>
-        </a>
-        <a href="#" class="bg-white border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
-          <div class="aspect-square overflow-hidden bg-gray-50">
-            <img src="images/cat-polos.webp" alt="Work Polo" class="w-full h-full object-cover" />
-          </div>
-          <div class="p-4">
-            <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">PORTWEST</p>
-            <h3 class="font-bold text-dark text-sm mb-1">Workwear Polo</h3>
-            <p class="text-sm font-bold text-brand">From &pound;6.99</p>
-          </div>
-        </a>
-        <a href="#" class="bg-white border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
-          <div class="aspect-square overflow-hidden bg-gray-50">
-            <img src="images/cat-caps.webp" alt="Safety Helmet" class="w-full h-full object-cover" />
-          </div>
-          <div class="p-4">
-            <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">PORTWEST</p>
-            <h3 class="font-bold text-dark text-sm mb-1">Safety Helmet</h3>
-            <p class="text-sm font-bold text-brand">From &pound;8.50</p>
-          </div>
-        </a>
       </div>
     </div>
   </section>
@@ -948,7 +1001,7 @@
       qtyPlus.addEventListener('click', () => { qtyInput.value = parseInt(qtyInput.value) + 1; updatePrice(); });
       if (customToggle) customToggle.addEventListener('change', updatePrice);
 
-      // Tabs
+      // Description/Spec/Reviews tabs
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const tabId = btn.dataset.tab;
@@ -956,6 +1009,23 @@
           document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
           btn.classList.add('active');
           document.getElementById('tab-' + tabId).classList.add('active');
+        });
+      });
+
+      // Bottom tabs (Ralawise style: Select Options, Specification, Related, Customisation)
+      document.querySelectorAll('.btab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const btabId = btn.dataset.btab;
+          document.querySelectorAll('.btab-btn').forEach(b => {
+            b.classList.remove('bg-white', 'text-brand', 'border-brand', 'font-bold');
+            b.classList.add('bg-gray-50', 'text-gray-500', 'font-semibold', 'border-gray-200');
+            b.style.borderBottomWidth = '1px';
+          });
+          btn.classList.remove('bg-gray-50', 'text-gray-500', 'font-semibold', 'border-gray-200');
+          btn.classList.add('bg-white', 'text-brand', 'font-bold', 'border-brand');
+          btn.style.borderBottomWidth = '2px';
+          document.querySelectorAll('.btab-content').forEach(c => c.classList.add('hidden'));
+          document.getElementById('btab-' + btabId).classList.remove('hidden');
         });
       });
 
