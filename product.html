@@ -933,27 +933,20 @@
   <!-- ===================== PRODUCT PAGE JS ===================== -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Thumbnail swap
+
+      // ── Thumbnail swap ──────────────────────────────────────
       const mainImage = document.getElementById('mainImage');
-      document.querySelectorAll('.thumb').forEach(thumb => {
-        thumb.addEventListener('click', () => {
-          document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-          thumb.classList.add('active');
-          mainImage.src = thumb.dataset.img;
+      if (mainImage) {
+        document.querySelectorAll('.thumb').forEach(thumb => {
+          thumb.addEventListener('click', () => {
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            if (thumb.dataset.img) mainImage.src = thumb.dataset.img;
+          });
         });
-      });
+      }
 
-      // Colour swatch
-      const selectedColour = document.getElementById('selectedColour');
-      document.querySelectorAll('.colour-swatch').forEach(sw => {
-        sw.addEventListener('click', () => {
-          document.querySelectorAll('.colour-swatch').forEach(s => s.classList.remove('active'));
-          sw.classList.add('active');
-          selectedColour.textContent = sw.dataset.colour;
-        });
-      });
-
-      // Size buttons
+      // ── Size buttons ────────────────────────────────────────
       document.querySelectorAll('.size-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
@@ -961,92 +954,107 @@
         });
       });
 
-      // Quantity + live price + tier highlight
-      const qtyInput = document.getElementById('qtyInput');
-      const qtyMinus = document.getElementById('qtyMinus');
-      const qtyPlus = document.getElementById('qtyPlus');
-      const livePrice = document.getElementById('livePrice');
-      const currentTier = document.getElementById('currentTier');
-      const customToggle = document.getElementById('customToggle');
-
-      function updatePrice() {
-        let qty = parseInt(qtyInput.value) || 1;
-        if (qty < 1) qty = 1;
-        qtyInput.value = qty;
-
-        const tiers = document.querySelectorAll('.tier-row');
-        let unitPrice = 8.99;
-        let tierLabel = '1-9';
-
-        tiers.forEach(row => {
-          const min = parseInt(row.dataset.min);
-          const max = parseInt(row.dataset.max);
-          const price = parseFloat(row.dataset.price);
-          row.classList.remove('active');
-          if (qty >= min && qty <= max) {
-            row.classList.add('active');
-            unitPrice = price;
-            tierLabel = max >= 99999 ? '500+' : `${min}-${max}`;
-          }
+      // ── Colour filter chips toggle ──────────────────────────
+      document.querySelectorAll('.colour-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          chip.classList.toggle('border-2');
+          chip.classList.toggle('border-brand');
         });
+      });
 
-        const customCost = customToggle && customToggle.checked ? 2.50 : 0;
-        const total = (unitPrice + customCost) * qty;
-        livePrice.textContent = '\u00a3' + total.toFixed(2);
-        currentTier.textContent = `${tierLabel} unit price (\u00a3${unitPrice.toFixed(2)}/unit)`;
-      }
+      // ── Pricing table tabs (Blank/Print/Embroidery/High stitch) ──
+      document.querySelectorAll('.price-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.price-tab').forEach(t => {
+            t.classList.remove('text-brand', 'border-brand');
+            t.classList.add('text-gray-500', 'border-transparent');
+          });
+          tab.classList.remove('text-gray-500', 'border-transparent');
+          tab.classList.add('text-brand', 'border-brand');
+        });
+      });
 
-      qtyInput.addEventListener('input', updatePrice);
-      qtyMinus.addEventListener('click', () => { qtyInput.value = Math.max(1, parseInt(qtyInput.value) - 1); updatePrice(); });
-      qtyPlus.addEventListener('click', () => { qtyInput.value = parseInt(qtyInput.value) + 1; updatePrice(); });
-      if (customToggle) customToggle.addEventListener('change', updatePrice);
-
-      // Description/Spec/Reviews tabs
+      // ── Description/Spec/Reviews tabs (middle section) ──────
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const tabId = btn.dataset.tab;
           document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
           document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
           btn.classList.add('active');
-          document.getElementById('tab-' + tabId).classList.add('active');
+          const target = document.getElementById('tab-' + tabId);
+          if (target) target.classList.add('active');
         });
       });
 
-      // Bottom tabs (Ralawise style: Select Options, Specification, Related, Customisation)
+      // ── Bottom tabs (Ralawise: Select Options, Spec, Related, Customisation) ──
       document.querySelectorAll('.btab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const btabId = btn.dataset.btab;
+          // Reset all btab buttons
           document.querySelectorAll('.btab-btn').forEach(b => {
-            b.classList.remove('bg-white', 'text-brand', 'border-brand', 'font-bold');
-            b.classList.add('bg-gray-50', 'text-gray-500', 'font-semibold', 'border-gray-200');
+            b.classList.remove('bg-white', 'text-brand', 'font-bold');
+            b.classList.add('bg-gray-50', 'text-gray-500', 'font-semibold');
+            b.style.borderBottomColor = '#E0E0E0';
             b.style.borderBottomWidth = '1px';
           });
-          btn.classList.remove('bg-gray-50', 'text-gray-500', 'font-semibold', 'border-gray-200');
-          btn.classList.add('bg-white', 'text-brand', 'font-bold', 'border-brand');
+          // Activate clicked
+          btn.classList.remove('bg-gray-50', 'text-gray-500', 'font-semibold');
+          btn.classList.add('bg-white', 'text-brand', 'font-bold');
+          btn.style.borderBottomColor = '#1565C0';
           btn.style.borderBottomWidth = '2px';
+          // Show/hide content
           document.querySelectorAll('.btab-content').forEach(c => c.classList.add('hidden'));
-          document.getElementById('btab-' + btabId).classList.remove('hidden');
+          const target = document.getElementById('btab-' + btabId);
+          if (target) target.classList.remove('hidden');
         });
       });
 
-      // Customisation modal
+      // ── Customisation Calculator ────────────────────────────
+      const calcMethodCards = document.querySelectorAll('#btab-customisation-calc .grid > div[class*="border"]');
+      calcMethodCards.forEach(card => {
+        card.addEventListener('click', () => {
+          calcMethodCards.forEach(c => {
+            c.classList.remove('border-2', 'border-brand', 'bg-brand-light');
+            c.classList.add('border', 'border-gray-200');
+          });
+          card.classList.remove('border', 'border-gray-200');
+          card.classList.add('border-2', 'border-brand', 'bg-brand-light');
+        });
+      });
+
+      // ── Customisation modal ─────────────────────────────────
       const customModal = document.getElementById('customModal');
-      const openBtn = document.getElementById('openCustomModal');
-      const closeBtn = document.getElementById('closeCustomModal');
-      const cancelBtn = document.getElementById('cancelCustomModal');
-      const applyBtn = document.getElementById('applyCustomModal');
+      if (customModal) {
+        const closeBtn = document.getElementById('closeCustomModal');
+        const cancelBtn = document.getElementById('cancelCustomModal');
+        const applyBtn = document.getElementById('applyCustomModal');
 
-      function openModal(e) { if (e) e.preventDefault(); customModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
-      function closeModal() { customModal.classList.remove('open'); document.body.style.overflow = ''; }
+        function openModal(e) { if (e) e.preventDefault(); customModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { customModal.classList.remove('open'); document.body.style.overflow = ''; }
 
-      if (openBtn) openBtn.addEventListener('click', openModal);
-      if (closeBtn) closeBtn.addEventListener('click', closeModal);
-      if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
-      if (applyBtn) applyBtn.addEventListener('click', () => { if (customToggle) { customToggle.checked = true; updatePrice(); } closeModal(); });
-      if (customModal) customModal.addEventListener('click', (e) => { if (e.target === customModal) closeModal(); });
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+        if (applyBtn) applyBtn.addEventListener('click', closeModal);
+        customModal.addEventListener('click', (e) => { if (e.target === customModal) closeModal(); });
 
-      // Initial price calc
-      updatePrice();
+        // Open modal from placement buttons in customisation tab
+        document.querySelectorAll('[data-open-modal]').forEach(btn => {
+          btn.addEventListener('click', openModal);
+        });
+      }
+
+      // ── Colour variant card click (update main image) ───────
+      document.querySelectorAll('#btab-select-options .group').forEach(card => {
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          const img = card.querySelector('img');
+          if (img && mainImage) {
+            mainImage.src = img.src;
+            mainImage.style.filter = img.style.filter || 'none';
+          }
+        });
+      });
+
     });
   </script>
 
