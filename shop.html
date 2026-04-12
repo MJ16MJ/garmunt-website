@@ -530,6 +530,61 @@
     </div>
   </section>
 
+  <!-- ===================== QUICK VIEW MODAL ===================== -->
+  <div id="quickViewModal" class="fixed inset-0 bg-black/50 z-[999] items-center justify-center p-4 hidden" style="display:none">
+    <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between p-5 border-b border-gray-200">
+        <h3 class="text-lg font-800 text-dark" id="qvTitle">Product Name</h3>
+        <button id="qvClose" class="text-gray-400 hover:text-dark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 p-5">
+        <!-- Image -->
+        <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square">
+          <img id="qvImage" src="" alt="" class="w-full h-full object-cover" />
+        </div>
+        <!-- Info -->
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2" id="qvBadge"></p>
+          <h2 class="text-xl font-900 text-dark mb-2" id="qvName">Product Name</h2>
+          <div class="flex items-center gap-1 mb-3">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span class="text-xs text-gray-500 ml-1" id="qvReviews"></span>
+          </div>
+          <p class="text-2xl font-900 text-dark mb-1" id="qvPrice"></p>
+          <p class="text-xs text-gray-500 mb-4">Prices exclude VAT &middot; Bulk discounts available</p>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+            <span class="text-sm font-bold text-green-600">In Stock</span>
+          </div>
+          <ul class="space-y-1.5 mb-5 text-sm text-gray-600">
+            <li class="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Next day delivery available
+            </li>
+            <li class="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Custom printing &amp; embroidery
+            </li>
+            <li class="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              No minimum order
+            </li>
+          </ul>
+          <div class="flex flex-col gap-2">
+            <a href="product.html" class="bg-brand text-white font-bold text-sm py-3 rounded hover:bg-brand-dark transition-colors text-center">View Full Details</a>
+            <a href="#" class="border border-gray-300 text-dark font-semibold text-sm py-2.5 rounded hover:border-brand hover:text-brand transition-colors text-center">Start Your Order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ===================== FOOTER ===================== -->
   <footer class="bg-white pt-14 pb-6 border-t border-gray-200">
     <div class="max-w-[1350px] mx-auto px-4 md:px-6">
@@ -625,6 +680,49 @@
           document.querySelectorAll('.filter-pill[data-dropdown]').forEach(function(p) { p.classList.remove('active'); });
         }
       });
+
+      // Quick View modal
+      var qvModal = document.getElementById('quickViewModal');
+      var qvClose = document.getElementById('qvClose');
+
+      document.querySelectorAll('.product-card__overlay').forEach(function(overlay) {
+        overlay.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var card = overlay.closest('.product-card');
+          var img = card.querySelector('.product-card__img img');
+          var name = card.querySelector('h3');
+          var price = card.querySelector('p:last-child');
+          var badge = card.querySelector('.product-card__img > span:not(.product-card__overlay)');
+          var rating = card.querySelector('.text-\\[10px\\].font-semibold');
+          var reviews = card.querySelector('.text-\\[10px\\].text-gray-400');
+
+          document.getElementById('qvImage').src = img ? img.src : '';
+          document.getElementById('qvName').textContent = name ? name.textContent : '';
+          document.getElementById('qvTitle').textContent = name ? name.textContent : '';
+          document.getElementById('qvPrice').textContent = price ? price.textContent : '';
+          document.getElementById('qvBadge').textContent = badge ? badge.textContent : '';
+          document.getElementById('qvReviews').textContent = rating && reviews ? rating.textContent + ' ' + reviews.textContent : '';
+
+          qvModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      if (qvClose) {
+        qvClose.addEventListener('click', function() {
+          qvModal.style.display = 'none';
+          document.body.style.overflow = '';
+        });
+      }
+      if (qvModal) {
+        qvModal.addEventListener('click', function(e) {
+          if (e.target === qvModal) {
+            qvModal.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        });
+      }
 
       // Colour swatch click on cards
       document.querySelectorAll('.swatch').forEach(function(s) {
