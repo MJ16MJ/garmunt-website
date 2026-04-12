@@ -315,48 +315,34 @@
           <!-- Clothes2Order style pricing table with tabs -->
           <div class="mb-6">
             <div class="flex border-b border-gray-200 mb-0">
-              <button class="price-tab px-4 py-2 text-sm font-bold text-brand border-b-2 border-brand">Blank pricing</button>
-              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand">Print</button>
-              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand">Embroidery</button>
-              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand">High stitch count</button>
+              <button class="price-tab active px-4 py-2 text-sm font-bold text-brand border-b-2 border-brand" data-ptab="blank">Blank pricing</button>
+              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand" data-ptab="print">Print</button>
+              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand" data-ptab="embroidery">Embroidery</button>
+              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand" data-ptab="highstitch">High stitch count</button>
             </div>
-            <div class="border border-t-0 border-gray-200 rounded-b-lg overflow-hidden">
-              <table class="w-full text-xs md:text-sm">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th>
-                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th>
-                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th>
-                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th>
-                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th>
-                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th>
-                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th>
-                    <th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-t border-gray-100">
-                    <td class="px-3 py-2.5 font-semibold text-dark">Price</td>
-                    <td class="px-3 py-2.5 text-center">&pound;8.99</td>
-                    <td class="px-3 py-2.5 text-center">&pound;7.50</td>
-                    <td class="px-3 py-2.5 text-center">&pound;6.75</td>
-                    <td class="px-3 py-2.5 text-center">&pound;6.25</td>
-                    <td class="px-3 py-2.5 text-center">&pound;5.49</td>
-                    <td class="px-3 py-2.5 text-center">&pound;4.99</td>
-                    <td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td>
-                  </tr>
-                  <tr class="border-t border-gray-100 bg-green-50">
-                    <td class="px-3 py-2.5 font-semibold text-green-600">Discount</td>
-                    <td class="px-3 py-2.5 text-center text-gray-400">-</td>
-                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-17%</td>
-                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-25%</td>
-                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-30%</td>
-                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-39%</td>
-                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-44%</td>
-                    <td class="px-3 py-2.5 text-center text-green-600 font-bold">-49%</td>
-                  </tr>
-                </tbody>
-              </table>
+            <!-- Blank pricing table -->
+            <div class="price-panel border border-t-0 border-gray-200 rounded-b-lg overflow-hidden" id="ptab-blank">
+              <table class="w-full text-xs md:text-sm"><thead class="bg-gray-50"><tr><th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th></tr></thead>
+              <tbody><tr class="border-t border-gray-100"><td class="px-3 py-2.5 font-semibold text-dark">Price</td><td class="px-3 py-2.5 text-center">&pound;8.99</td><td class="px-3 py-2.5 text-center">&pound;7.50</td><td class="px-3 py-2.5 text-center">&pound;6.75</td><td class="px-3 py-2.5 text-center">&pound;6.25</td><td class="px-3 py-2.5 text-center">&pound;5.49</td><td class="px-3 py-2.5 text-center">&pound;4.99</td><td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td></tr>
+              <tr class="border-t border-gray-100 bg-green-50"><td class="px-3 py-2.5 font-semibold text-green-600">Discount</td><td class="px-3 py-2.5 text-center text-gray-400">-</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-17%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-25%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-30%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-39%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-44%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-49%</td></tr></tbody></table>
+            </div>
+            <!-- Print pricing table -->
+            <div class="price-panel border border-t-0 border-gray-200 rounded-b-lg overflow-hidden hidden" id="ptab-print">
+              <table class="w-full text-xs md:text-sm"><thead class="bg-gray-50"><tr><th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th></tr></thead>
+              <tbody><tr class="border-t border-gray-100"><td class="px-3 py-2.5 font-semibold text-dark">Price</td><td class="px-3 py-2.5 text-center">&pound;11.49</td><td class="px-3 py-2.5 text-center">&pound;9.85</td><td class="px-3 py-2.5 text-center">&pound;8.76</td><td class="px-3 py-2.5 text-center">&pound;7.92</td><td class="px-3 py-2.5 text-center">&pound;7.11</td><td class="px-3 py-2.5 text-center">&pound;6.49</td><td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td></tr>
+              <tr class="border-t border-gray-100 bg-green-50"><td class="px-3 py-2.5 font-semibold text-green-600">Discount</td><td class="px-3 py-2.5 text-center text-gray-400">-</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-14%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-24%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-31%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-38%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-43%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-47%</td></tr></tbody></table>
+            </div>
+            <!-- Embroidery pricing table -->
+            <div class="price-panel border border-t-0 border-gray-200 rounded-b-lg overflow-hidden hidden" id="ptab-embroidery">
+              <table class="w-full text-xs md:text-sm"><thead class="bg-gray-50"><tr><th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th></tr></thead>
+              <tbody><tr class="border-t border-gray-100"><td class="px-3 py-2.5 font-semibold text-dark">Price</td><td class="px-3 py-2.5 text-center">&pound;12.49</td><td class="px-3 py-2.5 text-center">&pound;10.85</td><td class="px-3 py-2.5 text-center">&pound;9.76</td><td class="px-3 py-2.5 text-center">&pound;8.92</td><td class="px-3 py-2.5 text-center">&pound;8.11</td><td class="px-3 py-2.5 text-center">&pound;7.49</td><td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td></tr>
+              <tr class="border-t border-gray-100 bg-green-50"><td class="px-3 py-2.5 font-semibold text-green-600">Discount</td><td class="px-3 py-2.5 text-center text-gray-400">-</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-13%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-22%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-29%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-35%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-40%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-44%</td></tr></tbody></table>
+            </div>
+            <!-- High stitch count pricing table -->
+            <div class="price-panel border border-t-0 border-gray-200 rounded-b-lg overflow-hidden hidden" id="ptab-highstitch">
+              <table class="w-full text-xs md:text-sm"><thead class="bg-gray-50"><tr><th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th></tr></thead>
+              <tbody><tr class="border-t border-gray-100"><td class="px-3 py-2.5 font-semibold text-dark">Price</td><td class="px-3 py-2.5 text-center">&pound;14.99</td><td class="px-3 py-2.5 text-center">&pound;13.25</td><td class="px-3 py-2.5 text-center">&pound;11.99</td><td class="px-3 py-2.5 text-center">&pound;10.75</td><td class="px-3 py-2.5 text-center">&pound;9.49</td><td class="px-3 py-2.5 text-center">&pound;8.75</td><td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td></tr>
+              <tr class="border-t border-gray-100 bg-green-50"><td class="px-3 py-2.5 font-semibold text-green-600">Discount</td><td class="px-3 py-2.5 text-center text-gray-400">-</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-12%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-20%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-28%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-37%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-42%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-46%</td></tr></tbody></table>
             </div>
           </div>
 
@@ -965,12 +951,21 @@
       // ── Pricing table tabs (Blank/Print/Embroidery/High stitch) ──
       document.querySelectorAll('.price-tab').forEach(tab => {
         tab.addEventListener('click', () => {
-          document.querySelectorAll('.price-tab').forEach(t => {
-            t.classList.remove('text-brand', 'border-brand');
-            t.classList.add('text-gray-500', 'border-transparent');
+          var ptabId = tab.getAttribute('data-ptab');
+          // Reset all tabs
+          document.querySelectorAll('.price-tab').forEach(function(t) {
+            t.style.color = '#6B7280';
+            t.style.borderBottomColor = 'transparent';
+            t.style.fontWeight = '600';
           });
-          tab.classList.remove('text-gray-500', 'border-transparent');
-          tab.classList.add('text-brand', 'border-brand');
+          // Activate clicked
+          tab.style.color = '#1565C0';
+          tab.style.borderBottomColor = '#1565C0';
+          tab.style.fontWeight = '700';
+          // Show/hide panels
+          document.querySelectorAll('.price-panel').forEach(function(p) { p.style.display = 'none'; });
+          var target = document.getElementById('ptab-' + ptabId);
+          if (target) target.style.display = 'block';
         });
       });
 
@@ -987,25 +982,27 @@
       });
 
       // ── Bottom tabs (Ralawise: Select Options, Spec, Related, Customisation) ──
-      document.querySelectorAll('.btab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const btabId = btn.dataset.btab;
+      document.querySelectorAll('.btab-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var btabId = btn.getAttribute('data-btab');
           // Reset all btab buttons
-          document.querySelectorAll('.btab-btn').forEach(b => {
-            b.classList.remove('bg-white', 'text-brand', 'font-bold');
-            b.classList.add('bg-gray-50', 'text-gray-500', 'font-semibold');
+          document.querySelectorAll('.btab-btn').forEach(function(b) {
+            b.style.backgroundColor = '#F9FAFB';
+            b.style.color = '#6B7280';
+            b.style.fontWeight = '600';
             b.style.borderBottomColor = '#E0E0E0';
             b.style.borderBottomWidth = '1px';
           });
           // Activate clicked
-          btn.classList.remove('bg-gray-50', 'text-gray-500', 'font-semibold');
-          btn.classList.add('bg-white', 'text-brand', 'font-bold');
+          btn.style.backgroundColor = '#FFFFFF';
+          btn.style.color = '#1565C0';
+          btn.style.fontWeight = '700';
           btn.style.borderBottomColor = '#1565C0';
           btn.style.borderBottomWidth = '2px';
           // Show/hide content
-          document.querySelectorAll('.btab-content').forEach(c => c.classList.add('hidden'));
-          const target = document.getElementById('btab-' + btabId);
-          if (target) target.classList.remove('hidden');
+          document.querySelectorAll('.btab-content').forEach(function(c) { c.style.display = 'none'; });
+          var target = document.getElementById('btab-' + btabId);
+          if (target) target.style.display = 'block';
         });
       });
 
