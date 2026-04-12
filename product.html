@@ -171,57 +171,47 @@
     </div>
   </div>
 
-  <!-- ===================== 3 BADGES STRIP (JRS style) ===================== -->
-  <div class="border-b border-gray-200 bg-white">
-    <div class="max-w-7xl mx-auto px-4 py-3">
-      <div class="flex flex-wrap justify-center md:justify-start items-center gap-6 md:gap-10">
-        <div class="flex items-center gap-2 text-sm">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          <div>
-            <p class="font-bold text-dark text-xs">Next Day Delivery</p>
-            <p class="text-[10px] text-gray-400">Orders before 3pm</p>
-          </div>
+  <!-- ===================== PRODUCT MAIN ===================== -->
+  <section class="py-6 md:py-10">
+    <div class="max-w-[1350px] mx-auto px-6">
+
+      <!-- SECTION 1: Top Feature Strip (full width, single row) -->
+      <div class="flex items-center gap-8 mb-6 pb-5 border-b border-gray-200 text-[13px]">
+        <div class="flex items-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span class="font-semibold text-dark">Next day delivery available</span>
         </div>
-        <div class="flex items-center gap-2 text-sm">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          <div>
-            <p class="font-bold text-dark text-xs">No Minimum Order</p>
-            <p class="text-[10px] text-gray-400">Order from 1 item</p>
-          </div>
+        <div class="flex items-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span class="font-semibold text-dark">No minimum order</span>
         </div>
-        <div class="flex items-center gap-2 text-sm">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          <div>
-            <p class="font-bold text-dark text-xs">Custom Printing &amp; Embroidery</p>
-            <p class="text-[10px] text-gray-400">In-house service</p>
-          </div>
+        <div class="flex items-center gap-1.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <span class="font-semibold text-dark">Custom printing &amp; embroidery available</span>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- ===================== PRODUCT MAIN ===================== -->
-  <section class="py-8 md:py-12">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+      <!-- SECTION 2: Two-column layout -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-10">
 
-        <!-- Left: Thumbnails (vertical) + Main Image -->
-        <div class="flex gap-4">
+        <!-- LEFT COLUMN: Thumbnails + Image + Delivery tabs -->
+        <div>
+          <div class="flex gap-3">
           <!-- Vertical thumbnails -->
-          <div class="hidden md:flex flex-col gap-3 w-20 flex-shrink-0">
+          <div class="hidden md:flex flex-col gap-2 w-[72px] flex-shrink-0">
             <div class="thumb active bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/cat-hivis.webp">
               <img src="images/cat-hivis.webp" alt="View 1" class="w-full h-full object-cover" />
             </div>
-            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/cat-workwear.webp">
+            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer hover:border-brand transition-colors" data-img="images/cat-workwear.webp">
               <img src="images/cat-workwear.webp" alt="View 2" class="w-full h-full object-cover" />
             </div>
-            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/tile-workwear.webp">
+            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer hover:border-brand transition-colors" data-img="images/tile-workwear.webp">
               <img src="images/tile-workwear.webp" alt="View 3" class="w-full h-full object-cover" />
             </div>
-            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/ig-3.webp">
+            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer hover:border-brand transition-colors" data-img="images/ig-3.webp">
               <img src="images/ig-3.webp" alt="View 4" class="w-full h-full object-cover" />
             </div>
-            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer" data-img="images/cat-hivis.webp">
+            <div class="thumb bg-gray-50 rounded border border-gray-200 aspect-square overflow-hidden cursor-pointer hover:border-brand transition-colors" data-img="images/cat-hivis.webp">
               <img src="images/cat-hivis.webp" alt="View 5" class="w-full h-full object-cover" style="filter:hue-rotate(-30deg)" />
             </div>
           </div>
@@ -246,112 +236,113 @@
               </div>
             </div>
           </div>
-        </div>
+          </div><!-- close flex gap-3 (thumbnails + image) -->
+
+          <!-- SECTION 3: Delivery tabs under image (small, minimal, centered) -->
+          <div class="flex gap-2 mt-3 justify-center">
+            <button class="flex items-center gap-1.5 border border-gray-200 rounded px-3 py-2 text-[11px] font-semibold text-dark hover:border-brand transition-colors">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              Standard Delivery
+            </button>
+            <button class="flex items-center gap-1.5 border border-brand bg-brand-light rounded px-3 py-2 text-[11px] font-bold text-brand">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Superfast Delivery
+            </button>
+          </div>
+        </div><!-- close LEFT COLUMN -->
 
         <!-- Right: Product Info -->
         <div>
-          <p class="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-2">PORTWEST</p>
-          <h1 class="text-2xl md:text-3xl font-900 text-dark leading-tight mb-2">Hi-Vis Executive Vest</h1>
-          <p class="text-xs text-gray-400 mb-3">SKU: PW-C470</p>
+          <!-- Heading + Brand aligned right -->
+          <div class="flex items-start justify-between gap-4 mb-1">
+            <h1 class="text-2xl md:text-3xl font-900 text-dark leading-tight">Hi-Vis Executive Vest</h1>
+            <span class="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 flex-shrink-0 mt-2">PORTWEST</span>
+          </div>
 
-          <!-- Rating -->
-          <div class="flex items-center gap-2 mb-5">
+          <!-- Reviews under heading -->
+          <div class="flex items-center gap-2 mb-4">
             <div class="flex items-center gap-0.5">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </div>
-            <span class="text-sm font-semibold text-dark">4.8</span>
-            <a href="#reviews" class="text-sm text-gray-500 hover:text-brand underline underline-offset-2">(234 reviews)</a>
+            <span class="text-xs font-semibold text-dark">4.8</span>
+            <a href="#reviews" class="text-xs text-gray-500 hover:text-brand underline underline-offset-2">(234 reviews)</a>
           </div>
 
-          <!-- Price -->
-          <div class="flex items-baseline gap-3 mb-2">
-            <span class="text-3xl font-900 text-dark">&pound;8.99</span>
-            <span class="text-lg text-gray-400 line-through">&pound;12.99</span>
-            <span class="bg-accent text-white text-xs font-bold px-2 py-1 rounded">Save 30%</span>
+          <!-- Price with "from" -->
+          <div class="flex items-baseline gap-3 mb-1">
+            <span class="text-sm text-gray-500">from</span>
+            <span class="text-3xl font-900 text-dark">&pound;4.99</span>
+            <span class="text-base text-gray-400 line-through">&pound;12.99</span>
+            <span class="bg-accent text-white text-[10px] font-bold px-2 py-0.5 rounded">Save up to 61%</span>
           </div>
-          <p class="text-xs text-gray-500 mb-4">Prices exclude VAT &middot; Customisations available: <a href="#" class="text-brand font-semibold">Print</a> &middot; <a href="#" class="text-brand font-semibold">Embroidery</a></p>
+          <p class="text-xs text-gray-500 mb-4">Prices exclude VAT &middot; <span class="w-1.5 h-1.5 bg-green-500 rounded-full inline-block"></span> <strong class="text-green-600">In Stock</strong></p>
 
-          <!-- Stock -->
-          <div class="flex items-center gap-2 mb-5">
-            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-            <span class="text-sm font-bold text-green-600">In Stock</span>
-            <span class="text-xs text-gray-400">(1,240+ available)</span>
+          <!-- Garment discount table ONLY (no print/embroidery) -->
+          <div class="mb-5 border border-gray-200 rounded-lg overflow-hidden">
+            <table class="w-full text-xs md:text-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-3 py-2 text-left text-gray-500 font-semibold">Qty</th>
+                  <th class="px-3 py-2 text-center text-gray-500 font-semibold">1-7</th>
+                  <th class="px-3 py-2 text-center text-gray-500 font-semibold">8-14</th>
+                  <th class="px-3 py-2 text-center text-gray-500 font-semibold">15-39</th>
+                  <th class="px-3 py-2 text-center text-gray-500 font-semibold">40-99</th>
+                  <th class="px-3 py-2 text-center text-gray-500 font-semibold">100-249</th>
+                  <th class="px-3 py-2 text-center text-gray-500 font-semibold">250-499</th>
+                  <th class="px-3 py-2 text-center text-gray-500 font-semibold">500+</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-t border-gray-100">
+                  <td class="px-3 py-2 font-semibold text-dark">Price</td>
+                  <td class="px-3 py-2 text-center">&pound;8.99</td>
+                  <td class="px-3 py-2 text-center">&pound;7.50</td>
+                  <td class="px-3 py-2 text-center">&pound;6.75</td>
+                  <td class="px-3 py-2 text-center">&pound;6.25</td>
+                  <td class="px-3 py-2 text-center">&pound;5.49</td>
+                  <td class="px-3 py-2 text-center">&pound;4.99</td>
+                  <td class="px-3 py-2 text-center font-bold text-brand">Contact</td>
+                </tr>
+                <tr class="border-t border-gray-100 bg-green-50">
+                  <td class="px-3 py-2 font-semibold text-green-600">Discount</td>
+                  <td class="px-3 py-2 text-center text-gray-400">-</td>
+                  <td class="px-3 py-2 text-center text-green-600 font-bold">-17%</td>
+                  <td class="px-3 py-2 text-center text-green-600 font-bold">-25%</td>
+                  <td class="px-3 py-2 text-center text-green-600 font-bold">-30%</td>
+                  <td class="px-3 py-2 text-center text-green-600 font-bold">-39%</td>
+                  <td class="px-3 py-2 text-center text-green-600 font-bold">-44%</td>
+                  <td class="px-3 py-2 text-center text-green-600 font-bold">-49%</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <!-- Manufacturer Code (Ralawise style) -->
+          <!-- CTA Buttons in ONE row -->
+          <div class="flex gap-3 mb-6">
+            <a href="#" class="flex-1 bg-brand text-white font-bold text-sm py-3 rounded hover:bg-brand-dark transition-colors text-center">Start Your Order</a>
+            <a href="#" class="flex-1 border-2 border-gray-300 text-dark font-semibold text-sm py-3 rounded hover:border-brand hover:text-brand transition-colors text-center">Customisation Calculator</a>
+          </div>
+          <!-- Manufacturer Code + Specs -->
+          <div class="border-t border-gray-200 pt-5 mt-1"></div>
           <p class="text-sm text-gray-600 mb-4">Manufacturer Code: <strong class="text-dark">PW-C470</strong></p>
 
-          <!-- Fabric / Weight / Size inline (Ralawise style) -->
-          <div class="mb-5 space-y-2.5 text-sm border-t border-gray-200 pt-5">
-            <div class="flex gap-4">
-              <span class="font-bold text-dark w-28 flex-shrink-0">Fabric</span>
-              <span class="text-gray-600">100% Polyester (120gsm)</span>
-            </div>
-            <div class="flex gap-4">
-              <span class="font-bold text-dark w-28 flex-shrink-0">Weight</span>
-              <span class="text-gray-600">180gsm</span>
-            </div>
-            <div class="flex gap-4">
-              <span class="font-bold text-dark w-28 flex-shrink-0">Size</span>
-              <span class="text-gray-600"><strong class="text-dark">S</strong> 36" <strong class="text-dark ml-1">M</strong> 40" <strong class="text-dark ml-1">L</strong> 44" <strong class="text-dark ml-1">XL</strong> 48" <strong class="text-dark ml-1">2XL</strong> 52"</span>
-            </div>
-            <div class="flex gap-4">
-              <span class="font-bold text-dark w-28 flex-shrink-0">Certification</span>
-              <span class="text-gray-600">EN ISO 20471 Class 2</span>
-            </div>
+          <div class="space-y-2 text-sm border-t border-gray-200 pt-4 mb-4">
+            <div class="flex gap-4"><span class="font-bold text-dark w-28 flex-shrink-0">Fabric</span><span class="text-gray-600">100% Polyester (120gsm)</span></div>
+            <div class="flex gap-4"><span class="font-bold text-dark w-28 flex-shrink-0">Weight</span><span class="text-gray-600">180gsm</span></div>
+            <div class="flex gap-4"><span class="font-bold text-dark w-28 flex-shrink-0">Size</span><span class="text-gray-600"><strong class="text-dark">S</strong> 36" <strong class="text-dark ml-1">M</strong> 40" <strong class="text-dark ml-1">L</strong> 44" <strong class="text-dark ml-1">XL</strong> 48" <strong class="text-dark ml-1">2XL</strong> 52"</span></div>
+            <div class="flex gap-4"><span class="font-bold text-dark w-28 flex-shrink-0">Certification</span><span class="text-gray-600">EN ISO 20471 Class 2</span></div>
           </div>
 
           <!-- Key Info -->
-          <div class="mb-5 pb-5 border-b border-gray-200">
+          <div class="pb-4">
             <h3 class="text-sm font-bold text-dark mb-2">Key Info</h3>
-            <p class="text-sm text-gray-600 leading-relaxed mb-3">The Portwest Hi-Vis Executive Vest is the professional choice for construction teams, warehouse staff, and outdoor workers. Featuring 50mm retro-reflective tape, front zip fastening, and heavy-duty ID pocket.</p>
-            <a href="#" class="text-sm text-brand font-semibold hover:underline">View Specification &#8250;</a>
+            <p class="text-sm text-gray-600 leading-relaxed mb-2">The Portwest Hi-Vis Executive Vest is the professional choice for construction teams and outdoor workers. Featuring 50mm retro-reflective tape, front zip, and heavy-duty ID pocket.</p>
+            <a href="#" class="inline-flex items-center gap-1.5 text-sm text-brand font-bold border-b-2 border-brand pb-0.5 hover:text-brand-dark hover:border-brand-dark transition-colors">View Specification <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
           </div>
-
-          <!-- Clothes2Order style pricing table with tabs -->
-          <div class="mb-6">
-            <div class="flex border-b border-gray-200 mb-0">
-              <button class="price-tab active px-4 py-2 text-sm font-bold text-brand border-b-2 border-brand" data-ptab="blank">Blank pricing</button>
-              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand" data-ptab="print">Print</button>
-              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand" data-ptab="embroidery">Embroidery</button>
-              <button class="price-tab px-4 py-2 text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand" data-ptab="highstitch">High stitch count</button>
-            </div>
-            <!-- Blank pricing table -->
-            <div class="price-panel border border-t-0 border-gray-200 rounded-b-lg overflow-hidden" id="ptab-blank">
-              <table class="w-full text-xs md:text-sm"><thead class="bg-gray-50"><tr><th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th></tr></thead>
-              <tbody><tr class="border-t border-gray-100"><td class="px-3 py-2.5 font-semibold text-dark">Price</td><td class="px-3 py-2.5 text-center">&pound;8.99</td><td class="px-3 py-2.5 text-center">&pound;7.50</td><td class="px-3 py-2.5 text-center">&pound;6.75</td><td class="px-3 py-2.5 text-center">&pound;6.25</td><td class="px-3 py-2.5 text-center">&pound;5.49</td><td class="px-3 py-2.5 text-center">&pound;4.99</td><td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td></tr>
-              <tr class="border-t border-gray-100 bg-green-50"><td class="px-3 py-2.5 font-semibold text-green-600">Discount</td><td class="px-3 py-2.5 text-center text-gray-400">-</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-17%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-25%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-30%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-39%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-44%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-49%</td></tr></tbody></table>
-            </div>
-            <!-- Print pricing table -->
-            <div class="price-panel border border-t-0 border-gray-200 rounded-b-lg overflow-hidden hidden" id="ptab-print">
-              <table class="w-full text-xs md:text-sm"><thead class="bg-gray-50"><tr><th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th></tr></thead>
-              <tbody><tr class="border-t border-gray-100"><td class="px-3 py-2.5 font-semibold text-dark">Price</td><td class="px-3 py-2.5 text-center">&pound;11.49</td><td class="px-3 py-2.5 text-center">&pound;9.85</td><td class="px-3 py-2.5 text-center">&pound;8.76</td><td class="px-3 py-2.5 text-center">&pound;7.92</td><td class="px-3 py-2.5 text-center">&pound;7.11</td><td class="px-3 py-2.5 text-center">&pound;6.49</td><td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td></tr>
-              <tr class="border-t border-gray-100 bg-green-50"><td class="px-3 py-2.5 font-semibold text-green-600">Discount</td><td class="px-3 py-2.5 text-center text-gray-400">-</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-14%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-24%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-31%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-38%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-43%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-47%</td></tr></tbody></table>
-            </div>
-            <!-- Embroidery pricing table -->
-            <div class="price-panel border border-t-0 border-gray-200 rounded-b-lg overflow-hidden hidden" id="ptab-embroidery">
-              <table class="w-full text-xs md:text-sm"><thead class="bg-gray-50"><tr><th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th></tr></thead>
-              <tbody><tr class="border-t border-gray-100"><td class="px-3 py-2.5 font-semibold text-dark">Price</td><td class="px-3 py-2.5 text-center">&pound;12.49</td><td class="px-3 py-2.5 text-center">&pound;10.85</td><td class="px-3 py-2.5 text-center">&pound;9.76</td><td class="px-3 py-2.5 text-center">&pound;8.92</td><td class="px-3 py-2.5 text-center">&pound;8.11</td><td class="px-3 py-2.5 text-center">&pound;7.49</td><td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td></tr>
-              <tr class="border-t border-gray-100 bg-green-50"><td class="px-3 py-2.5 font-semibold text-green-600">Discount</td><td class="px-3 py-2.5 text-center text-gray-400">-</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-13%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-22%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-29%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-35%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-40%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-44%</td></tr></tbody></table>
-            </div>
-            <!-- High stitch count pricing table -->
-            <div class="price-panel border border-t-0 border-gray-200 rounded-b-lg overflow-hidden hidden" id="ptab-highstitch">
-              <table class="w-full text-xs md:text-sm"><thead class="bg-gray-50"><tr><th class="px-3 py-2.5 text-left text-gray-500 font-semibold">Qty</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">1-7</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">8-14</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">15-39</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">40-99</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">100-249</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">250-499</th><th class="px-3 py-2.5 text-center text-gray-500 font-semibold">500+</th></tr></thead>
-              <tbody><tr class="border-t border-gray-100"><td class="px-3 py-2.5 font-semibold text-dark">Price</td><td class="px-3 py-2.5 text-center">&pound;14.99</td><td class="px-3 py-2.5 text-center">&pound;13.25</td><td class="px-3 py-2.5 text-center">&pound;11.99</td><td class="px-3 py-2.5 text-center">&pound;10.75</td><td class="px-3 py-2.5 text-center">&pound;9.49</td><td class="px-3 py-2.5 text-center">&pound;8.75</td><td class="px-3 py-2.5 text-center font-bold text-brand">Contact Us</td></tr>
-              <tr class="border-t border-gray-100 bg-green-50"><td class="px-3 py-2.5 font-semibold text-green-600">Discount</td><td class="px-3 py-2.5 text-center text-gray-400">-</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-12%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-20%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-28%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-37%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-42%</td><td class="px-3 py-2.5 text-center text-green-600 font-bold">-46%</td></tr></tbody></table>
-            </div>
-          </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col gap-3 mb-4">
-            <a href="#" class="bg-brand text-white font-bold text-base px-7 py-4 rounded hover:bg-brand-dark transition-colors text-center">Start Your Order</a>
-            <a href="#" class="border-2 border-gray-300 text-dark font-semibold text-sm px-7 py-3 rounded hover:border-brand hover:text-brand transition-colors text-center">Get Bulk Quote</a>
-          </div>
-          <p class="text-xs text-center text-accent font-semibold">&#128293; Need it faster? 3-5 day turnaround available</p>
         </div>
 
       </div>
@@ -359,8 +350,8 @@
   </section>
 
   <!-- ===================== BOTTOM TABS (Ralawise style) ===================== -->
-  <section class="border-t border-gray-200 py-12 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4">
+  <section class="border-t border-gray-200 py-10 bg-white">
+    <div class="max-w-[1350px] mx-auto px-6">
       <!-- Ralawise-style tab navigation -->
       <div class="grid grid-cols-2 md:grid-cols-4 border border-gray-200 rounded-t-lg overflow-hidden mb-0">
         <button class="btab-btn bg-white text-brand font-bold text-sm py-4 border-b-2 border-brand" data-btab="select-options">Select Options &amp; Buy</button>
@@ -599,181 +590,6 @@
             <p class="text-2xl font-900 text-dark">&pound;437.50</p>
           </div>
           <a href="#" class="bg-brand text-white font-bold text-sm px-6 py-3 rounded hover:bg-brand-dark transition-colors ml-auto">Start Your Order</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PRODUCT TABS (Description, Specs, Size Guide, Customisation, Reviews) ===================== -->
-  <section class="border-t border-gray-200 py-12">
-    <div class="max-w-7xl mx-auto px-4">
-      <!-- Tab navigation -->
-      <div class="border-b border-gray-200 mb-8">
-        <div class="flex flex-wrap gap-6 md:gap-10 -mb-px">
-          <button class="tab-btn active pb-3 text-sm md:text-base font-bold text-gray-500 border-b-2 border-transparent transition-colors" data-tab="description">Description</button>
-          <button class="tab-btn pb-3 text-sm md:text-base font-bold text-gray-500 border-b-2 border-transparent transition-colors" data-tab="specs">Specifications</button>
-          <button class="tab-btn pb-3 text-sm md:text-base font-bold text-gray-500 border-b-2 border-transparent transition-colors" data-tab="size-guide">Size Guide</button>
-          <button class="tab-btn pb-3 text-sm md:text-base font-bold text-gray-500 border-b-2 border-transparent transition-colors" data-tab="customisation">Customisation</button>
-          <button class="tab-btn pb-3 text-sm md:text-base font-bold text-gray-500 border-b-2 border-transparent transition-colors" data-tab="reviews">Reviews (234)</button>
-        </div>
-      </div>
-
-      <!-- Tab: Description -->
-      <div id="tab-description" class="tab-content active max-w-3xl">
-        <h3 class="text-xl font-800 text-dark mb-4">Product Description</h3>
-        <p class="text-gray-600 leading-relaxed mb-4">The Portwest Hi-Vis Executive Vest is a professional-grade safety vest designed for construction teams, warehouse staff, event crews, and outdoor workers. Made from high-quality polyester with reflective tape for maximum visibility in low-light conditions.</p>
-        <p class="text-gray-600 leading-relaxed mb-4">Certified to EN ISO 20471 Class 2, this vest offers reliable compliance with UK workplace safety standards. Lightweight, breathable, and comfortable for all-day wear, it's available in multiple high-visibility colours and sizes.</p>
-        <h4 class="font-bold text-dark mt-6 mb-3">Key Features</h4>
-        <ul class="space-y-2 text-gray-600">
-          <li class="flex items-start gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>EN ISO 20471 Class 2 certified</li>
-          <li class="flex items-start gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>50mm retro-reflective tape across chest and back</li>
-          <li class="flex items-start gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>Front zip fastening with heavy-duty ID pocket</li>
-          <li class="flex items-start gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>Multiple storage pockets including radio loop</li>
-          <li class="flex items-start gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>Machine washable up to 60&deg;C</li>
-          <li class="flex items-start gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>Perfect for screen printing and embroidery branding</li>
-        </ul>
-      </div>
-
-      <!-- Tab: Specs -->
-      <div id="tab-specs" class="tab-content max-w-3xl">
-        <h3 class="text-xl font-800 text-dark mb-4">Specifications</h3>
-        <div class="border border-gray-200 rounded-lg overflow-hidden">
-          <table class="w-full text-sm">
-            <tbody>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark w-1/3 bg-gray-50">Brand</td><td class="px-4 py-3 text-gray-600">Portwest</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Product Code</td><td class="px-4 py-3 text-gray-600">PW-C470</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Material</td><td class="px-4 py-3 text-gray-600">100% Polyester (120gsm)</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Weight</td><td class="px-4 py-3 text-gray-600">180g</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Certification</td><td class="px-4 py-3 text-gray-600">EN ISO 20471 Class 2</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Colours</td><td class="px-4 py-3 text-gray-600">Yellow, Orange, Red, Navy</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Sizes</td><td class="px-4 py-3 text-gray-600">S, M, L, XL, XXL</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3 font-bold text-dark bg-gray-50">Care</td><td class="px-4 py-3 text-gray-600">Machine washable at 60&deg;C</td></tr>
-              <tr><td class="px-4 py-3 font-bold text-dark bg-gray-50">Country of Origin</td><td class="px-4 py-3 text-gray-600">UK</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Tab: Size Guide -->
-      <div id="tab-size-guide" class="tab-content max-w-3xl">
-        <h3 class="text-xl font-800 text-dark mb-4">Size Guide</h3>
-        <p class="text-gray-500 text-sm mb-4">Measurements are approximate. For best fit, measure around your chest at the widest point.</p>
-        <div class="border border-gray-200 rounded-lg overflow-hidden">
-          <table class="w-full text-sm">
-            <thead class="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th class="px-4 py-3 text-left font-bold text-dark">Size</th>
-                <th class="px-4 py-3 text-left font-bold text-dark">Chest (in)</th>
-                <th class="px-4 py-3 text-left font-bold text-dark">Chest (cm)</th>
-                <th class="px-4 py-3 text-left font-bold text-dark">Length (cm)</th>
-              </tr>
-            </thead>
-            <tbody class="text-gray-600">
-              <tr class="border-b border-gray-100"><td class="px-4 py-3">S</td><td class="px-4 py-3">36-38"</td><td class="px-4 py-3">91-97</td><td class="px-4 py-3">68</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3">M</td><td class="px-4 py-3">38-40"</td><td class="px-4 py-3">97-102</td><td class="px-4 py-3">70</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3">L</td><td class="px-4 py-3">40-42"</td><td class="px-4 py-3">102-107</td><td class="px-4 py-3">72</td></tr>
-              <tr class="border-b border-gray-100"><td class="px-4 py-3">XL</td><td class="px-4 py-3">42-44"</td><td class="px-4 py-3">107-112</td><td class="px-4 py-3">74</td></tr>
-              <tr><td class="px-4 py-3">XXL</td><td class="px-4 py-3">44-46"</td><td class="px-4 py-3">112-117</td><td class="px-4 py-3">76</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Tab: Customisation -->
-      <div id="tab-customisation" class="tab-content max-w-3xl">
-        <h3 class="text-xl font-800 text-dark mb-4">Customisation Options</h3>
-        <p class="text-gray-600 mb-6">Add your logo, text, or branding to this product. We offer professional screen printing, embroidery, and DTG printing - all handled in-house with fast turnaround.</p>
-        <div class="grid md:grid-cols-3 gap-4">
-          <div class="border border-gray-200 rounded-lg p-5">
-            <div class="w-12 h-12 bg-brand-light rounded-full flex items-center justify-center mb-3">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            </div>
-            <h4 class="font-bold text-dark mb-1">Screen Printing</h4>
-            <p class="text-xs text-gray-500 mb-3">Best for large runs and bold designs</p>
-            <p class="text-sm font-bold text-brand">From &pound;2.50/unit</p>
-          </div>
-          <div class="border border-gray-200 rounded-lg p-5">
-            <div class="w-12 h-12 bg-brand-light rounded-full flex items-center justify-center mb-3">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="1.8"><path d="M20.38 3.46L16 2 12 3.46 8 2 3.62 3.46a1 1 0 00-.62.94V19a1 1 0 00.62.94L8 22l4-1.46L16 22l4.38-1.46a1 1 0 00.62-.94V4.4a1 1 0 00-.62-.94z"/></svg>
-            </div>
-            <h4 class="font-bold text-dark mb-1">Embroidery</h4>
-            <p class="text-xs text-gray-500 mb-3">Premium finish for professional branding</p>
-            <p class="text-sm font-bold text-brand">From &pound;3.50/unit</p>
-          </div>
-          <div class="border border-gray-200 rounded-lg p-5">
-            <div class="w-12 h-12 bg-brand-light rounded-full flex items-center justify-center mb-3">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
-            </div>
-            <h4 class="font-bold text-dark mb-1">DTG Printing</h4>
-            <p class="text-xs text-gray-500 mb-3">Full-colour photo-quality prints</p>
-            <p class="text-sm font-bold text-brand">From &pound;4.50/unit</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab: Reviews -->
-      <div id="tab-reviews" class="tab-content max-w-3xl">
-        <div class="flex items-center gap-6 mb-6">
-          <div>
-            <p class="text-5xl font-900 text-dark">4.8</p>
-            <div class="flex items-center gap-0.5 mt-1">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <p class="text-xs text-gray-500 mt-1">234 reviews</p>
-          </div>
-          <div class="flex-1"></div>
-          <a href="#" class="bg-brand text-white font-semibold text-sm px-5 py-2.5 rounded hover:bg-brand-dark transition-colors">Write a Review</a>
-        </div>
-
-        <div class="space-y-5">
-          <div class="border-b border-gray-200 pb-5">
-            <div class="flex items-center gap-2 mb-2">
-              <div class="flex items-center gap-0.5">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <span class="text-xs font-bold text-dark">Excellent quality for the price</span>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed mb-2">Ordered 50 of these for our construction team. Arrived in 4 days, quality is solid and the printing we had done came out sharp. Will definitely order again.</p>
-            <p class="text-xs text-gray-400">Mark S. - Verified Buyer - 2 weeks ago</p>
-          </div>
-
-          <div class="border-b border-gray-200 pb-5">
-            <div class="flex items-center gap-2 mb-2">
-              <div class="flex items-center gap-0.5">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <span class="text-xs font-bold text-dark">Perfect fit and great visibility</span>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed mb-2">Bought 20 with our company logo embroidered. Turnaround was spot on and staff love them. Reflective tape is top quality.</p>
-            <p class="text-xs text-gray-400">Sarah J. - Verified Buyer - 1 month ago</p>
-          </div>
-
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <div class="flex items-center gap-0.5">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <span class="text-xs font-bold text-dark">Bulk pricing unbeatable</span>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed mb-2">Ordered 200 for a big event, got the 100-499 tier price and saved a fortune compared to our previous supplier. Great service.</p>
-            <p class="text-xs text-gray-400">Tom H. - Verified Buyer - 3 months ago</p>
-          </div>
         </div>
       </div>
     </div>
