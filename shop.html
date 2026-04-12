@@ -29,9 +29,9 @@
   <style>
     /* Product card hover */
     .product-card { transition: box-shadow 0.3s ease, border-color 0.2s ease, transform 0.2s ease; }
-    .product-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-color: #1565C0; transform: translateY(-2px); }
+    .product-card:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.06); transform: translateY(-2px); }
     .product-card__img img { transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .product-card:hover .product-card__img img { transform: scale(1.06); }
+    .product-card:hover .product-card__img img { transform: scale(1.03); }
 
     /* Quick view overlay */
     .product-card__overlay {
@@ -39,32 +39,63 @@
       background: rgba(21,101,192,0.9); color: #fff;
       text-align: center; padding: 10px; font-size: 13px; font-weight: 700;
       transform: translateY(100%); transition: transform 0.25s ease;
+      cursor: pointer;
     }
     .product-card:hover .product-card__overlay { transform: translateY(0); }
 
     /* Swatches */
     .swatch {
       transition: transform 0.15s ease, box-shadow 0.15s ease;
-      cursor: pointer; width: 16px; height: 16px;
+      cursor: pointer;
     }
     .swatch:hover { transform: scale(1.4); box-shadow: 0 0 0 1px rgba(0,0,0,0.2); }
     .swatch.active { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1565C0; transform: scale(1.2); }
-
-    /* Filter pills */
-    .filter-pill { transition: all 0.2s ease; cursor: pointer; }
-    .filter-pill:hover { border-color: #1565C0; color: #1565C0; background: #E3F2FD; }
-    .filter-pill.active { background: #1565C0; color: #fff; border-color: #1565C0; }
 
     /* Category icons */
     .cat-icon { transition: all 0.2s ease; cursor: pointer; }
     .cat-icon:hover { border-color: #1565C0; color: #1565C0; background: #F0F7FF; }
     .cat-icon.active { background: #E3F2FD; border-color: #1565C0; color: #1565C0; }
 
-    /* Sticky filter bar */
-    .sticky-filters { position: sticky; top: 56px; z-index: 30; background: #fff; }
-
-    /* Pagination active strong */
+    /* Pagination active */
     .page-btn.active { background: #1565C0 !important; color: #fff !important; font-weight: 700 !important; border-color: #1565C0 !important; }
+
+    /* Accordion filter */
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      padding-top: 0;
+      padding-bottom: 0;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .accordion-body.open {
+      max-height: 600px;
+      padding-bottom: 12px;
+    }
+    .accordion-toggle .accordion-icon {
+      transition: transform 0.25s ease;
+      font-size: 12px;
+    }
+    .accordion-toggle.open .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Sidebar scroll */
+    .sidebar-filters {
+      max-height: calc(100vh - 130px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+    .sidebar-filters::-webkit-scrollbar { width: 4px; }
+    .sidebar-filters::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+
+    /* Colour filter swatches in sidebar */
+    .color-swatch-filter {
+      width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+      border: 1.5px solid #d1d5db;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .color-swatch-filter:hover { transform: scale(1.15); box-shadow: 0 0 0 2px #1565C0; }
+    .color-swatch-filter.active { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #1565C0; }
   </style>
 </head>
 <body class="font-sans text-dark bg-white antialiased">
@@ -165,7 +196,7 @@
       <h1 class="text-2xl md:text-3xl font-900 text-dark mb-2">T-Shirts</h1>
       <p class="text-sm text-gray-500 mb-6 max-w-xl">Premium blank and custom printed t-shirts from leading brands. Available in bulk at trade prices with optional branding.</p>
 
-      <!-- Category icon row (RushOrderTees style with icons) -->
+      <!-- Category icon row -->
       <div class="flex gap-3 overflow-x-auto pb-2 -mb-2 scrollbar-hide">
         <button class="cat-icon active flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2.5 text-xs font-semibold text-dark bg-white">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
@@ -203,330 +234,536 @@
     </div>
   </section>
 
-  <!-- ===================== FILTER BAR (STICKY) ===================== -->
-  <div class="sticky-filters border-b border-gray-200">
-    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-3">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <!-- Filter pills with dropdowns -->
-        <div class="flex flex-wrap items-center gap-2 relative">
+  <!-- ===================== MAIN CONTENT: SIDEBAR + GRID ===================== -->
+  <section class="py-6 md:py-8">
+    <div class="max-w-[1400px] mx-auto px-4 md:px-6">
+      <div class="flex gap-6">
+
+        <!-- ===================== SIDEBAR FILTERS ===================== -->
+        <aside class="hidden lg:block flex-shrink-0 sidebar-filters" style="width:250px; position:sticky; top:120px; align-self:flex-start;">
+
           <!-- Brand -->
-          <div class="relative">
-            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="brand-dd">
-              Brand <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+          <div class="border-b border-gray-200">
+            <button class="accordion-toggle open w-full flex items-center justify-between py-3 text-sm font-bold text-dark" data-accordion="filter-brand">
+              Brand
+              <svg class="accordion-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div id="brand-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-48">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Select Brand</p>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Gildan</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Fruit of the Loom</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> AWDis</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Bella+Canvas</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Result</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Russell</label>
+            <div id="filter-brand" class="accordion-body open">
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Gildan</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Fruit of the Loom</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> AWDis</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Bella+Canvas</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Result</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Russell</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> SanMar</label>
             </div>
           </div>
-          <!-- Colour -->
-          <div class="relative">
-            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="colour-dd">
-              Colour <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+
+          <!-- Category -->
+          <div class="border-b border-gray-200">
+            <button class="accordion-toggle open w-full flex items-center justify-between py-3 text-sm font-bold text-dark" data-accordion="filter-category">
+              Category
+              <svg class="accordion-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div id="colour-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-52">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Select Colour</p>
+            <div id="filter-category" class="accordion-body open">
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Short Sleeve</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Long Sleeve</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> V-Neck</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Performance</label>
+            </div>
+          </div>
+
+          <!-- Color -->
+          <div class="border-b border-gray-200">
+            <button class="accordion-toggle open w-full flex items-center justify-between py-3 text-sm font-bold text-dark" data-accordion="filter-color">
+              Colour
+              <svg class="accordion-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="filter-color" class="accordion-body open">
               <div class="flex flex-wrap gap-2">
-                <span class="w-6 h-6 rounded-full bg-black border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-white border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-blue-700 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-red-600 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-green-600 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-yellow-400 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-orange-500 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-purple-600 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-pink-400 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
-                <span class="w-6 h-6 rounded-full bg-gray-400 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="color-swatch-filter" style="background:#000"></span>
+                <span class="color-swatch-filter" style="background:#fff"></span>
+                <span class="color-swatch-filter" style="background:#6B7280"></span>
+                <span class="color-swatch-filter" style="background:#1D4ED8"></span>
+                <span class="color-swatch-filter" style="background:#1E3A8A"></span>
+                <span class="color-swatch-filter" style="background:#DC2626"></span>
+                <span class="color-swatch-filter" style="background:#059669"></span>
+                <span class="color-swatch-filter" style="background:#FBBF24"></span>
+                <span class="color-swatch-filter" style="background:#F97316"></span>
+                <span class="color-swatch-filter" style="background:#7C3AED"></span>
+                <span class="color-swatch-filter" style="background:#EC4899"></span>
+                <span class="color-swatch-filter" style="background:#92400E"></span>
+                <span class="color-swatch-filter" style="background:#14B8A6"></span>
+                <span class="color-swatch-filter" style="background:#BE185D"></span>
               </div>
             </div>
           </div>
-          <!-- Material -->
-          <div class="relative">
-            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="material-dd">
-              Material <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+
+          <!-- Gender/Age -->
+          <div class="border-b border-gray-200">
+            <button class="accordion-toggle w-full flex items-center justify-between py-3 text-sm font-bold text-dark" data-accordion="filter-gender">
+              Gender / Age
+              <svg class="accordion-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div id="material-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-44">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Material</p>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> 100% Cotton</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Poly/Cotton</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Polyester</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Organic Cotton</label>
+            <div id="filter-gender" class="accordion-body">
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Men</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Women</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Unisex</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Kids</label>
             </div>
           </div>
-          <!-- Fit -->
-          <div class="relative">
-            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="fit-dd">
-              Fit <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+
+          <!-- Style -->
+          <div class="border-b border-gray-200">
+            <button class="accordion-toggle w-full flex items-center justify-between py-3 text-sm font-bold text-dark" data-accordion="filter-style">
+              Style
+              <svg class="accordion-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div id="fit-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-40">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Fit</p>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Regular</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Slim</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Oversized</label>
+            <div id="filter-style" class="accordion-body">
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Regular</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Slim</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Oversized</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Cropped</label>
             </div>
           </div>
+
+          <!-- Fabric -->
+          <div class="border-b border-gray-200">
+            <button class="accordion-toggle w-full flex items-center justify-between py-3 text-sm font-bold text-dark" data-accordion="filter-fabric">
+              Fabric
+              <svg class="accordion-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="filter-fabric" class="accordion-body">
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> 100% Cotton</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Poly/Cotton</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Polyester</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Organic Cotton</label>
+            </div>
+          </div>
+
+          <!-- Size -->
+          <div class="border-b border-gray-200">
+            <button class="accordion-toggle w-full flex items-center justify-between py-3 text-sm font-bold text-dark" data-accordion="filter-size">
+              Size
+              <svg class="accordion-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="filter-size" class="accordion-body">
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> XS</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> S</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> M</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> L</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> XL</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> 2XL</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> 3XL</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> 4XL</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> 5XL</label>
+            </div>
+          </div>
+
           <!-- Price -->
-          <div class="relative">
-            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="price-dd">
-              Price <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+          <div class="pb-1">
+            <button class="accordion-toggle w-full flex items-center justify-between py-3 text-sm font-bold text-dark" data-accordion="filter-price">
+              Price
+              <svg class="accordion-icon text-gray-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div id="price-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-44">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Price Range</p>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Under &pound;3</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;3 - &pound;5</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;5 - &pound;10</label>
-              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;10+</label>
+            <div id="filter-price" class="accordion-body">
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Under &pound;3</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;3 - &pound;5</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;5 - &pound;10</label>
+              <label class="flex items-center gap-2 py-1 text-[13px] text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;10+</label>
             </div>
           </div>
-          <!-- All Filters -->
-          <button class="filter-pill border border-brand text-brand font-semibold text-xs px-4 py-2 rounded-full bg-brand-light">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline mr-1"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
-            All Filters
-          </button>
-        </div>
-        <!-- Sort + count -->
-        <div class="flex items-center gap-4">
-          <span class="text-xs text-gray-500 hidden sm:block">248 products</span>
-          <select class="border border-gray-300 rounded px-3 py-2 text-xs font-semibold text-dark focus:outline-none focus:border-brand">
-            <option>Sort: Recommended</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Newest First</option>
-            <option>Best Selling</option>
-            <option>Rating</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ===================== PRODUCT GRID ===================== -->
-  <section class="py-8 md:py-10">
-    <div class="max-w-[1350px] mx-auto px-4 md:px-6">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        </aside>
 
-        <!-- Product Card 1 -->
-        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="product-card__img relative bg-gray-50 aspect-[4/5] overflow-hidden">
-            <img src="images/cat-tshirts.webp" alt="Gildan Heavy Cotton T-Shirt" class="w-full h-full object-cover" />
-            <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">Top Seller</span>
-            <div class="product-card__overlay">Quick View</div>
-          </div>
-          <div class="p-3 md:p-4">
-            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Gildan Heavy Cotton T-Shirt</h3>
-            <div class="flex items-center gap-1 mb-2">
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-800 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-red-600 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-green-700 border border-gray-300"></span>
-              <span class="text-[10px] text-gray-400 ml-1">+24</span>
-            </div>
-            <div class="flex items-center gap-1 mb-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="text-[10px] font-semibold text-dark">4.9</span>
-              <span class="text-[10px] text-gray-400">(1,240)</span>
-            </div>
-            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;2.50</span></p>
-          </div>
-        </a>
+        <!-- ===================== RIGHT: SORT BAR + GRID ===================== -->
+        <div class="flex-1 min-w-0">
 
-        <!-- Product Card 2 -->
-        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="product-card__img relative bg-gray-50 aspect-[4/5] overflow-hidden">
-            <img src="images/cat-polos.webp" alt="AWDis Cool T-Shirt" class="w-full h-full object-cover" />
-            <span class="absolute top-2 left-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">New</span>
-            <div class="product-card__overlay">Quick View</div>
+          <!-- SORT BAR -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-gray-200">
+            <span class="text-sm text-gray-500">248 products</span>
+            <select class="border border-gray-300 rounded px-3 py-2 text-xs font-semibold text-dark focus:outline-none focus:border-brand">
+              <option>Sort: Recommended</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest First</option>
+              <option>Best Selling</option>
+              <option>Rating</option>
+            </select>
           </div>
-          <div class="p-3 md:p-4">
-            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">AWDis Cool Performance T-Shirt</h3>
-            <div class="flex items-center gap-1 mb-2">
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-600 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-red-500 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-yellow-400 border border-gray-300"></span>
-              <span class="text-[10px] text-gray-400 ml-1">+18</span>
-            </div>
-            <div class="flex items-center gap-1 mb-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="text-[10px] font-semibold text-dark">4.7</span>
-              <span class="text-[10px] text-gray-400">(856)</span>
-            </div>
-            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;3.99</span></p>
-          </div>
-        </a>
 
-        <!-- Product Card 3 -->
-        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="product-card__img relative bg-gray-50 aspect-[4/5] overflow-hidden">
-            <img src="images/cat-hoodies.webp" alt="Fruit of the Loom Valueweight" class="w-full h-full object-cover" />
-            <span class="absolute top-2 left-2 bg-green-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">Staff Pick</span>
-            <div class="product-card__overlay">Quick View</div>
-          </div>
-          <div class="p-3 md:p-4">
-            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Fruit of the Loom Valueweight T</h3>
-            <div class="flex items-center gap-1 mb-2">
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-gray-400 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-900 border border-gray-300"></span>
-              <span class="text-[10px] text-gray-400 ml-1">+30</span>
-            </div>
-            <div class="flex items-center gap-1 mb-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="text-[10px] font-semibold text-dark">4.8</span>
-              <span class="text-[10px] text-gray-400">(2,100)</span>
-            </div>
-            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;1.99</span></p>
-          </div>
-        </a>
+          <!-- PRODUCT GRID (5 col desktop, 3 tablet, 2 mobile) -->
+          <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:18px;" class="product-grid">
 
-        <!-- Product Card 4 -->
-        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="product-card__img relative bg-gray-50 aspect-[4/5] overflow-hidden">
-            <img src="images/cat-workwear.webp" alt="Bella+Canvas Unisex Tee" class="w-full h-full object-cover" />
-            <div class="product-card__overlay">Quick View</div>
-          </div>
-          <div class="p-3 md:p-4">
-            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Bella+Canvas Unisex Jersey Tee</h3>
-            <div class="flex items-center gap-1 mb-2">
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-pink-400 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-purple-600 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-orange-500 border border-gray-300"></span>
-              <span class="text-[10px] text-gray-400 ml-1">+42</span>
-            </div>
-            <div class="flex items-center gap-1 mb-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="text-[10px] font-semibold text-dark">4.9</span>
-              <span class="text-[10px] text-gray-400">(980)</span>
-            </div>
-            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;4.50</span></p>
-          </div>
-        </a>
+            <!-- Product Card 1: Gildan Heavy Cotton T-Shirt -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-tshirts.webp" alt="Gildan Heavy Cotton T-Shirt" class="w-full h-full object-cover" />
+                <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Top Seller</span>
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Gildan</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-white border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-blue-800 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-red-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-green-700 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-yellow-400 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-gray-400 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+24</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">GD001 &nbsp; Gildan</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">Gildan Heavy Cotton T-Shirt</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">S - 5XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;2.50</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.9</span>
+                  <span class="text-[10px] text-gray-400">(1.2k)</span>
+                </div>
+              </div>
+            </a>
 
-        <!-- Product Card 5 -->
-        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="product-card__img relative bg-gray-50 aspect-[4/5] overflow-hidden">
-            <img src="images/cat-hivis.webp" alt="Result Performance T" class="w-full h-full object-cover" />
-            <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">Top Seller</span>
-            <div class="product-card__overlay">Quick View</div>
-          </div>
-          <div class="p-3 md:p-4">
-            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Result Performance T-Shirt</h3>
-            <div class="flex items-center gap-1 mb-2">
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-yellow-400 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-orange-500 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
-              <span class="text-[10px] text-gray-400 ml-1">+6</span>
-            </div>
-            <div class="flex items-center gap-1 mb-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="text-[10px] font-semibold text-dark">4.6</span>
-              <span class="text-[10px] text-gray-400">(340)</span>
-            </div>
-            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;5.99</span></p>
-          </div>
-        </a>
+            <!-- Product Card 2: AWDis Cool Performance T -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-polos.webp" alt="AWDis Cool Performance T" class="w-full h-full object-cover" />
+                <span class="absolute top-2 left-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">New</span>
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">AWDis</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-blue-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-red-500 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-yellow-400 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-green-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-purple-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+18</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">AT001 &nbsp; AWDis</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">AWDis Cool Performance T</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">XS - 3XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;3.99</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.7</span>
+                  <span class="text-[10px] text-gray-400">(856)</span>
+                </div>
+              </div>
+            </a>
 
-        <!-- Product Card 6 -->
-        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="product-card__img relative bg-gray-50 aspect-[4/5] overflow-hidden">
-            <img src="images/cat-caps.webp" alt="SanMar Heavyweight Tee" class="w-full h-full object-cover" />
-            <span class="absolute top-2 left-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">New</span>
-            <div class="product-card__overlay">Quick View</div>
-          </div>
-          <div class="p-3 md:p-4">
-            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">SanMar Heavyweight Cotton Tee</h3>
-            <div class="flex items-center gap-1 mb-2">
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-gray-600 border border-gray-300"></span>
-              <span class="text-[10px] text-gray-400 ml-1">+12</span>
-            </div>
-            <div class="flex items-center gap-1 mb-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="text-[10px] font-semibold text-dark">4.5</span>
-              <span class="text-[10px] text-gray-400">(190)</span>
-            </div>
-            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;3.25</span></p>
-          </div>
-        </a>
+            <!-- Product Card 3: Fruit of the Loom Valueweight T -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-hoodies.webp" alt="Fruit of the Loom Valueweight T" class="w-full h-full object-cover" />
+                <span class="absolute top-2 left-2 bg-green-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Staff Pick</span>
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">FOTL</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-white border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-gray-400 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-blue-900 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-red-700 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-green-800 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+30</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">FT001 &nbsp; FOTL</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">Fruit of the Loom Valueweight T</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">S - 5XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;1.99</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.8</span>
+                  <span class="text-[10px] text-gray-400">(2.1k)</span>
+                </div>
+              </div>
+            </a>
 
-        <!-- Product Card 7 -->
-        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="product-card__img relative bg-gray-50 aspect-[4/5] overflow-hidden">
-            <img src="images/cat-polos.webp" alt="Russell Classic T" class="w-full h-full object-cover" />
-            <div class="product-card__overlay">Quick View</div>
-          </div>
-          <div class="p-3 md:p-4">
-            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Russell Classic Ringspun T-Shirt</h3>
-            <div class="flex items-center gap-1 mb-2">
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-700 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-red-700 border border-gray-300"></span>
-              <span class="text-[10px] text-gray-400 ml-1">+16</span>
-            </div>
-            <div class="flex items-center gap-1 mb-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="text-[10px] font-semibold text-dark">4.7</span>
-              <span class="text-[10px] text-gray-400">(520)</span>
-            </div>
-            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;2.99</span></p>
-          </div>
-        </a>
+            <!-- Product Card 4: Bella+Canvas Unisex Jersey Tee -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-workwear.webp" alt="Bella+Canvas Unisex Jersey Tee" class="w-full h-full object-cover" />
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Bella+Canvas</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-white border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-pink-400 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-purple-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-orange-500 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-teal-500 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+42</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">BC001 &nbsp; Bella+Canvas</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">Bella+Canvas Unisex Jersey Tee</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">XS - 3XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;4.50</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.9</span>
+                  <span class="text-[10px] text-gray-400">(980)</span>
+                </div>
+              </div>
+            </a>
 
-        <!-- Product Card 8 -->
-        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div class="product-card__img relative bg-gray-50 aspect-[4/5] overflow-hidden">
-            <img src="images/cat-tshirts.webp" alt="Comfort Colors Tee" class="w-full h-full object-cover" />
-            <span class="absolute top-2 left-2 bg-green-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">Staff Pick</span>
-            <div class="product-card__overlay">Quick View</div>
-          </div>
-          <div class="p-3 md:p-4">
-            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Comfort Colors Garment Dyed Tee</h3>
-            <div class="flex items-center gap-1 mb-2">
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-yellow-700 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-pink-300 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-300 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-green-300 border border-gray-300"></span>
-              <span class="swatch w-3.5 h-3.5 rounded-full bg-orange-300 border border-gray-300"></span>
-              <span class="text-[10px] text-gray-400 ml-1">+38</span>
-            </div>
-            <div class="flex items-center gap-1 mb-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="text-[10px] font-semibold text-dark">4.8</span>
-              <span class="text-[10px] text-gray-400">(1,650)</span>
-            </div>
-            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;5.75</span></p>
-          </div>
-        </a>
+            <!-- Product Card 5: Result Performance T-Shirt -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-hivis.webp" alt="Result Performance T-Shirt" class="w-full h-full object-cover" />
+                <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Top Seller</span>
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Result</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-yellow-400 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-orange-500 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+6</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">RT001 &nbsp; Result</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">Result Performance T-Shirt</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">S - 3XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;5.99</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.6</span>
+                  <span class="text-[10px] text-gray-400">(340)</span>
+                </div>
+              </div>
+            </a>
 
-      </div>
+            <!-- Product Card 6: SanMar Heavyweight Cotton Tee -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-caps.webp" alt="SanMar Heavyweight Cotton Tee" class="w-full h-full object-cover" />
+                <span class="absolute top-2 left-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">New</span>
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">SanMar</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-white border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-gray-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-blue-700 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+12</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">SM001 &nbsp; SanMar</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">SanMar Heavyweight Cotton Tee</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">S - 2XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;3.25</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.5</span>
+                  <span class="text-[10px] text-gray-400">(190)</span>
+                </div>
+              </div>
+            </a>
 
-      <!-- ===================== PAGINATION ===================== -->
-      <p class="text-center text-xs text-gray-500 mt-10 mb-4">Showing 1-8 of 248 products</p>
-      <div class="flex items-center justify-center gap-2">
-        <button class="w-9 h-9 rounded border border-gray-300 text-gray-400 text-sm flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="w-9 h-9 rounded bg-brand text-white text-sm font-bold flex items-center justify-center">1</button>
-        <button class="w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">2</button>
-        <button class="w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">3</button>
-        <button class="w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">4</button>
-        <span class="text-gray-400 text-sm px-1">...</span>
-        <button class="w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">12</button>
-        <button class="w-9 h-9 rounded border border-gray-300 text-gray-400 text-sm flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
+            <!-- Product Card 7: Russell Classic Ringspun T -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-polos.webp" alt="Russell Classic Ringspun T" class="w-full h-full object-cover" />
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Russell</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-white border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-blue-700 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-red-700 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-green-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+16</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">RC001 &nbsp; Russell</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">Russell Classic Ringspun T</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">S - 3XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;2.99</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.7</span>
+                  <span class="text-[10px] text-gray-400">(520)</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Product Card 8: Comfort Colors Garment Dyed -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-tshirts.webp" alt="Comfort Colors Garment Dyed" class="w-full h-full object-cover" />
+                <span class="absolute top-2 left-2 bg-green-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Staff Pick</span>
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Comfort Colors</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-yellow-700 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-pink-300 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-blue-300 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-green-300 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-orange-300 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-purple-300 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+38</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">CC001 &nbsp; Comfort Colors</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">Comfort Colors Garment Dyed</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">S - 3XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;5.75</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.8</span>
+                  <span class="text-[10px] text-gray-400">(1.6k)</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Product Card 9: Portwest Hi-Vis T-Shirt -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-hivis.webp" alt="Portwest Hi-Vis T-Shirt" class="w-full h-full object-cover" />
+                <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Top Seller</span>
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Portwest</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-yellow-300 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-orange-500 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+4</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">PW001 &nbsp; Portwest</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">Portwest Hi-Vis T-Shirt</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">S - 5XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;6.49</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.6</span>
+                  <span class="text-[10px] text-gray-400">(280)</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Product Card 10: Gildan Softstyle T-Shirt -->
+            <a href="product.html" class="product-card bg-white border border-gray-200 overflow-hidden" style="border-radius:10px; padding:12px;">
+              <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
+                <img src="images/cat-hoodies.webp" alt="Gildan Softstyle T-Shirt" class="w-full h-full object-cover" />
+                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Gildan</span>
+                <div class="product-card__overlay">Quick View</div>
+              </div>
+              <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
+                <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-white border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-blue-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-red-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-gray-500 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="swatch rounded-full bg-green-600 border border-gray-300" style="width:10px;height:10px;"></span>
+                <span class="text-[9px] text-gray-400 ml-auto">+28</span>
+              </div>
+              <div style="margin-top:6px;">
+                <p class="text-[10px] text-gray-400">GD002 &nbsp; Gildan</p>
+              </div>
+              <div style="margin-top:6px;">
+                <h3 class="text-[13px] font-semibold text-dark leading-tight">Gildan Softstyle T-Shirt</h3>
+              </div>
+              <div style="margin-top:4px;">
+                <p class="text-[10px] text-gray-400">S - 3XL</p>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:8px;">
+                <p class="text-sm font-bold text-dark">&pound;3.10</p>
+                <div class="flex items-center gap-1">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <span class="text-[10px] font-semibold text-dark">4.8</span>
+                  <span class="text-[10px] text-gray-400">(920)</span>
+                </div>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- ===================== PAGINATION ===================== -->
+          <p class="text-center text-xs text-gray-500 mt-10 mb-4">Showing 1-10 of 248 products</p>
+          <div class="flex items-center justify-center gap-2" id="pagination">
+            <button class="page-btn w-9 h-9 rounded border border-gray-300 text-gray-400 text-sm flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="page-btn active w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">1</button>
+            <button class="page-btn w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">2</button>
+            <button class="page-btn w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">3</button>
+            <button class="page-btn w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">4</button>
+            <span class="text-gray-400 text-sm px-1">...</span>
+            <button class="page-btn w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">12</button>
+            <button class="page-btn w-9 h-9 rounded border border-gray-300 text-gray-400 text-sm flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+
+        </div><!-- end right col -->
+      </div><!-- end flex -->
     </div>
   </section>
 
@@ -646,7 +883,8 @@
   <!-- ===================== SHOP PAGE JS ===================== -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Category icon toggle
+
+      // ---- Category icon toggle ----
       document.querySelectorAll('.cat-icon').forEach(function(icon) {
         icon.addEventListener('click', function() {
           document.querySelectorAll('.cat-icon').forEach(function(i) { i.classList.remove('active'); });
@@ -654,34 +892,36 @@
         });
       });
 
-      // Filter dropdown toggle
-      document.querySelectorAll('.filter-pill[data-dropdown]').forEach(function(pill) {
-        pill.addEventListener('click', function(e) {
-          e.stopPropagation();
-          var ddId = pill.getAttribute('data-dropdown');
-          var dd = document.getElementById(ddId);
-          // Close all other dropdowns
-          document.querySelectorAll('.filter-dropdown').forEach(function(d) {
-            if (d.id !== ddId) d.classList.add('hidden');
-          });
-          document.querySelectorAll('.filter-pill[data-dropdown]').forEach(function(p) {
-            if (p !== pill) p.classList.remove('active');
-          });
-          // Toggle this one
-          dd.classList.toggle('hidden');
-          pill.classList.toggle('active');
+      // ---- Sidebar Accordion Filters ----
+      document.querySelectorAll('.accordion-toggle').forEach(function(toggle) {
+        var targetId = toggle.getAttribute('data-accordion');
+        var body = document.getElementById(targetId);
+        // Set initial state for open accordions
+        if (toggle.classList.contains('open') && body) {
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+        toggle.addEventListener('click', function() {
+          var isOpen = toggle.classList.contains('open');
+          if (isOpen) {
+            toggle.classList.remove('open');
+            body.style.maxHeight = '0px';
+            body.classList.remove('open');
+          } else {
+            toggle.classList.add('open');
+            body.style.maxHeight = body.scrollHeight + 'px';
+            body.classList.add('open');
+          }
         });
       });
 
-      // Close dropdowns on outside click
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.filter-dropdown') && !e.target.closest('.filter-pill')) {
-          document.querySelectorAll('.filter-dropdown').forEach(function(d) { d.classList.add('hidden'); });
-          document.querySelectorAll('.filter-pill[data-dropdown]').forEach(function(p) { p.classList.remove('active'); });
-        }
+      // ---- Colour swatch filter in sidebar ----
+      document.querySelectorAll('.color-swatch-filter').forEach(function(swatch) {
+        swatch.addEventListener('click', function() {
+          swatch.classList.toggle('active');
+        });
       });
 
-      // Quick View modal
+      // ---- Quick View modal ----
       var qvModal = document.getElementById('quickViewModal');
       var qvClose = document.getElementById('qvClose');
 
@@ -691,41 +931,47 @@
           e.stopPropagation();
           var card = overlay.closest('.product-card');
           var img = card.querySelector('.product-card__img img');
-          var name = card.querySelector('h3');
-          var price = card.querySelector('p:last-child');
+          var title = card.querySelector('h3');
+          var priceEl = card.querySelector('.text-sm.font-bold.text-dark');
           var badge = card.querySelector('.product-card__img > span:not(.product-card__overlay)');
-          var rating = card.querySelector('.text-\\[10px\\].font-semibold');
-          var reviews = card.querySelector('.text-\\[10px\\].text-gray-400');
+          var ratingEl = card.querySelector('.text-\\[10px\\].font-semibold.text-dark');
+          var reviewsEl = card.querySelectorAll('.text-\\[10px\\].text-gray-400');
+          var lastReview = reviewsEl.length > 0 ? reviewsEl[reviewsEl.length - 1] : null;
 
           document.getElementById('qvImage').src = img ? img.src : '';
-          document.getElementById('qvName').textContent = name ? name.textContent : '';
-          document.getElementById('qvTitle').textContent = name ? name.textContent : '';
-          document.getElementById('qvPrice').textContent = price ? price.textContent : '';
+          document.getElementById('qvName').textContent = title ? title.textContent : '';
+          document.getElementById('qvTitle').textContent = title ? title.textContent : '';
+          document.getElementById('qvPrice').textContent = priceEl ? priceEl.textContent : '';
           document.getElementById('qvBadge').textContent = badge ? badge.textContent : '';
-          document.getElementById('qvReviews').textContent = rating && reviews ? rating.textContent + ' ' + reviews.textContent : '';
+          document.getElementById('qvReviews').textContent = ratingEl && lastReview ? ratingEl.textContent + ' ' + lastReview.textContent : '';
 
           qvModal.style.display = 'flex';
           document.body.style.overflow = 'hidden';
         });
       });
 
+      function closeModal() {
+        qvModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
       if (qvClose) {
-        qvClose.addEventListener('click', function() {
-          qvModal.style.display = 'none';
-          document.body.style.overflow = '';
-        });
+        qvClose.addEventListener('click', closeModal);
       }
       if (qvModal) {
         qvModal.addEventListener('click', function(e) {
-          if (e.target === qvModal) {
-            qvModal.style.display = 'none';
-            document.body.style.overflow = '';
-          }
+          if (e.target === qvModal) closeModal();
         });
       }
+      // Close modal on ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && qvModal && qvModal.style.display === 'flex') {
+          closeModal();
+        }
+      });
 
-      // Colour swatch click on cards
-      document.querySelectorAll('.swatch').forEach(function(s) {
+      // ---- Colour swatch click on product cards ----
+      document.querySelectorAll('.product-card .swatch').forEach(function(s) {
         s.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
@@ -737,24 +983,30 @@
         });
       });
 
-      // Pagination active
-      document.querySelectorAll('.flex.items-center.justify-center button').forEach(function(btn) {
+      // ---- Pagination active state ----
+      document.querySelectorAll('#pagination .page-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
-          document.querySelectorAll('.flex.items-center.justify-center button').forEach(function(b) {
-            b.classList.remove('bg-brand', 'text-white', 'font-bold');
-            if (!b.querySelector('svg')) {
-              b.classList.add('border', 'border-gray-300', 'text-dark', 'font-semibold');
-            }
+          if (btn.querySelector('svg')) return; // skip prev/next arrows
+          document.querySelectorAll('#pagination .page-btn').forEach(function(b) {
+            b.classList.remove('active');
           });
-          if (!btn.querySelector('svg')) {
-            btn.classList.remove('border', 'border-gray-300', 'text-dark', 'font-semibold');
-            btn.classList.add('bg-brand', 'text-white', 'font-bold');
-          }
+          btn.classList.add('active');
         });
       });
+
     });
   </script>
 
-  <script type="module" src="./script.js"></script>
+  <!-- Responsive grid override -->
+  <style>
+    @media (max-width: 1023px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
+    }
+    @media (max-width: 767px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+      .product-card { padding: 8px !important; }
+    }
+  </style>
+
 </body>
 </html>
