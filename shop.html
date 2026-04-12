@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>T-Shirts | Shop | Garmunt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#1565C0',
+            'brand-dark': '#0D47A1',
+            'brand-light': '#E3F2FD',
+            accent: '#F93C00',
+            dark: '#212121',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .product-card:hover .product-card__img img { transform: scale(1.08); }
+    .product-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .product-card__img img { transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .product-card { transition: box-shadow 0.3s ease, border-color 0.2s ease; }
+    .swatch { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .swatch:hover { transform: scale(1.3); }
+    .swatch.active { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1565C0; }
+    .filter-pill { transition: all 0.2s ease; }
+    .filter-pill:hover { border-color: #1565C0; color: #1565C0; }
+    .filter-pill.active { background: #1565C0; color: #fff; border-color: #1565C0; }
+    .cat-icon { transition: all 0.2s ease; }
+    .cat-icon:hover { border-color: #1565C0; color: #1565C0; }
+    .cat-icon.active { background: #E3F2FD; border-color: #1565C0; color: #1565C0; }
+    .sticky-filters { position: sticky; top: 60px; z-index: 30; background: #fff; }
+  </style>
+</head>
+<body class="font-sans text-dark bg-white antialiased">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div class="bg-brand-dark text-white text-[11px] py-1.5">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center md:justify-between items-center gap-3">
+      <span class="text-center md:text-left">Free Shipping on Orders Over &pound;150 &middot; Trade Accounts Welcome</span>
+      <span class="hidden md:inline-flex items-center gap-1.5 font-semibold">
+        <span>&#9889;</span> Fast 3-5 Day Turnaround on All Orders
+      </span>
+      <div class="hidden md:flex items-center gap-5">
+        <a href="#" class="flex items-center gap-1.5 hover:text-brand-light transition-colors">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          0800 000 0000
+        </a>
+        <a href="#" class="hover:text-brand-light transition-colors">Live Chat</a>
+        <a href="#" class="hover:text-brand-light transition-colors">Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN HEADER ===================== -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-3 md:px-4 py-2 md:py-3 flex items-center gap-2 md:gap-6">
+      <button class="hamburger lg:hidden flex flex-col justify-center items-start gap-[5px] w-9 h-9 bg-transparent border-none flex-shrink-0 relative z-[201]" id="hamburger" aria-label="Open menu" style="-webkit-tap-highlight-color:transparent">
+        <span class="block h-[2px] w-[22px] bg-dark rounded-sm transition-all"></span>
+        <span class="block h-[2px] w-[16px] bg-dark rounded-sm transition-all"></span>
+        <span class="block h-[2px] w-[20px] bg-dark rounded-sm transition-all"></span>
+      </button>
+      <a href="index.html" class="flex-shrink-0">
+        <img src="garmunt-logo.png" alt="Garmunt" class="h-[46px] md:h-14" />
+      </a>
+      <div class="flex-1 min-w-0">
+        <div class="relative w-full hidden md:block">
+          <input type="text" placeholder="Search t-shirts, hoodies, workwear..." class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors" />
+          <button class="absolute right-0 top-0 h-full px-4 bg-brand text-white rounded-r hover:bg-brand-dark transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <button class="md:hidden text-gray-600">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <a href="#" class="hidden md:inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-brand-dark transition-colors">Design Now</a>
+        <a href="#" class="text-gray-600 hover:text-brand transition-colors">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="#" class="text-gray-600 hover:text-brand transition-colors relative pr-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="absolute -top-1.5 -right-0.5 bg-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== NAV BAR ===================== -->
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-drawer-header hidden">
+      <img src="garmunt-logo.png" alt="Garmunt" class="nav-drawer-logo" />
+      <button class="nav-drawer-close" id="navClose" aria-label="Close menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="flex items-center gap-0 text-sm font-medium">
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">All Products</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-brand font-bold bg-brand-light/50 rounded">T-Shirts</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Hoodies</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Workwear</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Hi-Vis</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Accessories</a></li>
+        <li><a href="#" class="px-4 py-2.5 bg-accent text-white font-semibold rounded hover:bg-red-700 transition-colors">Custom Orders</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Brands</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Sale</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== BREADCRUMB ===================== -->
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-3">
+      <nav class="flex flex-wrap items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-gray-500">
+        <a href="index.html" class="hover:text-brand transition-colors">Home</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <a href="#" class="hover:text-brand transition-colors">Apparel</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="text-dark font-medium">T-Shirts</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE HEADER + CATEGORY ICONS ===================== -->
+  <section class="bg-white border-b border-gray-200">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-6 md:py-8">
+      <h1 class="text-2xl md:text-3xl font-900 text-dark mb-2">T-Shirts</h1>
+      <p class="text-sm text-gray-500 mb-6 max-w-xl">Premium blank and custom printed t-shirts from leading brands. Available in bulk at trade prices with optional branding.</p>
+
+      <!-- Category icon row (RushOrderTees style) -->
+      <div class="flex gap-3 overflow-x-auto pb-2 -mb-2 scrollbar-hide">
+        <button class="cat-icon active flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-xs font-semibold text-dark bg-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
+          All T-Shirts
+        </button>
+        <button class="cat-icon flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-xs font-semibold text-gray-600 bg-white">
+          Short Sleeve
+        </button>
+        <button class="cat-icon flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-xs font-semibold text-gray-600 bg-white">
+          Long Sleeve
+        </button>
+        <button class="cat-icon flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-xs font-semibold text-gray-600 bg-white">
+          Women's
+        </button>
+        <button class="cat-icon flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-xs font-semibold text-gray-600 bg-white">
+          Kids
+        </button>
+        <button class="cat-icon flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-xs font-semibold text-gray-600 bg-white">
+          Performance
+        </button>
+        <button class="cat-icon flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-xs font-semibold text-gray-600 bg-white">
+          V-Neck
+        </button>
+        <button class="cat-icon flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 text-xs font-semibold text-gray-600 bg-white">
+          Organic
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FILTER BAR (STICKY) ===================== -->
+  <div class="sticky-filters border-b border-gray-200">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-3">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <!-- Filter pills -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
+            Brand
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
+            Colour
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
+            Material
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
+            Fit
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
+            Price
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <button class="filter-pill border border-brand text-brand font-semibold text-xs px-4 py-2 rounded-full bg-brand-light">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline mr-1"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
+            All Filters
+          </button>
+        </div>
+        <!-- Sort + count -->
+        <div class="flex items-center gap-4">
+          <span class="text-xs text-gray-500 hidden sm:block">248 products</span>
+          <select class="border border-gray-300 rounded px-3 py-2 text-xs font-semibold text-dark focus:outline-none focus:border-brand">
+            <option>Sort: Recommended</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest First</option>
+            <option>Best Selling</option>
+            <option>Rating</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PRODUCT GRID ===================== -->
+  <section class="py-6 md:py-8">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+
+        <!-- Product Card 1 -->
+        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div class="product-card__img relative bg-gray-50 aspect-[3/4] overflow-hidden">
+            <img src="images/cat-tshirts.webp" alt="Gildan Heavy Cotton T-Shirt" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">Top Seller</span>
+          </div>
+          <div class="p-3 md:p-4">
+            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Gildan Heavy Cotton T-Shirt</h3>
+            <div class="flex items-center gap-1 mb-2">
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-800 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-red-600 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-green-700 border border-gray-300"></span>
+              <span class="text-[10px] text-gray-400 ml-1">+24</span>
+            </div>
+            <div class="flex items-center gap-1 mb-2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="text-[10px] font-semibold text-dark">4.9</span>
+              <span class="text-[10px] text-gray-400">(1,240)</span>
+            </div>
+            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;2.50</span></p>
+          </div>
+        </a>
+
+        <!-- Product Card 2 -->
+        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div class="product-card__img relative bg-gray-50 aspect-[3/4] overflow-hidden">
+            <img src="images/cat-polos.webp" alt="AWDis Cool T-Shirt" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">New</span>
+          </div>
+          <div class="p-3 md:p-4">
+            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">AWDis Cool Performance T-Shirt</h3>
+            <div class="flex items-center gap-1 mb-2">
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-600 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-red-500 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-yellow-400 border border-gray-300"></span>
+              <span class="text-[10px] text-gray-400 ml-1">+18</span>
+            </div>
+            <div class="flex items-center gap-1 mb-2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="text-[10px] font-semibold text-dark">4.7</span>
+              <span class="text-[10px] text-gray-400">(856)</span>
+            </div>
+            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;3.99</span></p>
+          </div>
+        </a>
+
+        <!-- Product Card 3 -->
+        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div class="product-card__img relative bg-gray-50 aspect-[3/4] overflow-hidden">
+            <img src="images/cat-hoodies.webp" alt="Fruit of the Loom Valueweight" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-green-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">Staff Pick</span>
+          </div>
+          <div class="p-3 md:p-4">
+            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Fruit of the Loom Valueweight T</h3>
+            <div class="flex items-center gap-1 mb-2">
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-gray-400 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-900 border border-gray-300"></span>
+              <span class="text-[10px] text-gray-400 ml-1">+30</span>
+            </div>
+            <div class="flex items-center gap-1 mb-2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="text-[10px] font-semibold text-dark">4.8</span>
+              <span class="text-[10px] text-gray-400">(2,100)</span>
+            </div>
+            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;1.99</span></p>
+          </div>
+        </a>
+
+        <!-- Product Card 4 -->
+        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div class="product-card__img relative bg-gray-50 aspect-[3/4] overflow-hidden">
+            <img src="images/cat-workwear.webp" alt="Bella+Canvas Unisex Tee" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-3 md:p-4">
+            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Bella+Canvas Unisex Jersey Tee</h3>
+            <div class="flex items-center gap-1 mb-2">
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-pink-400 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-purple-600 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-orange-500 border border-gray-300"></span>
+              <span class="text-[10px] text-gray-400 ml-1">+42</span>
+            </div>
+            <div class="flex items-center gap-1 mb-2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="text-[10px] font-semibold text-dark">4.9</span>
+              <span class="text-[10px] text-gray-400">(980)</span>
+            </div>
+            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;4.50</span></p>
+          </div>
+        </a>
+
+        <!-- Product Card 5 -->
+        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div class="product-card__img relative bg-gray-50 aspect-[3/4] overflow-hidden">
+            <img src="images/cat-hivis.webp" alt="Result Performance T" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">Top Seller</span>
+          </div>
+          <div class="p-3 md:p-4">
+            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Result Performance T-Shirt</h3>
+            <div class="flex items-center gap-1 mb-2">
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-yellow-400 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-orange-500 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
+              <span class="text-[10px] text-gray-400 ml-1">+6</span>
+            </div>
+            <div class="flex items-center gap-1 mb-2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="text-[10px] font-semibold text-dark">4.6</span>
+              <span class="text-[10px] text-gray-400">(340)</span>
+            </div>
+            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;5.99</span></p>
+          </div>
+        </a>
+
+        <!-- Product Card 6 -->
+        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div class="product-card__img relative bg-gray-50 aspect-[3/4] overflow-hidden">
+            <img src="images/cat-caps.webp" alt="SanMar Heavyweight Tee" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">New</span>
+          </div>
+          <div class="p-3 md:p-4">
+            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">SanMar Heavyweight Cotton Tee</h3>
+            <div class="flex items-center gap-1 mb-2">
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-gray-600 border border-gray-300"></span>
+              <span class="text-[10px] text-gray-400 ml-1">+12</span>
+            </div>
+            <div class="flex items-center gap-1 mb-2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="text-[10px] font-semibold text-dark">4.5</span>
+              <span class="text-[10px] text-gray-400">(190)</span>
+            </div>
+            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;3.25</span></p>
+          </div>
+        </a>
+
+        <!-- Product Card 7 -->
+        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div class="product-card__img relative bg-gray-50 aspect-[3/4] overflow-hidden">
+            <img src="images/cat-polos.webp" alt="Russell Classic T" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-3 md:p-4">
+            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Russell Classic Ringspun T-Shirt</h3>
+            <div class="flex items-center gap-1 mb-2">
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-black border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-white border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-700 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-red-700 border border-gray-300"></span>
+              <span class="text-[10px] text-gray-400 ml-1">+16</span>
+            </div>
+            <div class="flex items-center gap-1 mb-2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="text-[10px] font-semibold text-dark">4.7</span>
+              <span class="text-[10px] text-gray-400">(520)</span>
+            </div>
+            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;2.99</span></p>
+          </div>
+        </a>
+
+        <!-- Product Card 8 -->
+        <a href="product.html" class="product-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div class="product-card__img relative bg-gray-50 aspect-[3/4] overflow-hidden">
+            <img src="images/cat-tshirts.webp" alt="Comfort Colors Tee" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-green-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded">Staff Pick</span>
+          </div>
+          <div class="p-3 md:p-4">
+            <h3 class="text-sm font-bold text-dark mb-1 leading-tight">Comfort Colors Garment Dyed Tee</h3>
+            <div class="flex items-center gap-1 mb-2">
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-yellow-700 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-pink-300 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-blue-300 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-green-300 border border-gray-300"></span>
+              <span class="swatch w-3.5 h-3.5 rounded-full bg-orange-300 border border-gray-300"></span>
+              <span class="text-[10px] text-gray-400 ml-1">+38</span>
+            </div>
+            <div class="flex items-center gap-1 mb-2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="text-[10px] font-semibold text-dark">4.8</span>
+              <span class="text-[10px] text-gray-400">(1,650)</span>
+            </div>
+            <p class="text-sm font-bold text-dark">from <span class="text-brand">&pound;5.75</span></p>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- ===================== PAGINATION ===================== -->
+      <div class="flex items-center justify-center gap-2 mt-10">
+        <button class="w-9 h-9 rounded border border-gray-300 text-gray-400 text-sm flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="w-9 h-9 rounded bg-brand text-white text-sm font-bold flex items-center justify-center">1</button>
+        <button class="w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">2</button>
+        <button class="w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">3</button>
+        <button class="w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">4</button>
+        <span class="text-gray-400 text-sm px-1">...</span>
+        <button class="w-9 h-9 rounded border border-gray-300 text-dark text-sm font-semibold flex items-center justify-center hover:border-brand hover:text-brand transition-colors">12</button>
+        <button class="w-9 h-9 rounded border border-gray-300 text-gray-400 text-sm flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-white pt-14 pb-6 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-10 border-b border-gray-200">
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Apparel</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">T-Shirts</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Hoodies</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Polos</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Workwear</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Hi-Vis</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Services</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Custom Printing</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Embroidery</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">DTG Printing</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Trade Accounts</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">About</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">About Us</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Reviews</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">My Account</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">My Orders</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Track Order</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">FAQs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Contact</h4>
+          <ul class="space-y-2.5 text-sm text-gray-600">
+            <li>Garmunt Ltd, Manchester, UK</li>
+            <li>0800 000 0000</li>
+            <li>hello@garmunt.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center pt-5 gap-4">
+        <p class="text-xs text-gray-400">&copy; 2026 Garmunt Ltd. All rights reserved.</p>
+        <div class="flex gap-5 text-xs text-gray-400">
+          <a href="#" class="hover:text-brand transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-brand transition-colors">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== SHOP PAGE JS ===================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Category icon toggle
+      document.querySelectorAll('.cat-icon').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+          document.querySelectorAll('.cat-icon').forEach(function(i) { i.classList.remove('active'); });
+          icon.classList.add('active');
+        });
+      });
+
+      // Filter pill toggle
+      document.querySelectorAll('.filter-pill').forEach(function(pill) {
+        pill.addEventListener('click', function() {
+          pill.classList.toggle('active');
+        });
+      });
+
+      // Colour swatch click on cards
+      document.querySelectorAll('.swatch').forEach(function(s) {
+        s.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var parent = s.closest('.product-card');
+          if (parent) {
+            parent.querySelectorAll('.swatch').forEach(function(sw) { sw.classList.remove('active'); });
+            s.classList.add('active');
+          }
+        });
+      });
+
+      // Pagination active
+      document.querySelectorAll('.flex.items-center.justify-center button').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.flex.items-center.justify-center button').forEach(function(b) {
+            b.classList.remove('bg-brand', 'text-white', 'font-bold');
+            if (!b.querySelector('svg')) {
+              b.classList.add('border', 'border-gray-300', 'text-dark', 'font-semibold');
+            }
+          });
+          if (!btn.querySelector('svg')) {
+            btn.classList.remove('border', 'border-gray-300', 'text-dark', 'font-semibold');
+            btn.classList.add('bg-brand', 'text-white', 'font-bold');
+          }
+        });
+      });
+    });
+  </script>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
