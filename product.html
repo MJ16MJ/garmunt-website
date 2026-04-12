@@ -27,16 +27,93 @@
   </script>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Zoom-on-hover for main product image */
-    .zoom-wrap { overflow: hidden; }
-    .zoom-wrap img { transition: transform 0.4s ease; }
-    .zoom-wrap:hover img { transform: scale(1.15); }
+    /* ── 1. Image Zoom (premium hover) ─────────────────── */
+    .zoom-wrap { overflow: hidden; border-radius: 8px; cursor: crosshair; }
+    .zoom-wrap img { transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .zoom-wrap:hover img { transform: scale(1.2); }
 
-    /* Thumbnail active state */
-    .thumb { border: 2px solid transparent; transition: border-color 0.2s ease; cursor: pointer; }
-    .thumb.active { border-color: #1565C0; }
+    /* ── Thumbnail interactions ─────────────────────────── */
+    .thumb {
+      border: 2px solid transparent;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .thumb:hover { transform: scale(1.05); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .thumb.active { border-color: #1565C0; box-shadow: 0 0 0 2px rgba(21,101,192,0.2); }
 
-    /* Colour swatch active */
+    /* ── 2. Colour variant card selection ───────────────── */
+    .colour-card-wrap {
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      border: 2px solid #E0E0E0;
+    }
+    .colour-card-wrap:hover {
+      border-color: #1565C0;
+      box-shadow: 0 2px 12px rgba(21,101,192,0.12);
+      transform: translateY(-2px);
+    }
+    .colour-card-wrap.selected {
+      border-color: #1565C0 !important;
+      box-shadow: 0 0 0 3px rgba(21,101,192,0.15), 0 2px 8px rgba(21,101,192,0.1) !important;
+    }
+
+    /* ── 3. Delivery boxes hover ───────────────────────── */
+    .delivery-box {
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+    }
+    .delivery-box:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-color: #1565C0;
+    }
+    .delivery-box.active {
+      border-color: #1565C0;
+      background: #E3F2FD;
+    }
+
+    /* ── 4. Button micro UX ────────────────────────────── */
+    .btn-primary-ux {
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary-ux:hover { box-shadow: 0 4px 12px rgba(21,101,192,0.3); }
+    .btn-primary-ux:active { transform: scale(0.98); box-shadow: none; }
+
+    .btn-outline-ux {
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    }
+    .btn-outline-ux:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .btn-outline-ux:active { transform: scale(0.98); }
+
+    /* ── 5. Discount table hover ───────────────────────── */
+    .discount-table tbody tr {
+      transition: background 0.15s ease;
+    }
+    .discount-table tbody tr:hover {
+      background: #F0F7FF !important;
+    }
+
+    /* ── 6. Tabs smooth animation ──────────────────────── */
+    .btab-btn {
+      position: relative;
+      transition: color 0.2s ease, font-weight 0.1s ease;
+    }
+    .btab-content {
+      animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── 7. Sticky right panel ─────────────────────────── */
+    @media (min-width: 1024px) {
+      .product-right-sticky {
+        position: sticky;
+        top: 80px;
+        align-self: start;
+      }
+    }
+
+    /* ── Colour swatch (legacy) ────────────────────────── */
     .colour-swatch { transition: all 0.2s ease; position: relative; }
     .colour-swatch.active { transform: scale(1.1); }
     .colour-swatch.active::after {
@@ -44,29 +121,17 @@
       border: 2px solid #1565C0; border-radius: 50%;
     }
 
-    /* Size button active */
+    /* ── Size button active ────────────────────────────── */
     .size-btn.active {
-      background: #1565C0 !important;
-      color: #fff !important;
-      border-color: #1565C0 !important;
+      background: #1565C0 !important; color: #fff !important; border-color: #1565C0 !important;
     }
 
-    /* Bulk tier highlight */
-    .tier-row.active {
-      background: #E3F2FD;
-      font-weight: 700;
-      color: #1565C0;
-    }
-
-    /* Tab active */
-    .tab-btn.active {
-      color: #1565C0;
-      border-bottom-color: #1565C0;
-    }
+    /* ── Tab content ───────────────────────────────────── */
+    .tab-btn.active { color: #1565C0; border-bottom-color: #1565C0; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Customisation modal */
+    /* ── Customisation modal ───────────────────────────── */
     .modal-backdrop { display: none; }
     .modal-backdrop.open { display: flex; }
   </style>
@@ -159,7 +224,7 @@
   <!-- ===================== BREADCRUMB ===================== -->
   <div class="bg-gray-50 border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 py-3">
-      <nav class="flex items-center gap-2 text-xs text-gray-500">
+      <nav class="flex flex-wrap items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-gray-500">
         <a href="index.html" class="hover:text-brand transition-colors">Home</a>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
         <a href="#" class="hover:text-brand transition-colors">Workwear</a>
@@ -173,10 +238,10 @@
 
   <!-- ===================== PRODUCT MAIN ===================== -->
   <section class="py-6 md:py-10">
-    <div class="max-w-[1350px] mx-auto px-6">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6">
 
-      <!-- SECTION 1: Top Feature Strip (full width, single row) -->
-      <div class="flex items-center gap-8 mb-6 pb-5 border-b border-gray-200 text-[13px]">
+      <!-- SECTION 1: Top Feature Strip (full width, wraps on mobile) -->
+      <div class="flex flex-wrap items-center gap-4 md:gap-8 mb-5 pb-4 md:pb-5 border-b border-gray-200 text-[11px] md:text-[13px]">
         <div class="flex items-center gap-1.5">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           <span class="font-semibold text-dark">Next day delivery available</span>
@@ -238,25 +303,27 @@
           </div>
           </div><!-- close flex gap-3 (thumbnails + image) -->
 
-          <!-- SECTION 3: Delivery tabs under image (small, minimal, centered) -->
-          <div class="flex gap-2 mt-3 justify-center">
-            <button class="flex items-center gap-1.5 border border-gray-200 rounded px-3 py-2 text-[11px] font-semibold text-dark hover:border-brand transition-colors">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              Standard Delivery
-            </button>
-            <button class="flex items-center gap-1.5 border border-brand bg-brand-light rounded px-3 py-2 text-[11px] font-bold text-brand">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Superfast Delivery
-            </button>
+          <!-- SECTION 3: Delivery info boxes under image -->
+          <div class="grid grid-cols-2 gap-2 mt-3">
+            <div class="delivery-box border border-gray-200 rounded px-3 py-2.5">
+              <p class="text-[11px] font-bold text-dark mb-0.5">Standard</p>
+              <p class="text-[10px] text-gray-500">Get it by <strong class="text-dark">Thursday 17th Apr</strong></p>
+              <p class="text-[10px] text-gray-400 mt-0.5">3-5 working days</p>
+            </div>
+            <div class="delivery-box active border border-brand bg-brand-light/50 rounded px-3 py-2.5">
+              <p class="text-[11px] font-bold text-brand mb-0.5">Superfast</p>
+              <p class="text-[10px] text-gray-600">Get it by <strong class="text-brand">Tuesday 15th Apr</strong></p>
+              <p class="text-[10px] text-gray-400 mt-0.5">Order before 3pm</p>
+            </div>
           </div>
         </div><!-- close LEFT COLUMN -->
 
-        <!-- Right: Product Info -->
-        <div>
+        <!-- Right: Product Info (sticky on desktop) -->
+        <div class="product-right-sticky">
           <!-- Heading + Brand aligned right -->
-          <div class="flex items-start justify-between gap-4 mb-1">
-            <h1 class="text-2xl md:text-3xl font-900 text-dark leading-tight">Hi-Vis Executive Vest</h1>
-            <span class="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 flex-shrink-0 mt-2">PORTWEST</span>
+          <div class="flex items-start justify-between gap-3 mb-1">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-900 text-dark leading-tight">Hi-Vis Executive Vest</h1>
+            <span class="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-gray-400 flex-shrink-0 mt-1 md:mt-2">PORTWEST</span>
           </div>
 
           <!-- Reviews under heading -->
@@ -273,17 +340,17 @@
           </div>
 
           <!-- Price with "from" -->
-          <div class="flex items-baseline gap-3 mb-1">
-            <span class="text-sm text-gray-500">from</span>
-            <span class="text-3xl font-900 text-dark">&pound;4.99</span>
-            <span class="text-base text-gray-400 line-through">&pound;12.99</span>
-            <span class="bg-accent text-white text-[10px] font-bold px-2 py-0.5 rounded">Save up to 61%</span>
+          <div class="flex flex-wrap items-baseline gap-2 md:gap-3 mb-1">
+            <span class="text-xs md:text-sm text-gray-500">from</span>
+            <span class="text-2xl md:text-3xl font-900 text-dark">&pound;4.99</span>
+            <span class="text-sm md:text-base text-gray-400 line-through">&pound;12.99</span>
+            <span class="bg-accent text-white text-[9px] md:text-[10px] font-bold px-2 py-0.5 rounded">Save up to 61%</span>
           </div>
           <p class="text-xs text-gray-500 mb-4">Prices exclude VAT &middot; <span class="w-1.5 h-1.5 bg-green-500 rounded-full inline-block"></span> <strong class="text-green-600">In Stock</strong></p>
 
           <!-- Garment discount table ONLY (no print/embroidery) -->
-          <div class="mb-5 border border-gray-200 rounded-lg overflow-hidden">
-            <table class="w-full text-xs md:text-sm">
+          <div class="mb-5 border border-gray-200 rounded-lg overflow-x-auto">
+            <table class="discount-table w-full text-xs md:text-sm">
               <thead class="bg-gray-50">
                 <tr>
                   <th class="px-3 py-2 text-left text-gray-500 font-semibold">Qty</th>
@@ -321,10 +388,10 @@
             </table>
           </div>
 
-          <!-- CTA Buttons in ONE row -->
-          <div class="flex gap-3 mb-6">
-            <a href="#" class="flex-1 bg-brand text-white font-bold text-sm py-3 rounded hover:bg-brand-dark transition-colors text-center">Start Your Order</a>
-            <a href="#" class="flex-1 border-2 border-gray-300 text-dark font-semibold text-sm py-3 rounded hover:border-brand hover:text-brand transition-colors text-center">Customisation Calculator</a>
+          <!-- CTA Buttons (stacked mobile, row desktop) -->
+          <div class="flex flex-col sm:flex-row gap-3 mb-6">
+            <a href="#" class="btn-primary-ux flex-1 bg-brand text-white font-bold text-sm py-3 rounded hover:bg-brand-dark text-center">Start Your Order</a>
+            <a href="#bottom-tabs" class="btn-outline-ux calc-link flex-1 border-2 border-gray-300 text-dark font-semibold text-sm py-3 rounded hover:border-brand hover:text-brand text-center">Customisation Calculator</a>
           </div>
           <!-- Manufacturer Code + Specs -->
           <div class="border-t border-gray-200 pt-5 mt-1"></div>
@@ -341,7 +408,7 @@
           <div class="pb-4">
             <h3 class="text-sm font-bold text-dark mb-2">Key Info</h3>
             <p class="text-sm text-gray-600 leading-relaxed mb-2">The Portwest Hi-Vis Executive Vest is the professional choice for construction teams and outdoor workers. Featuring 50mm retro-reflective tape, front zip, and heavy-duty ID pocket.</p>
-            <a href="#" class="inline-flex items-center gap-1.5 text-sm text-brand font-bold border-b-2 border-brand pb-0.5 hover:text-brand-dark hover:border-brand-dark transition-colors">View Specification <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
+            <a href="#bottom-tabs" class="spec-link inline-flex items-center gap-1.5 text-sm text-brand font-bold border-b-2 border-brand pb-0.5 hover:text-brand-dark hover:border-brand-dark transition-colors">View Specification <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
           </div>
         </div>
 
@@ -350,60 +417,60 @@
   </section>
 
   <!-- ===================== BOTTOM TABS (Ralawise style) ===================== -->
-  <section class="border-t border-gray-200 py-10 bg-white">
-    <div class="max-w-[1350px] mx-auto px-6">
-      <!-- Ralawise-style tab navigation -->
-      <div class="grid grid-cols-2 md:grid-cols-4 border border-gray-200 rounded-t-lg overflow-hidden mb-0">
-        <button class="btab-btn bg-white text-brand font-bold text-sm py-4 border-b-2 border-brand" data-btab="select-options">Select Options &amp; Buy</button>
-        <button class="btab-btn bg-gray-50 text-gray-500 font-semibold text-sm py-4 border-b border-gray-200 hover:text-brand transition-colors" data-btab="specification-tab">Specification</button>
-        <button class="btab-btn bg-gray-50 text-gray-500 font-semibold text-sm py-4 border-b border-gray-200 hover:text-brand transition-colors" data-btab="related-tab">Related Products</button>
-        <button class="btab-btn bg-gray-50 text-gray-500 font-semibold text-sm py-4 border-b border-gray-200 hover:text-brand transition-colors" data-btab="customisation-calc">Customisation Calculator</button>
+  <section id="bottom-tabs" class="border-t border-gray-200 py-8 md:py-10 bg-white">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6">
+      <!-- Simple underline tab navigation (full width) -->
+      <div class="flex border-b border-gray-200 mb-0">
+        <button class="btab-btn flex-1 text-center py-3 md:py-4 text-[11px] md:text-sm font-bold text-brand border-b-2 border-brand transition-colors" data-btab="select-options">Select Options &amp; Buy</button>
+        <button class="btab-btn flex-1 text-center py-3 md:py-4 text-[11px] md:text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand transition-colors" data-btab="specification-tab">Specification</button>
+        <button class="btab-btn flex-1 text-center py-3 md:py-4 text-[11px] md:text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand transition-colors" data-btab="related-tab">Related Products</button>
+        <button class="btab-btn flex-1 text-center py-3 md:py-4 text-[11px] md:text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-brand transition-colors" data-btab="customisation-calc">Customisation Calculator</button>
       </div>
 
       <!-- BTAB: Select Options & Buy -->
-      <div id="btab-select-options" class="btab-content bg-white border border-t-0 border-gray-200 rounded-b-lg p-5 md:p-6">
+      <div id="btab-select-options" class="btab-content bg-white pt-6 pb-4">
         <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 mb-6">
           <!-- Filter chips -->
           <div class="flex-1">
             <p class="text-sm font-bold text-dark mb-3">Filter By Colour</p>
             <div class="flex flex-wrap gap-2">
-              <button class="colour-chip inline-flex items-center gap-2 border-2 border-brand text-brand font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-brand-light transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border-2 border-brand text-brand font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-brand-light transition-colors" data-filter="blues">
                 Blues <span class="w-2 h-2 rounded-full bg-blue-600"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-gray-300 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-gray-300 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors" data-filter="whites">
                 Whites <span class="w-2 h-2 rounded-full bg-gray-200 border border-gray-300"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-pink-400 text-pink-500 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-pink-50 transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-pink-400 text-pink-500 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-pink-50 transition-colors" data-filter="pinks">
                 Pinks <span class="w-2 h-2 rounded-full bg-pink-400"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-green-500 text-green-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-green-50 transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-green-500 text-green-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-green-50 transition-colors" data-filter="greens">
                 Greens <span class="w-2 h-2 rounded-full bg-green-500"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-red-500 text-red-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-red-50 transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-red-500 text-red-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-red-50 transition-colors" data-filter="reds">
                 Reds <span class="w-2 h-2 rounded-full bg-red-500"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-gray-800 text-dark font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-gray-800 text-dark font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors" data-filter="blacks">
                 Blacks <span class="w-2 h-2 rounded-full bg-black"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-gray-300 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-gray-300 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors" data-filter="neutrals">
                 Neutrals <span class="w-2 h-2 rounded-full bg-gray-400"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-purple-500 text-purple-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-purple-50 transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-purple-500 text-purple-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-purple-50 transition-colors" data-filter="purples">
                 Purples <span class="w-2 h-2 rounded-full bg-purple-500"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-gray-400 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-gray-400 text-gray-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors" data-filter="greys">
                 Greys <span class="w-2 h-2 rounded-full bg-gray-500"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-yellow-600 text-yellow-700 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-yellow-50 transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-yellow-600 text-yellow-700 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-yellow-50 transition-colors" data-filter="browns">
                 Browns <span class="w-2 h-2 rounded-full bg-yellow-800"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-orange-500 text-orange-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-orange-50 transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-orange-500 text-orange-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-orange-50 transition-colors" data-filter="oranges">
                 Oranges <span class="w-2 h-2 rounded-full bg-orange-500"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 border border-yellow-500 text-yellow-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-yellow-50 transition-colors">
+              <button class="colour-chip inline-flex items-center gap-2 border border-yellow-500 text-yellow-600 font-semibold text-xs px-3 py-1.5 rounded-full hover:bg-yellow-50 transition-colors" data-filter="yellows">
                 Yellows <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
               </button>
-              <button class="colour-chip inline-flex items-center gap-2 text-gray-500 text-xs px-3 py-1.5 rounded-full hover:text-brand transition-colors">
+              <button class="colour-chip colour-reset inline-flex items-center gap-2 text-gray-500 text-xs px-3 py-1.5 rounded-full hover:text-brand transition-colors">
                 Reset <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
               </button>
             </div>
@@ -421,80 +488,85 @@
           </div>
         </div>
 
+        <!-- Selected colour indicator (pill style) -->
+        <div class="mb-4 flex items-center gap-2">
+          <span class="text-sm font-bold text-dark">Selected Colour:</span>
+          <span id="selectedColourLabel" class="text-sm font-bold text-brand bg-brand-light px-3 py-1 rounded-full">Hi-Vis Yellow</span>
+        </div>
+
         <!-- Colour variant grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          <!-- Variant 1 -->
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="yellows">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-hivis.webp" alt="Hi-Vis Yellow" class="w-full h-full object-cover" />
               <span class="absolute bottom-2 left-2 right-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Colour</span>
             </div>
             <p class="text-xs font-semibold text-dark">Hi-Vis Yellow</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="oranges">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-hivis.webp" alt="Hi-Vis Orange" class="w-full h-full object-cover" style="filter:hue-rotate(-30deg) saturate(1.5)" />
             </div>
             <p class="text-xs font-semibold text-dark">Hi-Vis Orange</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="reds">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-hivis.webp" alt="Red" class="w-full h-full object-cover" style="filter:hue-rotate(-55deg) saturate(2)" />
               <span class="absolute bottom-2 left-2 right-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Size</span>
             </div>
             <p class="text-xs font-semibold text-dark">Red</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="blues">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-workwear.webp" alt="Navy" class="w-full h-full object-cover" style="filter:hue-rotate(180deg) saturate(1.2) brightness(0.6)" />
             </div>
             <p class="text-xs font-semibold text-dark">Navy</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="blues">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-workwear.webp" alt="Royal Blue" class="w-full h-full object-cover" style="filter:hue-rotate(210deg) saturate(1.8)" />
               <span class="absolute bottom-2 left-2 right-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Colour</span>
             </div>
             <p class="text-xs font-semibold text-dark">Royal Blue</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="blacks">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-workwear.webp" alt="Black" class="w-full h-full object-cover" style="filter:brightness(0.3)" />
             </div>
             <p class="text-xs font-semibold text-dark">Black</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="greens">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-workwear.webp" alt="Bottle Green" class="w-full h-full object-cover" style="filter:hue-rotate(100deg) saturate(1.5) brightness(0.7)" />
             </div>
             <p class="text-xs font-semibold text-dark">Bottle Green</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="reds">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-workwear.webp" alt="Burgundy" class="w-full h-full object-cover" style="filter:hue-rotate(-30deg) saturate(2) brightness(0.6)" />
             </div>
             <p class="text-xs font-semibold text-dark">Burgundy</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="greys">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-workwear.webp" alt="Grey" class="w-full h-full object-cover" style="filter:grayscale(1) brightness(0.85)" />
               <span class="absolute bottom-2 left-2 right-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Size</span>
             </div>
             <p class="text-xs font-semibold text-dark">Heather Grey</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="whites">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-caps.webp" alt="White" class="w-full h-full object-cover" style="filter:brightness(1.3) saturate(0)" />
             </div>
             <p class="text-xs font-semibold text-dark">White</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="purples">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-workwear.webp" alt="Purple" class="w-full h-full object-cover" style="filter:hue-rotate(240deg) saturate(1.5)" />
             </div>
             <p class="text-xs font-semibold text-dark">Purple</p>
           </a>
-          <a href="#" class="group text-center">
+          <a href="#" class="group text-center colour-variant" data-colour-group="yellows">
             <div class="bg-gray-50 rounded-lg overflow-hidden aspect-square mb-2 relative border border-gray-200 group-hover:border-brand transition-colors">
               <img src="images/cat-hivis.webp" alt="Sun Yellow" class="w-full h-full object-cover" style="filter:hue-rotate(-10deg) brightness(1.1)" />
               <span class="absolute bottom-2 left-2 right-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded text-center">New Colour</span>
@@ -505,7 +577,7 @@
       </div>
 
       <!-- BTAB: Specification -->
-      <div id="btab-specification-tab" class="btab-content bg-white border border-t-0 border-gray-200 rounded-b-lg p-5 md:p-6 hidden">
+      <div id="btab-specification-tab" class="btab-content bg-white pt-6 pb-4 hidden">
         <h3 class="text-lg font-800 text-dark mb-4">Product Specification</h3>
         <div class="border border-gray-200 rounded-lg overflow-hidden max-w-2xl">
           <table class="w-full text-sm">
@@ -525,7 +597,7 @@
       </div>
 
       <!-- BTAB: Related Products -->
-      <div id="btab-related-tab" class="btab-content bg-white border border-t-0 border-gray-200 rounded-b-lg p-5 md:p-6 hidden">
+      <div id="btab-related-tab" class="btab-content bg-white pt-6 pb-4 hidden">
         <h3 class="text-lg font-800 text-dark mb-4">Related Products</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <a href="#" class="border border-gray-200 rounded overflow-hidden hover:border-brand transition-colors">
@@ -548,7 +620,7 @@
       </div>
 
       <!-- BTAB: Customisation Calculator -->
-      <div id="btab-customisation-calc" class="btab-content bg-white border border-t-0 border-gray-200 rounded-b-lg p-5 md:p-6 hidden">
+      <div id="btab-customisation-calc" class="btab-content bg-white pt-6 pb-4 hidden">
         <h3 class="text-lg font-800 text-dark mb-4">Customisation Calculator</h3>
         <p class="text-sm text-gray-600 mb-6">Calculate your total cost including customisation. Select your branding method and quantity below.</p>
         <div class="grid md:grid-cols-3 gap-4 mb-6">
@@ -756,13 +828,50 @@
         });
       });
 
-      // ── Colour filter chips toggle ──────────────────────────
-      document.querySelectorAll('.colour-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-          chip.classList.toggle('border-2');
-          chip.classList.toggle('border-brand');
+      // ── Colour filter chips (actual filtering) ──────────────
+      var activeFilters = [];
+      var allVariants = document.querySelectorAll('.colour-variant');
+
+      function applyColourFilter() {
+        allVariants.forEach(function(card) {
+          if (activeFilters.length === 0) {
+            card.style.display = '';
+          } else {
+            var group = card.getAttribute('data-colour-group');
+            card.style.display = activeFilters.indexOf(group) !== -1 ? '' : 'none';
+          }
+        });
+      }
+
+      document.querySelectorAll('.colour-chip[data-filter]').forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          var filter = chip.getAttribute('data-filter');
+          var idx = activeFilters.indexOf(filter);
+          if (idx !== -1) {
+            activeFilters.splice(idx, 1);
+            chip.style.borderWidth = '1px';
+            chip.style.opacity = '0.6';
+          } else {
+            activeFilters.push(filter);
+            chip.style.borderWidth = '2px';
+            chip.style.opacity = '1';
+          }
+          applyColourFilter();
         });
       });
+
+      // Reset button
+      var resetBtn = document.querySelector('.colour-reset');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          activeFilters = [];
+          document.querySelectorAll('.colour-chip[data-filter]').forEach(function(c) {
+            c.style.borderWidth = '1px';
+            c.style.opacity = '1';
+          });
+          applyColourFilter();
+        });
+      }
 
       // ── Pricing table tabs (Blank/Print/Embroidery/High stitch) ──
       document.querySelectorAll('.price-tab').forEach(tab => {
@@ -797,20 +906,20 @@
         });
       });
 
-      // ── Bottom tabs (Ralawise: Select Options, Spec, Related, Customisation) ──
+      // ── Bottom tabs (simple underline style) ──
       document.querySelectorAll('.btab-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
           var btabId = btn.getAttribute('data-btab');
           // Reset all btab buttons
           document.querySelectorAll('.btab-btn').forEach(function(b) {
-            b.style.backgroundColor = '#F9FAFB';
+            b.style.backgroundColor = 'transparent';
             b.style.color = '#6B7280';
             b.style.fontWeight = '600';
-            b.style.borderBottomColor = '#E0E0E0';
-            b.style.borderBottomWidth = '1px';
+            b.style.borderBottomColor = 'transparent';
+            b.style.borderBottomWidth = '2px';
           });
           // Activate clicked
-          btn.style.backgroundColor = '#FFFFFF';
+          btn.style.backgroundColor = 'transparent';
           btn.style.color = '#1565C0';
           btn.style.fontWeight = '700';
           btn.style.borderBottomColor = '#1565C0';
@@ -856,14 +965,84 @@
         });
       }
 
-      // ── Colour variant card click (update main image) ───────
-      document.querySelectorAll('#btab-select-options .group').forEach(card => {
-        card.addEventListener('click', (e) => {
+      // ── Link clicks to open specific bottom tabs ─────────────
+      function openBtab(tabId) {
+        document.querySelectorAll('.btab-btn').forEach(function(b) {
+          b.style.backgroundColor = 'transparent';
+          b.style.color = '#6B7280';
+          b.style.fontWeight = '600';
+          b.style.borderBottomColor = 'transparent';
+        });
+        var targetBtn = document.querySelector('.btab-btn[data-btab="' + tabId + '"]');
+        if (targetBtn) {
+          targetBtn.style.color = '#1565C0';
+          targetBtn.style.fontWeight = '700';
+          targetBtn.style.borderBottomColor = '#1565C0';
+        }
+        document.querySelectorAll('.btab-content').forEach(function(c) { c.style.display = 'none'; });
+        var targetPanel = document.getElementById('btab-' + tabId);
+        if (targetPanel) targetPanel.style.display = 'block';
+      }
+
+      // "View Specification" link → open Specification tab
+      var specLink = document.querySelector('.spec-link');
+      if (specLink) {
+        specLink.addEventListener('click', function(e) {
           e.preventDefault();
-          const img = card.querySelector('img');
+          openBtab('specification-tab');
+          document.getElementById('bottom-tabs').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      // "Customisation Calculator" button → open Customisation tab
+      var calcLink = document.querySelector('.calc-link');
+      if (calcLink) {
+        calcLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          openBtab('customisation-calc');
+          document.getElementById('bottom-tabs').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      // ── Delivery box toggle ──────────────────────────────────
+      document.querySelectorAll('.delivery-box').forEach(function(box) {
+        box.addEventListener('click', function() {
+          document.querySelectorAll('.delivery-box').forEach(function(b) {
+            b.classList.remove('active');
+            b.style.borderColor = '#E0E0E0';
+            b.style.background = 'transparent';
+          });
+          box.classList.add('active');
+          box.style.borderColor = '#1565C0';
+          box.style.background = '#E3F2FD';
+        });
+      });
+
+      // ── Colour variant card click (update main image + selected label) ───────
+      var colourLabel = document.getElementById('selectedColourLabel');
+      document.querySelectorAll('#btab-select-options .group').forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Update image
+          var img = card.querySelector('img');
           if (img && mainImage) {
             mainImage.src = img.src;
             mainImage.style.filter = img.style.filter || 'none';
+          }
+          // Update selected label
+          var colourName = card.querySelector('p');
+          if (colourName && colourLabel) {
+            colourLabel.textContent = colourName.textContent;
+          }
+          // Highlight selected card
+          document.querySelectorAll('#btab-select-options .group > div:first-child').forEach(function(d) {
+            d.style.borderColor = '#E0E0E0';
+            d.style.borderWidth = '1px';
+          });
+          var cardBox = card.querySelector('div:first-child');
+          if (cardBox) {
+            cardBox.style.borderColor = '#1565C0';
+            cardBox.style.borderWidth = '2px';
           }
         });
       });
