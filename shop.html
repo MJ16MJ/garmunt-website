@@ -89,7 +89,7 @@
 
   <!-- ===================== MAIN HEADER ===================== -->
   <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-    <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-3 md:py-4 flex items-center gap-3 md:gap-6">
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-4 md:py-5 flex items-center gap-3 md:gap-6">
       <button class="hamburger lg:hidden flex flex-col justify-center items-start gap-[5px] w-9 h-9 bg-transparent border-none flex-shrink-0 relative z-[201]" id="hamburger" aria-label="Open menu" style="-webkit-tap-highlight-color:transparent">
         <span class="block h-[2px] w-[22px] bg-dark rounded-sm transition-all"></span>
         <span class="block h-[2px] w-[16px] bg-dark rounded-sm transition-all"></span>
@@ -207,28 +207,83 @@
   <div class="sticky-filters border-b border-gray-200">
     <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-3">
       <div class="flex flex-wrap items-center justify-between gap-3">
-        <!-- Filter pills -->
-        <div class="flex flex-wrap items-center gap-2">
-          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
-            Brand
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
-            Colour
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
-            Material
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
-            Fit
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white">
-            Price
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
+        <!-- Filter pills with dropdowns -->
+        <div class="flex flex-wrap items-center gap-2 relative">
+          <!-- Brand -->
+          <div class="relative">
+            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="brand-dd">
+              Brand <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="brand-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-48">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Select Brand</p>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Gildan</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Fruit of the Loom</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> AWDis</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Bella+Canvas</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Result</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Russell</label>
+            </div>
+          </div>
+          <!-- Colour -->
+          <div class="relative">
+            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="colour-dd">
+              Colour <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="colour-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-52">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Select Colour</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="w-6 h-6 rounded-full bg-black border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-white border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-blue-700 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-red-600 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-green-600 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-yellow-400 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-orange-500 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-purple-600 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-pink-400 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+                <span class="w-6 h-6 rounded-full bg-gray-400 border border-gray-300 cursor-pointer hover:ring-2 hover:ring-brand hover:ring-offset-1"></span>
+              </div>
+            </div>
+          </div>
+          <!-- Material -->
+          <div class="relative">
+            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="material-dd">
+              Material <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="material-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-44">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Material</p>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> 100% Cotton</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Poly/Cotton</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Polyester</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Organic Cotton</label>
+            </div>
+          </div>
+          <!-- Fit -->
+          <div class="relative">
+            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="fit-dd">
+              Fit <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="fit-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-40">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Fit</p>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Regular</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Slim</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Oversized</label>
+            </div>
+          </div>
+          <!-- Price -->
+          <div class="relative">
+            <button class="filter-pill border border-gray-300 text-dark font-semibold text-xs px-4 py-2 rounded-full bg-white" data-dropdown="price-dd">
+              Price <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="inline ml-1"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="price-dd" class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-3 w-44">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Price Range</p>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> Under &pound;3</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;3 - &pound;5</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;5 - &pound;10</label>
+              <label class="flex items-center gap-2 py-1.5 text-sm text-gray-600 cursor-pointer hover:text-brand"><input type="checkbox" class="accent-brand w-3.5 h-3.5"> &pound;10+</label>
+            </div>
+          </div>
+          <!-- All Filters -->
           <button class="filter-pill border border-brand text-brand font-semibold text-xs px-4 py-2 rounded-full bg-brand-light">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline mr-1"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
             All Filters
@@ -544,11 +599,31 @@
         });
       });
 
-      // Filter pill toggle
-      document.querySelectorAll('.filter-pill').forEach(function(pill) {
-        pill.addEventListener('click', function() {
+      // Filter dropdown toggle
+      document.querySelectorAll('.filter-pill[data-dropdown]').forEach(function(pill) {
+        pill.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var ddId = pill.getAttribute('data-dropdown');
+          var dd = document.getElementById(ddId);
+          // Close all other dropdowns
+          document.querySelectorAll('.filter-dropdown').forEach(function(d) {
+            if (d.id !== ddId) d.classList.add('hidden');
+          });
+          document.querySelectorAll('.filter-pill[data-dropdown]').forEach(function(p) {
+            if (p !== pill) p.classList.remove('active');
+          });
+          // Toggle this one
+          dd.classList.toggle('hidden');
           pill.classList.toggle('active');
         });
+      });
+
+      // Close dropdowns on outside click
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.filter-dropdown') && !e.target.closest('.filter-pill')) {
+          document.querySelectorAll('.filter-dropdown').forEach(function(d) { d.classList.add('hidden'); });
+          document.querySelectorAll('.filter-pill[data-dropdown]').forEach(function(p) { p.classList.remove('active'); });
+        }
       });
 
       // Colour swatch click on cards
