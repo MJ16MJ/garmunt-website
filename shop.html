@@ -27,11 +27,10 @@
   </script>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Product card hover */
-    .product-card { transition: box-shadow 0.3s ease, border-color 0.2s ease, transform 0.2s ease; }
-    .product-card:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.06); transform: translateY(-2px); }
-    .product-card__img img { transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .product-card:hover .product-card__img img { transform: scale(1.03); }
+    /* Product card hover - only Quick View, no highlight */
+    .product-card { transition: none; }
+    .product-card:hover { }
+    .product-card__img img { transition: none; }
 
     /* Quick view overlay */
     .product-card__overlay {
@@ -192,12 +191,14 @@
 
   <!-- ===================== PAGE HEADER + CATEGORY ICONS ===================== -->
   <section class="bg-white border-b border-gray-200">
-    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-6 md:py-8">
-      <h1 class="text-2xl md:text-3xl font-900 text-dark mb-2">T-Shirts</h1>
-      <p class="text-sm text-gray-500 mb-6 max-w-xl">Premium blank and custom printed t-shirts from leading brands. Available in bulk at trade prices with optional branding.</p>
-
-      <!-- Category icon row -->
-      <div class="flex gap-3 overflow-x-auto pb-2 -mb-2 scrollbar-hide">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-5 md:py-6">
+      <!-- Title left (1/4) + Category pills right (3/4) -->
+      <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+        <div class="lg:w-1/4 flex-shrink-0">
+          <h1 class="text-2xl md:text-3xl font-900 text-dark">T-Shirts</h1>
+          <p class="text-xs text-gray-500 mt-1">248 products</p>
+        </div>
+        <div class="lg:w-3/4 flex gap-2.5 overflow-x-auto pb-1 scrollbar-hide">
         <button class="cat-icon active flex-shrink-0 flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2.5 text-xs font-semibold text-dark bg-white">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
           All T-Shirts
@@ -230,6 +231,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M7 13.5s1.5 2 5 2 5-2 5-2"/></svg>
           Organic
         </button>
+        </div>
       </div>
     </div>
   </section>
@@ -400,7 +402,11 @@
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-tshirts.webp" alt="Gildan Heavy Cotton T-Shirt" class="w-full h-full object-cover" />
                 <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Top Seller</span>
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Gildan</span>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">Gildan</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                <div class="absolute bottom-2 right-2 flex gap-1">
+                  <span class="bg-white/90 text-[8px] font-bold text-brand px-1.5 py-0.5 rounded" title="Screen Print available">PRINT</span>
+                  <span class="bg-white/90 text-[8px] font-bold text-brand px-1.5 py-0.5 rounded" title="Embroidery available">EMB</span>
+                </div>
                 <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
@@ -414,16 +420,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+24</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">GD001 &nbsp; Gildan</p>
+                <p class="text-[11px] text-gray-400">GD001 &nbsp; Gildan</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">Gildan Heavy Cotton T-Shirt</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">Gildan Heavy Cotton T-Shirt</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">S - 5XL</p>
+                <p class="text-[11px] text-gray-400">S - 5XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;2.50</p>
+                <p class="text-[15px] font-bold text-dark">&pound;2.50</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.9</span>
@@ -437,8 +443,8 @@
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-polos.webp" alt="AWDis Cool Performance T" class="w-full h-full object-cover" />
                 <span class="absolute top-2 left-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">New</span>
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">AWDis</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">AWDis</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
@@ -450,16 +456,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+18</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">AT001 &nbsp; AWDis</p>
+                <p class="text-[11px] text-gray-400">AT001 &nbsp; AWDis</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">AWDis Cool Performance T</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">AWDis Cool Performance T</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">XS - 3XL</p>
+                <p class="text-[11px] text-gray-400">XS - 3XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;3.99</p>
+                <p class="text-[15px] font-bold text-dark">&pound;3.99</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.7</span>
@@ -473,8 +479,8 @@
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-hoodies.webp" alt="Fruit of the Loom Valueweight T" class="w-full h-full object-cover" />
                 <span class="absolute top-2 left-2 bg-green-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Staff Pick</span>
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">FOTL</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">FOTL</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
@@ -486,16 +492,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+30</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">FT001 &nbsp; FOTL</p>
+                <p class="text-[11px] text-gray-400">FT001 &nbsp; FOTL</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">Fruit of the Loom Valueweight T</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">Fruit of the Loom Valueweight T</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">S - 5XL</p>
+                <p class="text-[11px] text-gray-400">S - 5XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;1.99</p>
+                <p class="text-[15px] font-bold text-dark">&pound;1.99</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.8</span>
@@ -508,8 +514,8 @@
             <a href="product.html" class="product-card bg-white overflow-hidden" style="border-radius:10px; padding:12px;">
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-workwear.webp" alt="Bella+Canvas Unisex Jersey Tee" class="w-full h-full object-cover" />
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Bella+Canvas</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">Bella+Canvas</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
@@ -521,16 +527,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+42</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">BC001 &nbsp; Bella+Canvas</p>
+                <p class="text-[11px] text-gray-400">BC001 &nbsp; Bella+Canvas</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">Bella+Canvas Unisex Jersey Tee</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">Bella+Canvas Unisex Jersey Tee</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">XS - 3XL</p>
+                <p class="text-[11px] text-gray-400">XS - 3XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;4.50</p>
+                <p class="text-[15px] font-bold text-dark">&pound;4.50</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.9</span>
@@ -544,8 +550,8 @@
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-hivis.webp" alt="Result Performance T-Shirt" class="w-full h-full object-cover" />
                 <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Top Seller</span>
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Result</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">Result</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-yellow-400 border border-gray-300" style="width:10px;height:10px;"></span>
@@ -554,16 +560,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+6</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">RT001 &nbsp; Result</p>
+                <p class="text-[11px] text-gray-400">RT001 &nbsp; Result</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">Result Performance T-Shirt</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">Result Performance T-Shirt</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">S - 3XL</p>
+                <p class="text-[11px] text-gray-400">S - 3XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;5.99</p>
+                <p class="text-[15px] font-bold text-dark">&pound;5.99</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.6</span>
@@ -577,8 +583,8 @@
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-caps.webp" alt="SanMar Heavyweight Cotton Tee" class="w-full h-full object-cover" />
                 <span class="absolute top-2 left-2 bg-accent text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">New</span>
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">SanMar</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">SanMar</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
@@ -588,16 +594,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+12</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">SM001 &nbsp; SanMar</p>
+                <p class="text-[11px] text-gray-400">SM001 &nbsp; SanMar</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">SanMar Heavyweight Cotton Tee</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">SanMar Heavyweight Cotton Tee</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">S - 2XL</p>
+                <p class="text-[11px] text-gray-400">S - 2XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;3.25</p>
+                <p class="text-[15px] font-bold text-dark">&pound;3.25</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.5</span>
@@ -610,8 +616,8 @@
             <a href="product.html" class="product-card bg-white overflow-hidden" style="border-radius:10px; padding:12px;">
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-polos.webp" alt="Russell Classic Ringspun T" class="w-full h-full object-cover" />
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Russell</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">Russell</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
@@ -622,16 +628,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+16</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">RC001 &nbsp; Russell</p>
+                <p class="text-[11px] text-gray-400">RC001 &nbsp; Russell</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">Russell Classic Ringspun T</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">Russell Classic Ringspun T</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">S - 3XL</p>
+                <p class="text-[11px] text-gray-400">S - 3XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;2.99</p>
+                <p class="text-[15px] font-bold text-dark">&pound;2.99</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.7</span>
@@ -645,8 +651,8 @@
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-tshirts.webp" alt="Comfort Colors Garment Dyed" class="w-full h-full object-cover" />
                 <span class="absolute top-2 left-2 bg-green-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Staff Pick</span>
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Comfort Colors</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">Comfort Colors</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-yellow-700 border border-gray-300" style="width:10px;height:10px;"></span>
@@ -658,16 +664,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+38</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">CC001 &nbsp; Comfort Colors</p>
+                <p class="text-[11px] text-gray-400">CC001 &nbsp; Comfort Colors</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">Comfort Colors Garment Dyed</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">Comfort Colors Garment Dyed</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">S - 3XL</p>
+                <p class="text-[11px] text-gray-400">S - 3XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;5.75</p>
+                <p class="text-[15px] font-bold text-dark">&pound;5.75</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.8</span>
@@ -681,8 +687,8 @@
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-hivis.webp" alt="Portwest Hi-Vis T-Shirt" class="w-full h-full object-cover" />
                 <span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">Top Seller</span>
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Portwest</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">Portwest</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-yellow-300 border border-gray-300" style="width:10px;height:10px;"></span>
@@ -690,16 +696,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+4</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">PW001 &nbsp; Portwest</p>
+                <p class="text-[11px] text-gray-400">PW001 &nbsp; Portwest</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">Portwest Hi-Vis T-Shirt</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">Portwest Hi-Vis T-Shirt</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">S - 5XL</p>
+                <p class="text-[11px] text-gray-400">S - 5XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;6.49</p>
+                <p class="text-[15px] font-bold text-dark">&pound;6.49</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.6</span>
@@ -712,8 +718,8 @@
             <a href="product.html" class="product-card bg-white overflow-hidden" style="border-radius:10px; padding:12px;">
               <div class="product-card__img relative bg-gray-50 overflow-hidden" style="aspect-ratio:3/4; border-radius:6px;">
                 <img src="images/cat-hoodies.webp" alt="Gildan Softstyle T-Shirt" class="w-full h-full object-cover" />
-                <span class="absolute top-2 right-2 text-[10px] font-semibold text-gray-500" style="opacity:0.8">Gildan</span>
-                <div class="product-card__overlay">Quick View</div>
+                <span class="absolute top-2 right-2 flex flex-col items-end gap-1"><span class="text-[11px] font-bold text-gray-600 bg-white/90 px-2 py-0.5 rounded-full">Gildan</span><span class="flex gap-0.5"><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">PRINT</span><span class="bg-white/90 text-[7px] font-bold text-brand px-1.5 py-0.5 rounded">EMB</span></span></span>
+                                <div class="product-card__overlay">Quick View</div>
               </div>
               <div class="flex items-center gap-1 w-full" style="margin-top:8px;">
                 <span class="swatch rounded-full bg-black border border-gray-300" style="width:10px;height:10px;"></span>
@@ -725,16 +731,16 @@
                 <span class="text-[9px] text-gray-400 ml-auto">+28</span>
               </div>
               <div style="margin-top:6px;">
-                <p class="text-[10px] text-gray-400">GD002 &nbsp; Gildan</p>
+                <p class="text-[11px] text-gray-400">GD002 &nbsp; Gildan</p>
               </div>
               <div style="margin-top:6px;">
-                <h3 class="text-[13px] font-semibold text-dark leading-tight">Gildan Softstyle T-Shirt</h3>
+                <h3 class="text-sm font-semibold text-dark leading-tight">Gildan Softstyle T-Shirt</h3>
               </div>
               <div style="margin-top:4px;">
-                <p class="text-[10px] text-gray-400">S - 3XL</p>
+                <p class="text-[11px] text-gray-400">S - 3XL</p>
               </div>
               <div class="flex items-center justify-between" style="margin-top:8px;">
-                <p class="text-sm font-bold text-dark">&pound;3.10</p>
+                <p class="text-[15px] font-bold text-dark">&pound;3.10</p>
                 <div class="flex items-center gap-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="#FBBF24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <span class="text-[10px] font-semibold text-dark">4.8</span>
