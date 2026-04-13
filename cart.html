@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart | Garmunt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#1565C0',
+            'brand-dark': '#0D47A1',
+            'brand-light': '#E3F2FD',
+            accent: '#F93C00',
+            dark: '#212121',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="font-sans text-dark bg-white antialiased">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div class="bg-brand-dark text-white text-[11px] py-1.5">
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 flex justify-center md:justify-between items-center gap-3">
+      <span class="text-center md:text-left">Free Shipping on Orders Over &pound;150 &middot; Trade Accounts Welcome</span>
+      <span class="hidden md:inline-flex items-center gap-1.5 font-semibold">
+        <span>&#9889;</span> Fast 3-5 Day Turnaround on All Orders
+      </span>
+      <div class="hidden md:flex items-center gap-5">
+        <a href="#" class="flex items-center gap-1.5 hover:text-brand-light transition-colors">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          0800 000 0000
+        </a>
+        <a href="#" class="hover:text-brand-light transition-colors">Live Chat</a>
+        <a href="#" class="hover:text-brand-light transition-colors">Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN HEADER ===================== -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-4 md:py-5 flex items-center gap-3 md:gap-6">
+      <button class="hamburger lg:hidden flex flex-col justify-center items-start gap-[5px] w-9 h-9 bg-transparent border-none flex-shrink-0 relative z-[201]" id="hamburger" aria-label="Open menu" style="-webkit-tap-highlight-color:transparent">
+        <span class="block h-[2px] w-[22px] bg-dark rounded-sm transition-all"></span>
+        <span class="block h-[2px] w-[16px] bg-dark rounded-sm transition-all"></span>
+        <span class="block h-[2px] w-[20px] bg-dark rounded-sm transition-all"></span>
+      </button>
+      <a href="index.html" class="flex-shrink-0">
+        <img src="garmunt-logo.png" alt="Garmunt" class="h-[46px] md:h-14" />
+      </a>
+      <div class="flex-1 min-w-0">
+        <div class="relative w-full hidden md:block">
+          <input type="text" placeholder="Search t-shirts, hoodies, workwear..." class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors" />
+          <button class="absolute right-0 top-0 h-full px-4 bg-brand text-white rounded-r hover:bg-brand-dark transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <button class="md:hidden text-gray-600">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <a href="#" class="hidden md:inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-brand-dark transition-colors">Design Now</a>
+        <a href="#" class="text-gray-600 hover:text-brand transition-colors">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="cart.html" class="text-brand transition-colors relative pr-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="headerCartCount" class="absolute -top-1.5 -right-0.5 bg-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">3</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== NAV BAR ===================== -->
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-drawer-header hidden">
+      <img src="garmunt-logo.png" alt="Garmunt" class="nav-drawer-logo" />
+      <button class="nav-drawer-close" id="navClose" aria-label="Close menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-1.5">
+      <ul class="flex items-center gap-0 text-sm font-medium">
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">All Products</a></li>
+        <li><a href="shop.html" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">T-Shirts</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Hoodies</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Workwear</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Hi-Vis</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Accessories</a></li>
+        <li><a href="#" class="px-4 py-2.5 bg-accent text-white font-semibold rounded hover:bg-red-700 transition-colors">Custom Orders</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Brands</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Sale</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== BREADCRUMB ===================== -->
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-3">
+      <nav class="flex flex-wrap items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-gray-500">
+        <a href="index.html" class="hover:text-brand transition-colors">Home</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="text-dark font-medium">Cart</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ===================== CART PAGE ===================== -->
+  <div class="bg-gray-50 min-h-[60vh]">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-8 md:py-10">
+
+      <!-- Page Title -->
+      <div class="mb-6 md:mb-8">
+        <h1 class="text-2xl md:text-3xl font-bold text-dark">Your Cart <span id="cartItemCount" class="text-gray-400 font-normal text-lg md:text-xl">(3 items)</span></h1>
+      </div>
+
+      <!-- Cart Layout: 2 columns -->
+      <div id="cartContent" class="flex flex-col lg:flex-row gap-6 lg:gap-8">
+
+        <!-- LEFT: Cart Items -->
+        <div class="w-full lg:w-[65%]">
+          <div id="cartItems" class="space-y-4">
+
+            <!-- Cart Item 1 -->
+            <div class="cart-item-card bg-white rounded-lg border border-gray-200 p-4 md:p-5" data-id="1" data-unit-price="7.50" data-custom-price="2.50" data-has-custom="true">
+              <div class="flex gap-4 md:gap-5">
+                <!-- Image -->
+                <a href="#" class="flex-shrink-0">
+                  <img src="images/cat-tshirts.webp" alt="Gildan Heavy Cotton T-Shirt" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md bg-gray-100" />
+                </a>
+                <!-- Details -->
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-3">
+                    <div>
+                      <a href="#" class="text-sm md:text-base font-semibold text-dark hover:text-brand transition-colors line-clamp-1">Gildan Heavy Cotton T-Shirt</a>
+                      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-gray-500">
+                        <span>Colour: <span class="font-medium text-dark">Black</span></span>
+                        <span>Size: <span class="font-medium text-dark">L</span></span>
+                        <span>SKU: <span class="font-medium text-gray-600">GD001</span></span>
+                      </div>
+                      <div class="mt-1.5">
+                        <span class="inline-flex items-center gap-1 text-[11px] font-medium bg-brand-light text-brand px-2 py-0.5 rounded-full">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                          Embroidered - Front Chest (+&pound;2.50/unit)
+                        </span>
+                      </div>
+                    </div>
+                    <!-- Remove Button -->
+                    <button onclick="removeItem(this)" class="flex-shrink-0 text-gray-400 hover:text-red-500 transition-colors p-1" title="Remove item">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                  </div>
+                  <!-- Bottom: Qty + Pricing -->
+                  <div class="flex flex-wrap items-center justify-between gap-3 mt-3 pt-3 border-t border-gray-100">
+                    <div class="flex items-center gap-3">
+                      <!-- Qty Selector -->
+                      <div class="flex items-center border border-gray-300 rounded">
+                        <button onclick="changeQty(this, -1)" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-dark hover:bg-gray-100 transition-colors rounded-l text-lg font-medium">&minus;</button>
+                        <input type="number" value="10" min="1" max="999" onchange="qtyInputChange(this)" class="w-12 h-8 text-center text-sm font-semibold border-x border-gray-300 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                        <button onclick="changeQty(this, 1)" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-dark hover:bg-gray-100 transition-colors rounded-r text-lg font-medium">&plus;</button>
+                      </div>
+                      <span class="text-xs text-gray-500">&pound;<span class="item-unit-price">7.50</span>/unit</span>
+                    </div>
+                    <span class="text-sm md:text-base font-bold text-dark">&pound;<span class="item-line-total">100.00</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cart Item 2 -->
+            <div class="cart-item-card bg-white rounded-lg border border-gray-200 p-4 md:p-5" data-id="2" data-unit-price="6.25" data-custom-price="2.00" data-has-custom="true">
+              <div class="flex gap-4 md:gap-5">
+                <a href="#" class="flex-shrink-0">
+                  <img src="images/cat-hivis.webp" alt="Portwest Hi-Vis Executive Vest" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md bg-gray-100" />
+                </a>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-3">
+                    <div>
+                      <a href="#" class="text-sm md:text-base font-semibold text-dark hover:text-brand transition-colors line-clamp-1">Portwest Hi-Vis Executive Vest</a>
+                      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-gray-500">
+                        <span>Colour: <span class="font-medium text-dark">Yellow</span></span>
+                        <span>Size: <span class="font-medium text-dark">XL</span></span>
+                        <span>SKU: <span class="font-medium text-gray-600">PW-C470</span></span>
+                      </div>
+                      <div class="mt-1.5">
+                        <span class="inline-flex items-center gap-1 text-[11px] font-medium bg-brand-light text-brand px-2 py-0.5 rounded-full">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                          Printed - Back (+&pound;2.00/unit)
+                        </span>
+                      </div>
+                    </div>
+                    <button onclick="removeItem(this)" class="flex-shrink-0 text-gray-400 hover:text-red-500 transition-colors p-1" title="Remove item">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                  </div>
+                  <div class="flex flex-wrap items-center justify-between gap-3 mt-3 pt-3 border-t border-gray-100">
+                    <div class="flex items-center gap-3">
+                      <div class="flex items-center border border-gray-300 rounded">
+                        <button onclick="changeQty(this, -1)" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-dark hover:bg-gray-100 transition-colors rounded-l text-lg font-medium">&minus;</button>
+                        <input type="number" value="25" min="1" max="999" onchange="qtyInputChange(this)" class="w-12 h-8 text-center text-sm font-semibold border-x border-gray-300 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                        <button onclick="changeQty(this, 1)" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-dark hover:bg-gray-100 transition-colors rounded-r text-lg font-medium">&plus;</button>
+                      </div>
+                      <span class="text-xs text-gray-500">&pound;<span class="item-unit-price">6.25</span>/unit</span>
+                    </div>
+                    <span class="text-sm md:text-base font-bold text-dark">&pound;<span class="item-line-total">206.25</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cart Item 3 -->
+            <div class="cart-item-card bg-white rounded-lg border border-gray-200 p-4 md:p-5" data-id="3" data-unit-price="12.99" data-custom-price="0" data-has-custom="false">
+              <div class="flex gap-4 md:gap-5">
+                <a href="#" class="flex-shrink-0">
+                  <img src="images/cat-hoodies.webp" alt="AWDis College Hoodie" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md bg-gray-100" />
+                </a>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-3">
+                    <div>
+                      <a href="#" class="text-sm md:text-base font-semibold text-dark hover:text-brand transition-colors line-clamp-1">AWDis College Hoodie</a>
+                      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-gray-500">
+                        <span>Colour: <span class="font-medium text-dark">Navy</span></span>
+                        <span>Size: <span class="font-medium text-dark">M</span></span>
+                        <span>SKU: <span class="font-medium text-gray-600">AT002</span></span>
+                      </div>
+                      <div class="mt-1.5">
+                        <span class="inline-flex items-center gap-1 text-[11px] font-medium bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                          No customisation
+                        </span>
+                      </div>
+                    </div>
+                    <button onclick="removeItem(this)" class="flex-shrink-0 text-gray-400 hover:text-red-500 transition-colors p-1" title="Remove item">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                  </div>
+                  <div class="flex flex-wrap items-center justify-between gap-3 mt-3 pt-3 border-t border-gray-100">
+                    <div class="flex items-center gap-3">
+                      <div class="flex items-center border border-gray-300 rounded">
+                        <button onclick="changeQty(this, -1)" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-dark hover:bg-gray-100 transition-colors rounded-l text-lg font-medium">&minus;</button>
+                        <input type="number" value="5" min="1" max="999" onchange="qtyInputChange(this)" class="w-12 h-8 text-center text-sm font-semibold border-x border-gray-300 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                        <button onclick="changeQty(this, 1)" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-dark hover:bg-gray-100 transition-colors rounded-r text-lg font-medium">&plus;</button>
+                      </div>
+                      <span class="text-xs text-gray-500">&pound;<span class="item-unit-price">12.99</span>/unit</span>
+                    </div>
+                    <span class="text-sm md:text-base font-bold text-dark">&pound;<span class="item-line-total">64.95</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Below Cart Items -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-6">
+            <a href="shop.html" class="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-brand-dark transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              Continue Shopping
+            </a>
+            <!-- Promo Code -->
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <div class="relative flex-1 sm:flex-initial">
+                <input id="promoInput" type="text" placeholder="Discount code" class="w-full sm:w-52 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-brand transition-colors" />
+              </div>
+              <button onclick="applyPromo()" class="px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded hover:bg-gray-900 transition-colors">Apply</button>
+            </div>
+          </div>
+          <!-- Promo Success Message -->
+          <div id="promoMessage" class="hidden mt-3 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2 text-sm text-green-700">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Discount applied: <strong>-&pound;10.00</strong></span>
+            <button onclick="removePromo()" class="ml-auto text-green-500 hover:text-green-700 transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT: Order Summary Sidebar -->
+        <div class="w-full lg:w-[35%]">
+          <div class="lg:sticky lg:top-[100px]">
+            <div class="bg-white rounded-lg border border-gray-200 p-5 md:p-6">
+              <h2 class="text-lg font-bold text-dark mb-5">Order Summary</h2>
+
+              <!-- Summary Lines -->
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span class="font-medium">&pound;<span id="summarySubtotal">371.20</span></span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Customisation</span>
+                  <span class="font-medium">&pound;<span id="summaryCustom">75.00</span></span>
+                </div>
+
+                <!-- Delivery Toggle -->
+                <div class="pt-3 border-t border-gray-100">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-600">Delivery</span>
+                    <span class="font-medium" id="deliveryCostDisplay">&pound;0.00</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <button id="deliveryStandard" onclick="setDelivery('standard')" class="flex-1 py-2 px-3 rounded border text-xs font-semibold transition-colors bg-brand text-white border-brand">
+                      Standard <span class="block font-normal text-[10px] mt-0.5 opacity-80">Free over &pound;150</span>
+                    </button>
+                    <button id="deliveryExpress" onclick="setDelivery('express')" class="flex-1 py-2 px-3 rounded border text-xs font-semibold transition-colors bg-white text-gray-600 border-gray-300 hover:border-brand hover:text-brand">
+                      Express <span class="block font-normal text-[10px] mt-0.5 opacity-70">&pound;9.99</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Discount line (hidden by default) -->
+                <div id="summaryDiscountRow" class="hidden flex justify-between text-green-600">
+                  <span>Discount</span>
+                  <span class="font-medium">-&pound;10.00</span>
+                </div>
+
+                <div class="flex justify-between pt-3 border-t border-gray-100">
+                  <span class="text-gray-600">VAT (20%)</span>
+                  <span class="font-medium">&pound;<span id="summaryVat">89.24</span></span>
+                </div>
+              </div>
+
+              <!-- Grand Total -->
+              <div class="flex justify-between items-center mt-5 pt-4 border-t-2 border-gray-200">
+                <span class="text-base font-bold text-dark">Total</span>
+                <span class="text-xl font-bold text-dark">&pound;<span id="summaryTotal">535.44</span></span>
+              </div>
+
+              <!-- Buttons -->
+              <div class="mt-5 space-y-3">
+                <button class="w-full py-3 bg-brand text-white text-sm font-bold rounded hover:bg-brand-dark transition-colors">
+                  Proceed to Checkout
+                </button>
+                <button class="w-full py-3 bg-white text-brand text-sm font-bold rounded border-2 border-brand hover:bg-brand-light transition-colors">
+                  Request a Quote
+                </button>
+              </div>
+
+              <!-- Trust Badges -->
+              <div class="mt-5 pt-4 border-t border-gray-100 grid grid-cols-3 gap-3">
+                <div class="text-center">
+                  <div class="flex justify-center mb-1.5">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  </div>
+                  <p class="text-[10px] text-gray-500 font-medium leading-tight">Secure Checkout</p>
+                </div>
+                <div class="text-center">
+                  <div class="flex justify-center mb-1.5">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  </div>
+                  <p class="text-[10px] text-gray-500 font-medium leading-tight">Next Day Delivery</p>
+                </div>
+                <div class="text-center">
+                  <div class="flex justify-center mb-1.5">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                  </div>
+                  <p class="text-[10px] text-gray-500 font-medium leading-tight">Free Returns</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Empty Cart State (hidden by default) -->
+      <div id="emptyCart" class="hidden text-center py-16 md:py-24">
+        <div class="flex justify-center mb-5">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-dark mb-2">Your cart is empty</h2>
+        <p class="text-gray-500 mb-6 text-sm">Looks like you haven't added any items to your cart yet.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-6 py-3 rounded hover:bg-brand-dark transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Browse Products
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-white pt-14 pb-6">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-10 border-b border-gray-200">
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Apparel</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">T-Shirts</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Hoodies</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Polos</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Workwear</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Hi-Vis</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Jackets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Services</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Custom Printing</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Embroidery</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">DTG Printing</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Trade Accounts</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Bulk Orders</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">About</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">About Us</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Reviews</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Blog</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">My Account</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">My Orders</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Track Order</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Returns</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">FAQs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Contact</h4>
+          <ul class="space-y-2.5 text-sm text-gray-600">
+            <li class="flex items-start gap-2">
+              <svg class="flex-shrink-0 mt-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Garmunt Ltd, Manchester, UK
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="flex-shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              0800 000 0000
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="flex-shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              hello@garmunt.com
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center pt-5 gap-4">
+        <p class="text-xs text-gray-400">&copy; 2026 Garmunt Ltd. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-gray-400 hover:text-brand transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-brand transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-brand transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"/></svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-brand transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+        </div>
+        <div class="flex gap-5 text-xs text-gray-400">
+          <a href="#" class="hover:text-brand transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-brand transition-colors">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== JAVASCRIPT ===================== -->
+  <script>
+    // ---- State ----
+    var promoApplied = false;
+    var deliveryMode = 'standard'; // 'standard' or 'express'
+
+    // ---- Helpers ----
+    function fmt(n) {
+      return n.toFixed(2);
+    }
+
+    // ---- Qty Change via +/- buttons ----
+    function changeQty(btn, delta) {
+      var card = btn.closest('.cart-item-card');
+      var input = card.querySelector('input[type="number"]');
+      var newVal = parseInt(input.value) + delta;
+      if (newVal < 1) newVal = 1;
+      if (newVal > 999) newVal = 999;
+      input.value = newVal;
+      updateItemTotal(card);
+      recalcAll();
+    }
+
+    // ---- Qty Change via direct input ----
+    function qtyInputChange(input) {
+      var card = input.closest('.cart-item-card');
+      var val = parseInt(input.value);
+      if (isNaN(val) || val < 1) { input.value = 1; val = 1; }
+      if (val > 999) { input.value = 999; val = 999; }
+      updateItemTotal(card);
+      recalcAll();
+    }
+
+    // ---- Update single item line total ----
+    function updateItemTotal(card) {
+      var qty = parseInt(card.querySelector('input[type="number"]').value);
+      var unitPrice = parseFloat(card.getAttribute('data-unit-price'));
+      var lineTotal = qty * unitPrice;
+      card.querySelector('.item-line-total').textContent = fmt(lineTotal);
+    }
+
+    // ---- Remove Item ----
+    function removeItem(btn) {
+      var card = btn.closest('.cart-item-card');
+      card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      card.style.opacity = '0';
+      card.style.transform = 'translateX(-20px)';
+      setTimeout(function() {
+        card.remove();
+        recalcAll();
+        checkEmpty();
+      }, 300);
+    }
+
+    // ---- Check empty state ----
+    function checkEmpty() {
+      var items = document.querySelectorAll('.cart-item-card');
+      if (items.length === 0) {
+        document.getElementById('cartContent').classList.add('hidden');
+        document.getElementById('emptyCart').classList.remove('hidden');
+        document.getElementById('cartItemCount').textContent = '(0 items)';
+        document.getElementById('headerCartCount').textContent = '0';
+      }
+    }
+
+    // ---- Recalculate all totals ----
+    function recalcAll() {
+      var cards = document.querySelectorAll('.cart-item-card');
+      var subtotal = 0;
+      var customTotal = 0;
+      var totalQty = 0;
+
+      cards.forEach(function(card) {
+        var qty = parseInt(card.querySelector('input[type="number"]').value);
+        var unitPrice = parseFloat(card.getAttribute('data-unit-price'));
+        var customPrice = parseFloat(card.getAttribute('data-custom-price'));
+        var hasCustom = card.getAttribute('data-has-custom') === 'true';
+
+        totalQty += qty;
+        subtotal += qty * unitPrice;
+        if (hasCustom) {
+          customTotal += qty * customPrice;
+        }
+      });
+
+      // Delivery cost
+      var preDeliveryTotal = subtotal + customTotal;
+      var deliveryCost = 0;
+      if (deliveryMode === 'express') {
+        deliveryCost = 9.99;
+      } else {
+        deliveryCost = preDeliveryTotal >= 150 ? 0 : 7.99;
+      }
+
+      // Discount
+      var discount = promoApplied ? 10.00 : 0;
+
+      // VAT: 20% on (subtotal + custom + delivery - discount)
+      var vatBase = subtotal + customTotal + deliveryCost - discount;
+      var vat = vatBase * 0.20;
+
+      // Grand total
+      var total = vatBase + vat;
+
+      // Update DOM
+      document.getElementById('summarySubtotal').textContent = fmt(subtotal);
+      document.getElementById('summaryCustom').textContent = fmt(customTotal);
+      document.getElementById('deliveryCostDisplay').textContent = deliveryCost === 0 ? 'FREE' : '\u00A3' + fmt(deliveryCost);
+      document.getElementById('summaryVat').textContent = fmt(vat);
+      document.getElementById('summaryTotal').textContent = fmt(total);
+
+      // Item count
+      var itemCount = cards.length;
+      document.getElementById('cartItemCount').textContent = '(' + itemCount + ' item' + (itemCount !== 1 ? 's' : '') + ')';
+      document.getElementById('headerCartCount').textContent = String(itemCount);
+
+      // Discount row
+      var discountRow = document.getElementById('summaryDiscountRow');
+      if (promoApplied) {
+        discountRow.classList.remove('hidden');
+        discountRow.classList.add('flex');
+      } else {
+        discountRow.classList.add('hidden');
+        discountRow.classList.remove('flex');
+      }
+    }
+
+    // ---- Delivery Toggle ----
+    function setDelivery(mode) {
+      deliveryMode = mode;
+      var stdBtn = document.getElementById('deliveryStandard');
+      var expBtn = document.getElementById('deliveryExpress');
+      if (mode === 'standard') {
+        stdBtn.className = 'flex-1 py-2 px-3 rounded border text-xs font-semibold transition-colors bg-brand text-white border-brand';
+        expBtn.className = 'flex-1 py-2 px-3 rounded border text-xs font-semibold transition-colors bg-white text-gray-600 border-gray-300 hover:border-brand hover:text-brand';
+      } else {
+        expBtn.className = 'flex-1 py-2 px-3 rounded border text-xs font-semibold transition-colors bg-brand text-white border-brand';
+        stdBtn.className = 'flex-1 py-2 px-3 rounded border text-xs font-semibold transition-colors bg-white text-gray-600 border-gray-300 hover:border-brand hover:text-brand';
+      }
+      recalcAll();
+    }
+
+    // ---- Promo Code ----
+    function applyPromo() {
+      var input = document.getElementById('promoInput');
+      var val = input.value.trim();
+      if (val.length === 0) return;
+      promoApplied = true;
+      document.getElementById('promoMessage').classList.remove('hidden');
+      input.value = '';
+      input.disabled = true;
+      recalcAll();
+    }
+
+    function removePromo() {
+      promoApplied = false;
+      document.getElementById('promoMessage').classList.add('hidden');
+      document.getElementById('promoInput').disabled = false;
+      recalcAll();
+    }
+
+    // ---- Mobile hamburger menu ----
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburger');
+      var navbar = document.getElementById('navbar');
+      var navBackdrop = document.getElementById('navBackdrop');
+      var navClose = document.getElementById('navClose');
+
+      function openNav() {
+        hamburger.classList.add('open');
+        navbar.classList.add('open');
+        navBackdrop.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeNav() {
+        hamburger.classList.remove('open');
+        navbar.classList.remove('open');
+        navBackdrop.classList.remove('visible');
+        document.body.style.overflow = '';
+      }
+
+      if (hamburger) hamburger.addEventListener('click', function() {
+        if (navbar.classList.contains('open')) closeNav(); else openNav();
+      });
+      if (navClose) navClose.addEventListener('click', closeNav);
+      if (navBackdrop) navBackdrop.addEventListener('click', closeNav);
+
+      // Initial calc
+      recalcAll();
+    });
+  </script>
+
+</body>
+</html>

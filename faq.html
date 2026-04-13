@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQs | Garmunt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#1565C0',
+            'brand-dark': '#0D47A1',
+            'brand-light': '#E3F2FD',
+            accent: '#F93C00',
+            dark: '#212121',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .faq-answer.open {
+      padding-top: 0;
+      padding-bottom: 16px;
+    }
+    .faq-toggle .faq-icon {
+      transition: transform 0.25s ease;
+    }
+    .faq-toggle.open .faq-icon {
+      transform: rotate(180deg);
+    }
+    .faq-item {
+      transition: opacity 0.25s ease, max-height 0.3s ease;
+    }
+    .faq-item.hidden-faq {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    .tab-btn.active {
+      background: #1565C0;
+      color: #fff;
+      border-color: #1565C0;
+    }
+  </style>
+</head>
+<body class="font-sans text-dark bg-white antialiased">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div class="bg-brand-dark text-white text-[11px] py-1.5">
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 flex justify-center md:justify-between items-center gap-3">
+      <span class="text-center md:text-left">Free Shipping on Orders Over &pound;150 &middot; Trade Accounts Welcome</span>
+      <span class="hidden md:inline-flex items-center gap-1.5 font-semibold">
+        <span>&#9889;</span> Fast 3-5 Day Turnaround on All Orders
+      </span>
+      <div class="hidden md:flex items-center gap-5">
+        <a href="#" class="flex items-center gap-1.5 hover:text-brand-light transition-colors">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          0800 000 0000
+        </a>
+        <a href="#" class="hover:text-brand-light transition-colors">Live Chat</a>
+        <a href="#" class="hover:text-brand-light transition-colors">Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN HEADER ===================== -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-4 md:py-5 flex items-center gap-3 md:gap-6">
+      <button class="hamburger lg:hidden flex flex-col justify-center items-start gap-[5px] w-9 h-9 bg-transparent border-none flex-shrink-0 relative z-[201]" id="hamburger" aria-label="Open menu" style="-webkit-tap-highlight-color:transparent">
+        <span class="block h-[2px] w-[22px] bg-dark rounded-sm transition-all"></span>
+        <span class="block h-[2px] w-[16px] bg-dark rounded-sm transition-all"></span>
+        <span class="block h-[2px] w-[20px] bg-dark rounded-sm transition-all"></span>
+      </button>
+      <a href="index.html" class="flex-shrink-0">
+        <img src="garmunt-logo.png" alt="Garmunt" class="h-[46px] md:h-14" />
+      </a>
+      <div class="flex-1 min-w-0">
+        <div class="relative w-full hidden md:block">
+          <input type="text" placeholder="Search t-shirts, hoodies, workwear..." class="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-brand transition-colors" />
+          <button class="absolute right-0 top-0 h-full px-4 bg-brand text-white rounded-r hover:bg-brand-dark transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <button class="md:hidden text-gray-600">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <a href="#" class="hidden md:inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-brand-dark transition-colors">Design Now</a>
+        <a href="#" class="text-gray-600 hover:text-brand transition-colors">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="#" class="text-gray-600 hover:text-brand transition-colors relative pr-1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="absolute -top-1.5 -right-0.5 bg-accent text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== NAV BAR ===================== -->
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-drawer-header hidden">
+      <img src="garmunt-logo.png" alt="Garmunt" class="nav-drawer-logo" />
+      <button class="nav-drawer-close" id="navClose" aria-label="Close menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-1.5">
+      <ul class="flex items-center gap-0 text-sm font-medium">
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">All Products</a></li>
+        <li><a href="shop.html" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">T-Shirts</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Hoodies</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Workwear</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Hi-Vis</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Accessories</a></li>
+        <li><a href="#" class="px-4 py-2.5 bg-accent text-white font-semibold rounded hover:bg-red-700 transition-colors">Custom Orders</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Brands</a></li>
+        <li><a href="#" class="px-4 py-2.5 text-dark hover:text-brand hover:bg-brand-light/50 transition-colors rounded">Sale</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== BREADCRUMB ===================== -->
+  <div class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-3">
+      <nav class="flex flex-wrap items-center gap-1.5 md:gap-2 text-[10px] md:text-xs text-gray-500">
+        <a href="index.html" class="hover:text-brand transition-colors">Home</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="text-dark font-medium">FAQs</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE HEADER ===================== -->
+  <section class="bg-white border-b border-gray-200">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6 py-8 md:py-10">
+      <h1 class="text-3xl md:text-4xl font-900 text-dark mb-2">Frequently Asked Questions</h1>
+      <p class="text-gray-500 text-sm">Find answers to common questions about ordering, delivery, customisation and more.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SEARCH + TABS + FAQ ACCORDION ===================== -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-[900px] mx-auto px-4 md:px-6">
+
+      <!-- Search Bar -->
+      <div class="relative mb-8">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="faqSearch" placeholder="Search questions..." class="w-full border border-gray-300 rounded-lg pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-brand transition-colors" />
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="flex flex-wrap gap-2 mb-8" id="faqTabs">
+        <button class="tab-btn active px-4 py-2 rounded-full border border-gray-200 text-sm font-semibold transition-colors" data-category="all">All</button>
+        <button class="tab-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-semibold text-gray-600 hover:border-brand hover:text-brand transition-colors" data-category="ordering">Ordering</button>
+        <button class="tab-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-semibold text-gray-600 hover:border-brand hover:text-brand transition-colors" data-category="delivery">Delivery</button>
+        <button class="tab-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-semibold text-gray-600 hover:border-brand hover:text-brand transition-colors" data-category="customisation">Customisation</button>
+        <button class="tab-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-semibold text-gray-600 hover:border-brand hover:text-brand transition-colors" data-category="returns">Returns</button>
+        <button class="tab-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-semibold text-gray-600 hover:border-brand hover:text-brand transition-colors" data-category="trade">Trade Accounts</button>
+      </div>
+
+      <!-- No Results Message -->
+      <div id="noResults" class="hidden text-center py-10">
+        <svg class="mx-auto mb-3 text-gray-300" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <p class="text-gray-500 text-sm">No questions match your search. Try a different keyword.</p>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div id="faqList" class="space-y-3">
+
+        <!-- ===== ORDERING ===== -->
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="ordering">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">How do I place an order?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">You can place an order directly through our website by browsing our catalogue, adding items to your basket, and proceeding to checkout. If you have a trade account, log in first to see your discounted pricing. For large or custom orders, you can also contact our sales team on 0800 000 0000 or email hello@garmunt.com and we'll put together a quote for you.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="ordering">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">What is the minimum order quantity?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">There is no minimum order quantity for blank garments -- you can order as little as one item. For printed or embroidered garments, the minimum order is 10 units per design. This allows us to set up the print process efficiently while keeping costs competitive.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="ordering">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">Can I order samples?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">Yes, single samples are available on all blank garments at standard pricing. Simply add the item to your basket and check out as normal. If you need a printed sample, contact our sales team and we can arrange a sample run for you -- a small set-up fee may apply depending on the print method.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="ordering trade">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">Do you offer trade accounts?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">Yes, we offer trade accounts with exclusive wholesale pricing. You can apply online through our website -- the process takes just a few minutes. Once approved, you'll have access to discounted trade prices across our entire product range. Trade accounts also benefit from extended payment terms and a dedicated account manager.</p>
+          </div>
+        </div>
+
+        <!-- ===== DELIVERY ===== -->
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="delivery">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">How long does delivery take?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">Standard delivery takes 3-5 working days. Express next-day delivery is available on orders placed before 3pm (Monday to Friday). Custom-printed orders require an additional 3-5 working days for production before dispatch. You'll receive tracking information via email once your order has been shipped.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="delivery">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">Do you offer free shipping?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">Yes, we offer free standard delivery on all orders over &pound;150 (ex. VAT) within mainland UK. For orders under &pound;150, standard delivery is charged at a flat rate of &pound;5.95. Express and international shipping rates are calculated at checkout based on weight and destination.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="delivery">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">Can you deliver internationally?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">Yes, we offer global freight and international delivery to most countries worldwide. International shipping rates and delivery times vary by destination. For large international orders, contact our logistics team for a bespoke shipping quote. We ship via FedEx and DHL for international orders to ensure reliable, tracked delivery.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="delivery">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">What courier do you use?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">We use DPD for express and next-day deliveries within the UK, Royal Mail for standard and smaller parcels, and FedEx for international shipments. All deliveries include full tracking so you can monitor your order from dispatch to doorstep. You'll receive your tracking details by email as soon as your order ships.</p>
+          </div>
+        </div>
+
+        <!-- ===== CUSTOMISATION ===== -->
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="customisation">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">What customisation methods do you offer?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">We offer a full range of customisation methods including screen printing (ideal for large runs), embroidery (perfect for logos and workwear), and DTG (direct-to-garment) printing for photographic or complex multi-colour designs. We also offer heat transfers and vinyl printing for smaller quantities. Our team can advise on the best method for your project.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="customisation">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">What file formats do you accept?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">For best results, we accept vector files in AI, EPS, or PDF format. For DTG and digital printing, we also accept high-resolution PNG files (300dpi or higher). If you don't have artwork in these formats, our in-house design team can help convert or recreate your logo -- just get in touch and we'll provide a quote for artwork services.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="customisation">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">Can I see a proof before production?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">Yes, absolutely. We provide a digital proof within 24 hours of receiving your artwork and order details. You'll be able to review the placement, sizing, and colours before we go to production. We won't start printing until you've approved the proof, so you can be confident in the final result.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="customisation">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">How long does customisation take?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">Customisation typically takes 3-5 additional working days on top of standard delivery times. This includes proof approval, setup, and production. For urgent orders, we offer an express customisation service -- contact our team to discuss turnaround options. Turnaround times may vary for very large orders (1,000+ units).</p>
+          </div>
+        </div>
+
+        <!-- ===== RETURNS ===== -->
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="returns">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">What is your returns policy?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">We accept returns on blank (unprinted, unembroidered) garments within 14 days of delivery, provided items are unworn, unwashed, and in their original packaging. Please note that customised items (printed or embroidered) cannot be returned unless they are faulty or incorrect. For full details, see our Returns Policy page.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="returns">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">How do I arrange a return?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">To arrange a return, contact our customer service team by emailing hello@garmunt.com or calling 0800 000 0000. Please have your order number ready. We'll provide you with a returns authorisation number and instructions for sending the items back. Return shipping costs are the responsibility of the customer unless the item is faulty.</p>
+          </div>
+        </div>
+
+        <div class="faq-item border border-gray-200 rounded-lg" data-category="returns">
+          <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+            <span class="text-sm font-semibold text-dark pr-4">Do you offer refunds?</span>
+            <svg class="faq-icon text-gray-400 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer px-5">
+            <p class="text-sm text-gray-600 leading-relaxed">Yes, we offer a full refund on eligible returns within 14 days of delivery. Once we receive and inspect the returned items, your refund will be processed within 5-7 working days back to your original payment method. For faulty or incorrect items, we'll also cover the return shipping cost and can arrange a replacement or refund -- whichever you prefer.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-white pt-14 pb-6 border-t border-gray-200">
+    <div class="max-w-[1350px] mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-10 border-b border-gray-200">
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Apparel</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">T-Shirts</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Hoodies</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Polos</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Workwear</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Hi-Vis</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Services</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Custom Printing</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Embroidery</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">DTG Printing</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Trade Accounts</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">About</h4>
+          <ul class="space-y-2.5">
+            <li><a href="about.html" class="text-sm text-gray-600 hover:text-brand transition-colors">About Us</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Reviews</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">My Account</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">My Orders</a></li>
+            <li><a href="#" class="text-sm text-gray-600 hover:text-brand transition-colors">Track Order</a></li>
+            <li><a href="faq.html" class="text-sm text-gray-600 hover:text-brand transition-colors">FAQs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-5">Contact</h4>
+          <ul class="space-y-2.5 text-sm text-gray-600">
+            <li>Garmunt Ltd, Manchester, UK</li>
+            <li>0800 000 0000</li>
+            <li>hello@garmunt.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center pt-5 gap-4">
+        <p class="text-xs text-gray-400">&copy; 2026 Garmunt Ltd. All rights reserved.</p>
+        <div class="flex gap-5 text-xs text-gray-400">
+          <a href="#" class="hover:text-brand transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-brand transition-colors">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FAQ PAGE JS ===================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // ---- Mobile Nav ----
+      var hamburger = document.getElementById('hamburger');
+      var navbar = document.getElementById('navbar');
+      var navBackdrop = document.getElementById('navBackdrop');
+      var navClose = document.getElementById('navClose');
+
+      function openNav() {
+        navbar.classList.add('open');
+        navBackdrop.classList.add('visible');
+        hamburger.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeNav() {
+        navbar.classList.remove('open');
+        navBackdrop.classList.remove('visible');
+        hamburger.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      if (hamburger) hamburger.addEventListener('click', function() {
+        navbar.classList.contains('open') ? closeNav() : openNav();
+      });
+      if (navBackdrop) navBackdrop.addEventListener('click', closeNav);
+      if (navClose) navClose.addEventListener('click', closeNav);
+
+      // ---- FAQ Accordion ----
+      document.querySelectorAll('.faq-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+          var answer = toggle.nextElementSibling;
+          var isOpen = toggle.classList.contains('open');
+
+          // Close all other open FAQs
+          document.querySelectorAll('.faq-toggle.open').forEach(function(otherToggle) {
+            if (otherToggle !== toggle) {
+              otherToggle.classList.remove('open');
+              otherToggle.setAttribute('aria-expanded', 'false');
+              var otherAnswer = otherToggle.nextElementSibling;
+              otherAnswer.style.maxHeight = '0px';
+              otherAnswer.classList.remove('open');
+            }
+          });
+
+          if (isOpen) {
+            toggle.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            answer.style.maxHeight = '0px';
+            answer.classList.remove('open');
+          } else {
+            toggle.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            answer.classList.add('open');
+          }
+        });
+      });
+
+      // ---- Category Tabs ----
+      var activeCategory = 'all';
+      var searchQuery = '';
+
+      document.querySelectorAll('.tab-btn').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          // Update active tab
+          document.querySelectorAll('.tab-btn').forEach(function(t) {
+            t.classList.remove('active');
+            t.classList.add('text-gray-600');
+          });
+          tab.classList.add('active');
+          tab.classList.remove('text-gray-600');
+
+          activeCategory = tab.getAttribute('data-category');
+          filterFAQs();
+        });
+      });
+
+      // ---- Search Filter ----
+      var searchInput = document.getElementById('faqSearch');
+      searchInput.addEventListener('input', function() {
+        searchQuery = searchInput.value.toLowerCase().trim();
+        filterFAQs();
+      });
+
+      function filterFAQs() {
+        var items = document.querySelectorAll('.faq-item');
+        var visibleCount = 0;
+
+        items.forEach(function(item) {
+          var categories = item.getAttribute('data-category').split(' ');
+          var question = item.querySelector('.faq-toggle span').textContent.toLowerCase();
+          var answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+          var matchesCategory = activeCategory === 'all' || categories.indexOf(activeCategory) !== -1;
+          var matchesSearch = !searchQuery || question.indexOf(searchQuery) !== -1 || answer.indexOf(searchQuery) !== -1;
+
+          if (matchesCategory && matchesSearch) {
+            item.classList.remove('hidden-faq');
+            item.style.display = '';
+            visibleCount++;
+          } else {
+            // Close if open
+            var toggle = item.querySelector('.faq-toggle');
+            var answerEl = item.querySelector('.faq-answer');
+            if (toggle.classList.contains('open')) {
+              toggle.classList.remove('open');
+              toggle.setAttribute('aria-expanded', 'false');
+              answerEl.style.maxHeight = '0px';
+              answerEl.classList.remove('open');
+            }
+            item.classList.add('hidden-faq');
+            item.style.display = 'none';
+          }
+        });
+
+        // Show/hide no results message
+        var noResults = document.getElementById('noResults');
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      }
+
+    });
+  </script>
+
+</body>
+</html>
